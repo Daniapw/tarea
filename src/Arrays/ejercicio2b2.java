@@ -30,7 +30,7 @@ public class ejercicio2b2 {
 				array3[i] = array1[i];
 			}
 			else {
-					array3[i] = array2[i];
+				array3[i] = array2[i];
 			}
 			
 			System.out.println("Número " + i + ": " + array3[i]);
