@@ -6,9 +6,10 @@ public class Paresonones {
 		int manoizdjugador, manodrchajugador, totaljugador, num;
 		double manoizdmaquina, manodrchamaquina, totalmaquina, resultado;
 		
-		
-		num = Integer.parseInt(JOptionPane.showInputDialog("Â¿Pares o nones (2 para pares; 1 para nones)?"));
-		
+		do {
+			num = Integer.parseInt(JOptionPane.showInputDialog("¿Pares o nones (2 para pares; 1 para nones)?"));
+		} while (num !=1 && num != 2);
+			
 		if (num == 1) {
 			JOptionPane.showMessageDialog(null, "Has elegido nones.");
 		}
@@ -17,32 +18,35 @@ public class Paresonones {
 		}
 		
 		
-		manoizdjugador = Integer.parseInt(JOptionPane.showInputDialog("Â¿CuÃ¡ntos dedos de la mano izquierda vas a levantar?"));
-		manodrchajugador = Integer.parseInt(JOptionPane.showInputDialog("Â¿Y de la mano derecha?"));
+		
+		manoizdjugador = Integer.parseInt(JOptionPane.showInputDialog("¿Cuántos dedos de la mano izquierda vas a levantar?"));
+		manodrchajugador = Integer.parseInt(JOptionPane.showInputDialog("¿Y de la mano derecha?"));
 										
 		while (manoizdjugador > 5 || manoizdjugador < 0 || manodrchajugador > 5 || manodrchajugador < 0) {
-			JOptionPane.showMessageDialog(null, "Â¡No puedes sacar mÃ¡s de 5 dedos en una mano, y tampoco menos de 0!");
-			manoizdjugador = Integer.parseInt(JOptionPane.showInputDialog("Â¿CuÃ¡ntos dedos de la mano izquierda vas a levantar?"));
-			manodrchajugador = Integer.parseInt(JOptionPane.showInputDialog("Â¿Y de la mano derecha?"));
+			JOptionPane.showMessageDialog(null, "¡No puedes sacar más de 5 dedos en una mano, y tampoco menos de 0!");
+			manoizdjugador = Integer.parseInt(JOptionPane.showInputDialog("¿Cuántos dedos de la mano izquierda vas a levantar?"));
+			manodrchajugador = Integer.parseInt(JOptionPane.showInputDialog("¿Y de la mano derecha?"));
 		}
 		
 		totaljugador = manoizdjugador + manodrchajugador;
 		
 		do {
-		manoizdmaquina = (int) (Math.random() * 10);
-		manodrchamaquina =  (int) (Math.random() * 10);
+			manoizdmaquina = (int) (Math.random() * 10);
+			manodrchamaquina =  (int) (Math.random() * 10);
 		
 		} while ((manoizdmaquina + manodrchamaquina) > 10);
 		
 		
 		totalmaquina = manoizdmaquina + manodrchamaquina;
 		
-		JOptionPane.showMessageDialog(null, "La mÃ¡quina ha sacado " + totalmaquina + " dedos.");
+		JOptionPane.showMessageDialog(null, "La máquina ha sacado " + totalmaquina + " dedos.");
 		
-		resultado = (totaljugador + totalmaquina)%2;
+		resultado = (totaljugador + totalmaquina) % 2;
+		
+		JOptionPane.showMessageDialog(null, "Total: " + (totaljugador + totalmaquina));
 		
 		if (num == 1 && resultado != 0) {
-			JOptionPane.showMessageDialog(null, "Â¡Enhorabuena, has ganado!");
+			JOptionPane.showMessageDialog(null, "¡Enhorabuena, has ganado!");
 		}
 		else {
 			if (num == 1 && resultado == 0) {
@@ -50,7 +54,7 @@ public class Paresonones {
 			}
 			else {
 				if (num == 2 && resultado == 0) {
-					JOptionPane.showMessageDialog(null, "Â¡Enhorabuena, has ganado!");
+					JOptionPane.showMessageDialog(null, "¡Enhorabuena, has ganado!");
 				}
 				else {
 					if (num == 2 && resultado != 0) {
