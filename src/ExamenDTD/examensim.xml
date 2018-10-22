@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE PeliculasActoresyActrices SYSTEM "dtdexamensim.dtd">
+<cinematografia>
+	<pelicula titulo="El Señor de los Anillos: La Comunidad del Anillo" fechadeestreno="2001">
+		<reparto>
+			<actor nombre="Viggo Mortensen" codigoactor="uno" fechanac="10-3-1968" estadocivil="casado"/>
+			<actor nombre="Ian McKellen" codigoactor="dos" fechanac="22-8-1941" estadocivil="soltero"/>
+			<actriz nombre="Liv Tyler" codigoactor="tres" fechanac="17-9-1968" estadocivil="divorciado"/>
+		</reparto>
+		<directores nombre="Peter Jackson" fechanac="31-2-1962" trabajadopreviamentecon="uno tres">&opinionbuena;</directores>
+		<lugaresdegrabacion>Nueva Zelanda, Escocia</lugaresdegrabacion>
+		<accidentesrodaje>Viggo Mortensen le pisó la mano sin querer a un extra Uruk Hai que estaba haciéndose el muerto durante una escena, lo que le partió varios dedos de la mano</accidentesrodaje>
+	</pelicula>
+	
+	<pelicula titulo="Avengers Infinity War" fechadeestreno="2018">
+		<reparto>
+			<actor nombre="Robert Downey Jr." codigoactor="cinco" fechanac="5-1-1970" estadocivil="casado"/>
+			<actor nombre="Chris Evans" codigoactor="seis" fechanac="4-7-1976" estadocivil="divorciado"/>
+			<actor nombre="Tom Holland" codigoactor="siete" fechanac="9-12-1991" estadocivil="soltero"/>
+			<actriz nombre="Scarlett Johanson" codigoactor="ocho" fechanac="10-10-1982" estadocivil="casado"/>
+		</reparto>
+		<directores nombre="Los hermanos Russo" fechanac="3-2-1967" trabajadopreviamentecon="cinco seis siete ocho">&opinionbuena;</directores>
+		<lugaresdegrabacion>Nueva York, Berlín, Chicago</lugaresdegrabacion>
+		<accidentesrodaje>
+			<No/>
+		</accidentesrodaje>
+	</pelicula>
+
+</cinematografia>
