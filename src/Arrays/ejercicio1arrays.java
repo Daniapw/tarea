@@ -7,8 +7,8 @@ public class ejercicio1arrays {
 		int numeros[] = new int [150];
 		int limiteinf, limitesup;
 		
-		limiteinf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el lÃ­mite inferior"));
-		limitesup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el lÃ­mite superior"));
+		limiteinf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el límite inferior"));
+		limitesup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el límite superior"));
 		
 
 		
@@ -19,7 +19,7 @@ public class ejercicio1arrays {
 			
 		for (int i = 0; i < numeros.length; i++) {
 			
-			System.out.println("NÃºmero " + i + ": " + numeros[i]);
+			System.out.println("Número " + i + ": " + numeros[i]);
 		}
 
 		
