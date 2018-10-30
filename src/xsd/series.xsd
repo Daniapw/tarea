@@ -38,12 +38,39 @@
 		<xs:attribute name="nombre">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:pattern value="\d"/>
+					<xs:pattern value="\d+"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
 	
+		<xs:attribute name="edad">
+			<xs:simpleType>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:maxInclusive value="120"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		
 	</xs:complexType>
-
+	
+	<xs:complexType name="tipoSecundario">
+	
+		<xs:attribute name="nombre">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="\d+"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		
+		<xs:attribute name="edad">
+			<xs:simpleType>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:maxInclusive value="120"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		
+	</xs:complexType>
 
 </xs:schema>
