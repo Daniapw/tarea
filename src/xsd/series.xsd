@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="serie" type="tipoSerie"/>
+	
+	<xs:complexType name="tipoSerie" mixed="true">
+		
+		<xs:sequence>
+			<xs:element name="personajes" type="tipoPersonajes"/>
+			<xs:element name="lugarambientacion" type="tipoAmbientado"/>
+			<xs:element name="estudiocreador" type="tipoCreadores"/>
+			<xs:element name="nacionalidadserie" type="tipoNacionserie"/>		
+		</xs:sequence>
+		
+		<xs:attribute name="nombre" type="xs:string"/>
+		
+		<xs:attribute name="fechaprimeraemision">
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1960"/>
+					<xs:maxInclusive value="2018"/>	
+				</xs:restriction>			
+			</xs:simpleType>
+		</xs:attribute>
+			
+	</xs:complexType>
+	
+	<xs:complexType name="tipoPersonajes">
+	
+		<xs:sequence>
+			<xs:element name="personajeprincipal" type="tipoPrincipal" maxOccurs="unbounded"/>
+			<xs:element name="personajesecundario" type="tipoSecundario" maxOccurs="unbounded"/>
+		</xs:sequence>
+	
+	</xs:complexType>
+
+	<xs:complexType name="tipoPrincipal">
+		
+		<xs:attribute name="nombre">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="\d"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	
+	</xs:complexType>
+
+
+</xs:schema>
