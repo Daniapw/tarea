@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simpsons xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="repaso.xsd">
+	<localidad valor="Springfield" anyo="1812"/>
+	<pelicula>Estreno el día 15-03-2009
+		<titulo>Los Simpsons la película</titulo>
+	</pelicula>
+	<creadores bso="Danny Elfman">Matt Groening</creadores>
+	<familia nombre="Simpson">5</familia>
+	<temporada>
+		<temporada01/>
+		<!-- <temporada02/>
+		<temporada03/>-->
+	</temporada>
+	<personajes>
+		<Maggie/>
+		<Marge/>
+		<Bart/>
+		<Lisa/>
+		<Homer/>
+	</personajes>
+	<colorPersonajes principal="amarillo" rojo="120" verde="150" azul="410"/>
+	<MontgomeryBurns dni="50614384D" matricula="0001ABC" mac="14:e3:a5:34:87:ef" color="amarillo"/>
+	<localidadRival>Shelbyville</localidadRival>
+	<localidadesAmigas>Córdoba Sevilla</localidadesAmigas>
+	<Barney bebidaDiaria="Ron"/>
+</simpsons>

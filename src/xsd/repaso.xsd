@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:element name="simpsons" type="tipoSimpsons"/>
+	
+	<!-- ComplexType principal (ejemplo sequence) -->
+	<xs:complexType name="tipoSimpsons">	
+		<xs:sequence>
+			<xs:element name="localidad" type="tipoLocalidad"/>
+			<xs:element name="pelicula" type="tipoPelicula"/>
+			<xs:element name="creadores" type="tipoCreadores"/>
+			<xs:element name="familia" type="tipoFamilia"/>
+			<xs:element name="temporada" type="tipoTemporada"/>
+			<xs:element name="personajes" type="tipoPersonajes"/>
+			<xs:element name="colorPersonajes" type="tipoColor"/>
+			<xs:element name="MontgomeryBurns" type="tipoBurns"/>
+			<xs:element name="localidadRival" type="tipoRival"/>
+			<xs:element name="localidadesAmigas" type="tipoAmigas"/>
+			<xs:element name="Barney" type="tipoBarney"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- ComplexType de localidad (ejemplo atributos primitivos)-->
+	<xs:complexType name="tipoLocalidad">
+		<xs:attribute name="valor" type="xs:string"/>
+		<xs:attribute name="anyo" type="xs:integer"/>
+	</xs:complexType>
+	
+	<!-- ComplexType de película (ejemplo tipo mixto con elemento y texto)-->
+	<xs:complexType name="tipoPelicula" mixed="true">
+		<xs:sequence>
+			<xs:element name="titulo" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- ComplexType de creadores (ejemplo tipo mixto con texto y atributo)-->
+	<xs:complexType name="tipoCreadores" mixed="true">
+		<xs:attribute name="bso" type="xs:string"/>
+	</xs:complexType>
+	
+	<!-- ComplexType de familia (ejemplo tipo mixto que solo admite números y un atributo)-->
+	<xs:complexType name="tipoFamilia" mixed="true">
+		<xs:simpleContent>
+			<xs:extension base="xs:integer">
+				<xs:attribute name="nombre" type="xs:string"/>
+			</xs:extension>	
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<!-- ComplexType de temporada (ejemplo choice) -->
+	<xs:complexType name="tipoTemporada">
+		<xs:choice>
+			<xs:element name="temporada01"/>
+			<xs:element name="temporada02"/>
+			<xs:element name="temporada03"/>	
+		</xs:choice>
+	</xs:complexType>
+	
+	<!-- ComplexType de personajes (ejemplo all) -->
+	<xs:complexType name="tipoPersonajes">
+		<xs:all>
+			<xs:element name="Homer" type="tipoVacio"/>
+			<xs:element name="Marge" type="tipoVacio"/>
+			<xs:element name="Bart" type="tipoVacio"/>
+			<xs:element name="Lisa" type="tipoVacio"/>
+			<xs:element name="Maggie" type="tipoVacio"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<!-- ComplexType colorPersonajes (ejemplo restricción string y restricción integer) -->
+	<xs:complexType name="tipoColor">
+		<xs:attribute name="principal">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="amarillo"/>
+					<xs:enumeration value="blanco"/>
+					<xs:enumeration value="negro"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>		
+		<xs:attribute name="rojo" type="DeCienAMil"/>		
+		<xs:attribute name="verde" type="DeCienAMil"/>	
+		<xs:attribute name="azul" type="DeCienAMil"/>
+	</xs:complexType>
+	
+	<xs:simpleType name="DeCienAMil">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="100"/>
+			<xs:maxInclusive value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- ComplexType MontgomeryBurns (ejemplo patterns)-->
+	<xs:complexType name="tipoBurns">
+		<xs:attribute name="dni">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[0-9]{8}[A-Z]"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		
+		<xs:attribute name="matricula">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[0-9]{4}[A-Z]{3}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>	
+		
+		<xs:attribute name="mac">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="([0-9|A-F|a-f]{2}[:]?){6}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>	
+		
+		<xs:attribute name="color">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="amarillo|blanco|negro"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>	
+	</xs:complexType>
+	
+	<!-- Type localidadRival (ejemplo unión)-->
+	<xs:simpleType name="tipoRival">
+		<xs:union memberTypes="rivalesEspanya rivalesUS"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="rivalesEspanya">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Sevilla"/>
+			<xs:enumeration value="Córdoba"/>
+			<xs:enumeration value="Granada"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="rivalesUS">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Shelbyville"/>
+			<xs:enumeration value="Armadillo"/>
+			<xs:enumeration value="Las Vegas"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- Type localidadesAmigas (ejemplo list) -->
+	<xs:simpleType name="tipoAmigas">
+		<xs:list itemType="rivalesEspanya"/>
+	</xs:simpleType>
+	
+	<!-- Type Barney (ejemplo herencia) -->	
+	<xs:simpleType name="listaBebidas">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Cerveza_Duff"/>
+			<xs:enumeration value="Ginebra"/>
+			<xs:enumeration value="Bourbon"/>
+			<xs:enumeration value="Whiskey"/>
+			<xs:enumeration value="Ron"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="tipoBarney">
+		<xs:attribute name="bebidaDiaria">
+			<xs:simpleType>
+				<xs:restriction base="listaBebidas"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<!-- ComplexType para los tipo vacío (hay que ponerlo así) -->
+	<xs:complexType name="tipoVacio"/>
+</xs:schema>
