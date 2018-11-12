@@ -17,6 +17,8 @@
 			<xs:element name="localidadRival" type="tipoRival"/>
 			<xs:element name="localidadesAmigas" type="tipoAmigas"/>
 			<xs:element name="Barney" type="tipoBarney"/>
+			<xs:element name="Apu" type="tipoApu"/>
+			<xs:element name="Manjula" type="tipoManjula"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -152,6 +154,12 @@
 	</xs:simpleType>
 	
 	<!-- Type Barney (ejemplo herencia) -->	
+			
+	<xs:complexType name="tipoBarney">
+		<xs:attribute name="bebidaDiaria" type="listaBebidas"/>
+		<xs:attribute name="bebidasFavoritas" type="listaFavorita"/>
+	</xs:complexType>
+	
 	<xs:simpleType name="listaBebidas">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="Cerveza_Duff"/>
@@ -159,15 +167,32 @@
 			<xs:enumeration value="Bourbon"/>
 			<xs:enumeration value="Whiskey"/>
 			<xs:enumeration value="Ron"/>
+			<xs:enumeration value="Vodka"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
-	<xs:complexType name="tipoBarney">
-		<xs:attribute name="bebidaDiaria">
-			<xs:simpleType>
-				<xs:restriction base="listaBebidas"/>
-			</xs:simpleType>
-		</xs:attribute>
+	<xs:simpleType name="listaFavorita">
+		<xs:restriction base="listaBebidas">
+			<xs:enumeration value="Cerveza_Duff"/>
+			<xs:enumeration value="Ron"/>
+			<xs:enumeration value="Vodka"/>
+		</xs:restriction>
+	
+	</xs:simpleType>
+
+	<!-- complexType Apu y Manjula -->
+	<xs:complexType name="tipoApu" mixed="true">
+		<xs:sequence>
+			<xs:element name="apodo" type="xs:string"/>
+		</xs:sequence>
+		
+		<xs:attribute name="fechanacimiento" type="xs:string"/>
+	</xs:complexType>
+	
+	<xs:complexType name="tipoManjula" mixed="true">
+		<xs:sequence>
+			<xs:element name="apodo" type="xs:string"/>
+		</xs:sequence>
 	</xs:complexType>
 	
 	<!-- ComplexType para los tipo vacío (hay que ponerlo así) -->

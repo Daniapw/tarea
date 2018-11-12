@@ -22,5 +22,12 @@
 	<MontgomeryBurns dni="50614384D" matricula="0001ABC" mac="14:e3:a5:34:87:ef" color="amarillo"/>
 	<localidadRival>Shelbyville</localidadRival>
 	<localidadesAmigas>Córdoba Sevilla</localidadesAmigas>
-	<Barney bebidaDiaria="Ron"/>
+	<Barney bebidaDiaria="Ron" bebidasFavoritas="Cerveza_Duff"/>
+	<Apu fechanacimiento="">
+		<apodo></apodo>
+	
+	</Apu>
+	<Manjula fechanacimiento="" nacionalidad="">
+		<apodo></apodo>
+	</Manjula>
 </simpsons>

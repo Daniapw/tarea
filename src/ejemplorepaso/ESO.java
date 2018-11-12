@@ -1,5 +1,7 @@
 package ejemplorepaso;
 
-public class ESO {
-
+public class ESO extends Matricula{
+	
+	private boolean pmar;
+	
 }
