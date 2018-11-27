@@ -19,5 +19,8 @@ public class Palabras {
 			System.out.print("_ ");
 			
 		}
+		
+		
+		
 	}	
 }
