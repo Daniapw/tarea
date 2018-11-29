@@ -98,9 +98,9 @@ public class Juego {
 					
 			}
 			
-			System.out.println("\nNúmero de errores: " + fallos + "/6");
+			System.out.println("\nNúmero de errores: " + fallos + "/5");
 			
-			if (fallos == 6) {
+			if (fallos == 5) {
 				System.out.println("\nLo siento, has perdido el juego");
 			}
 			
@@ -120,7 +120,7 @@ public class Juego {
 			//Añadir 1 más al contador de ejecuciones
 			contadorEjecucion++;
 			
-		} while(fallos < 6 && !isTerminado(terminado, progreso));
+		} while(fallos < 5 && !isTerminado(terminado, progreso));
 		
 	}
 	
@@ -146,7 +146,7 @@ public class Juego {
 	}
 	
 	//Getters y setters
-	public int getFallos() {
+	public static int getFallos() {
 		return fallos;
 	}
 

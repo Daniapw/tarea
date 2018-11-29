@@ -3,13 +3,15 @@ package ahorcado;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Ventana extends Canvas {
 
-	public static final int ANCHO = 640;
-	public static final int ALTO = 480;
+	private static final int ANCHO = 640;
+	private static final int ALTO = 480;
 	
 	public static Ventana ventana = null;
 	
@@ -41,11 +43,48 @@ public class Ventana extends Canvas {
 	
 	public void paint(Graphics g) {
 	
-		g.setColor(new Color(214, 140, 92));
-		g.fillRect(200, 240, 130, 10);
-		g.fillRect(255, 80, 10, 170);
+		g.setColor(new Color(170, 119, 80));
 		
+		//Base del patíbulo
+		g.fillRect(200, 305, 130, 10);
+
+		//Palo del patíbulo
+		g.fillRect(260, 90, 10, 220);
 		
+		//Soporte
+		g.drawLine(310, 80, 260, 140);
+		
+		//Viga de la cuerda
+		
+		g.fillRect(260, 80, 170, 10);
+		
+		//Soga
+		g.setColor(Color.orange);
+		g.fillRect(400, 80, 2, 70);
+		g.fillOval(380, 145, 28, 28);
+		
+		//Cabeza
+		g.setColor(new Color(71, 138, 255));
+		g.fillOval(380, 142, 28, 28);
+		
+		//Ojos
+		g.setColor(Color.black);
+		g.drawLine(385,162,389,156);
+		g.drawLine(385,156,389,162);
+		g.drawLine(395,162,399,156);
+		g.drawLine(395,156,399,162);
+		
+		//Torso
+		g.setColor(new Color(71, 138, 255));
+		g.fillRoundRect(385, 171, 25, 55, 70, 10);
+		
+		//Brazos
+		g.fillRoundRect(377, 176, 7, 57, 40, 5);
+		g.fillRoundRect(411, 176, 7, 57, 40, 5);
+		
+		//Piernas
+		g.fillRoundRect(387, 210, 9, 65, 40, 5);
+		g.fillRoundRect(398, 210, 9, 65, 40, 5);
 		
 	}
 		
