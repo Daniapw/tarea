@@ -78,7 +78,8 @@ public class Juego {
 					for (int i = 0; i < letras.length; i++) {
 							
 						System.out.print(letras[i] + " ");
-						progreso[i] = letras[i];	
+						progreso[i] = letras[i];
+						
 					}
 					
 				}
@@ -156,45 +157,22 @@ public class Juego {
 	}
 
 
-	public String[] getArrayIntentos() {
+	public static String[] getArrayIntentos() {
 		return arrayIntentos;
 	}
 
 
-	public void setArrayIntentos(String[] arrayIntentos) {
-		this.arrayIntentos = arrayIntentos;
-	}
 
 
-	public int getContadorEjecucion() {
+	public static int getContadorEjecucion() {
 		return contadorEjecucion;
 	}
 
 
-	public void setContadorEjecucion(int contadorEjecucion) {
-		this.contadorEjecucion = contadorEjecucion;
-	}
-
-
-	public int getContadorCoincidencias() {
+	public static int getContadorCoincidencias() {
 		return contadorCoincidencias;
 	}
 
-
-	public void setContadorCoincidencias(int contadorCoincidencias) {
-		this.contadorCoincidencias = contadorCoincidencias;
-	}
-
-
-	public boolean isTerminado() {
-		return terminado;
-	}
-
-
-	public void setTerminado(boolean terminado) {
-		this.terminado = terminado;
-	}
-	
 	
 	
 }

@@ -45,14 +45,16 @@ public class Ventana extends Canvas {
 	
 		g.setColor(new Color(170, 119, 80));
 		
-		//Base del patíbulo
+		//Base del patï¿½bulo
 		g.fillRect(200, 305, 130, 10);
 
-		//Palo del patíbulo
+		//Palo del patï¿½bulo
 		g.fillRect(260, 90, 10, 220);
 		
 		//Soporte
-		g.drawLine(310, 80, 260, 140);
+		int x[] = new int[] {310, 312, 262, 260};
+		int y[] = new int[] {80, 82, 142, 140};
+		g.fillPolygon(x, y, 4);
 		
 		//Viga de la cuerda
 		
@@ -86,6 +88,20 @@ public class Ventana extends Canvas {
 		g.fillRoundRect(387, 210, 9, 65, 40, 5);
 		g.fillRoundRect(398, 210, 9, 65, 40, 5);
 		
+		g.setColor(Color.black);
+		g.drawLine(270, 90, 260, 80);
+		
+		int x1 = 200, x2 = 215;
+		
+		//Huecos de la palabra
+		for (int i = 0; i < Palabras.getPalabra().length();i++) {
+			
+			x1 += 30;
+			x2 += 30;
+			
+			g.drawLine(x1, 370, x2, 370);
+			
+		}
 	}
 		
 	public static Ventana getVentana() {
