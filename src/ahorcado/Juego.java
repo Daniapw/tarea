@@ -6,35 +6,34 @@ public class Juego {
 	
 	private static int fallos = 0;
 	private static String arrayIntentos[] = new String[100];
+	private static String intento;
 	
 	//Contador de ejecuciones del juego para poder imprimir los errores del usuario
 	private static int contadorEjecucion = 0;
 	
 	//Contador para saber si el jugador ha acertado al meter una letra o no
 	private static int contadorCoincidencias = 0;
+	private static boolean coincidencia = false;
 	
 	//booleano que se le pasa al método "isTerminado", que determinará si el jugador ha completado la palabra o no
-	private static boolean terminado = true;
+	private static boolean terminado=true;
+
+	//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con "_" que se irán sustituyendo por letras
+	private static String progreso[] = new String[Palabras.getPalabra().length()];
+	
 	
 	//Método para el bucle principal del juego
 	public static void bucleJuego (String letras[]) {
-		
-		//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con "_" que se irán sustituyendo por letras
-		String progreso[] = new String[Palabras.getPalabra().length()];
-		
+				
 		for (int i = 0; i < progreso.length; i++) {
-			
-			progreso[i] = "_";
-			
+			progreso[i] = " ";
 		}
 		
 		do {
 			
 			Ventana.getVentana().repaint();
 			
-			String intento = JOptionPane.showInputDialog("Introduce una letra o una palabra:");
-			
-			System.out.println("\n");			
+			intento = JOptionPane.showInputDialog("Introduce una letra o una palabra:");	
 			
 			arrayIntentos[contadorEjecucion] = intento;
 			
@@ -47,25 +46,17 @@ public class Juego {
 					if (intento.equals(letras[i])) {
 						
 						progreso[i] = letras[i];
-						System.out.print(progreso[i] + " ");
 						contadorCoincidencias++;
-						
-					}
-					else {
-						
-						System.out.print(progreso[i] + " ");
-						
+						coincidencia = true;
 					}
 					
 				}	
 				
 				//Si la letra no se ha encontrado se a�ade un fallo
 				if (contadorCoincidencias == 0) {
-					System.out.println("\nIncorrecto: la palabra no contiene la letra " + intento );
+					
 					fallos++;
-				}
-				else {
-					System.out.println("\nCorrecto");
+					coincidencia = false;
 				}
 				
 			}
@@ -77,100 +68,90 @@ public class Juego {
 					
 					for (int i = 0; i < letras.length; i++) {
 							
-						System.out.print(letras[i] + " ");
 						progreso[i] = letras[i];
-						
+						coincidencia = true;
 					}
 					
 				}
 				else {
 					
-					System.out.println("\nIncorrecto");
-					
 					fallos++;
-					
-					for (int i = 0; i < progreso.length; i++) {
-						
-						System.out.print(progreso[i] + " ");
-						
-					}
-					
+					coincidencia = false;
 				}
 					
 			}
 			
-			System.out.println("\nNúmero de errores: " + fallos + "/5");
-			
+			//Repintar para mostrar mensaje
 			if (fallos == 5) {
-				System.out.println("\nLo siento, has perdido el juego");
+				Ventana.getVentana().repaint();
 			}
 			
-			//Bucle para mostrar al usuario las letras y palabras que ha intentado hasta ahora
-			
-			System.out.println("Palabras y letras que has probado: ");
-			
-			for (int i = 0; i <= contadorEjecucion; i++) {
-				
-				System.out.print(arrayIntentos[i] + " ");
-				
-			}
 			
 			//Resetear contador de coincidencias para el siguiente intento
 			contadorCoincidencias = 0;
 			
 			//Añadir 1 más al contador de ejecuciones
 			contadorEjecucion++;
-			
+
 		} while(fallos < 5 && !isTerminado(terminado, progreso));
 		
 	}
 	
 	
 	//Método boolean para saber si el jugador ha adivinado la palabra y el juego tiene que terminar
-	private static boolean isTerminado (boolean terminado, String progreso[]) {
+	public static boolean isTerminado (boolean terminado, String progreso[]) {
 		
 		for (int i = 0; i < progreso.length; i++) {
 			
-			if (progreso[i] == "_") {
+			if (progreso[i] == " ") {
 				
 				terminado = false;
 				
 			}
-			
 		}
 		
-		if (terminado ==true) {
-			System.out.println("\n¡Enhorabuena, has ganado!");
+		if (terminado == true) {
+			
+			Ventana.getVentana().repaint();
 		}
 		
 		return terminado;
 	}
+	
+	
 	
 	//Getters y setters
 	public static int getFallos() {
 		return fallos;
 	}
 
-
-	public void setFallos(int fallos) {
-		this.fallos = fallos;
-	}
-
-
 	public static String[] getArrayIntentos() {
 		return arrayIntentos;
 	}
-
-
-
-
+	
 	public static int getContadorEjecucion() {
 		return contadorEjecucion;
 	}
 
-
 	public static int getContadorCoincidencias() {
 		return contadorCoincidencias;
+	}
+
+	public static String[] getProgreso() {
+		return progreso;
+	}
+
+	public static boolean getTerminado() {
+		return terminado;
+	}
+
+	public static String getIntento() {
+		return intento;
+	}
+
+
+	public static boolean isCoincidencia() {
+		return coincidencia;
 	}
 
 	

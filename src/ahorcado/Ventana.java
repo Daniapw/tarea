@@ -2,11 +2,14 @@ package ahorcado;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import ahorcado.recursos.CacheImagen;
 
 public class Ventana extends Canvas {
 
@@ -31,6 +34,8 @@ public class Ventana extends Canvas {
 		//Establezco el tamaÃ±o del Canvas
 		this.setBounds(0,0,ANCHO,ALTO);
 		this.setBackground(Color.white);
+		this.setFont(new Font("Verdana", Font.PLAIN, 16));
+
 		
 		//Establezco el comportamiento al darle a la X
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,14 +46,15 @@ public class Ventana extends Canvas {
 		
 	}
 	
-	public void paint(Graphics g) {
 	
+	public void paint(Graphics g) {
+
 		g.setColor(new Color(170, 119, 80));
 		
 		//Base del patï¿½bulo
 		g.fillRect(200, 305, 130, 10);
 
-		//Palo del patï¿½bulo
+		//Viga principal del patï¿½bulo
 		g.fillRect(260, 90, 10, 220);
 		
 		//Soporte
@@ -57,17 +63,18 @@ public class Ventana extends Canvas {
 		g.fillPolygon(x, y, 4);
 		
 		//Viga de la cuerda
-		
 		g.fillRect(260, 80, 170, 10);
 		
 		//Soga
 		g.setColor(Color.orange);
 		g.fillRect(400, 80, 2, 70);
-		g.fillOval(380, 145, 28, 28);
+		
+		//Círculo para simular la soga alrededor del cuello
+		g.fillOval(380, 145, 28, 29);
 		
 		//Cabeza
 		g.setColor(new Color(71, 138, 255));
-		g.fillOval(380, 142, 28, 28);
+		g.fillOval(380, 143, 28, 28);
 		
 		//Ojos
 		g.setColor(Color.black);
@@ -88,22 +95,156 @@ public class Ventana extends Canvas {
 		g.fillRoundRect(387, 210, 9, 65, 40, 5);
 		g.fillRoundRect(398, 210, 9, 65, 40, 5);
 		
+		//Unión de los palos
 		g.setColor(Color.black);
 		g.drawLine(270, 90, 260, 80);
 		
-		int x1 = 200, x2 = 215;
+		//Progreso del jugador (huecos y letras de la palabra)
+		int x1 = 200, x2 = 215, x3=235;
+		String letraProgreso[] = Juego.getProgreso();
+		String ventanaIntentos[] = Juego.getArrayIntentos();
 		
-		//Huecos de la palabra
 		for (int i = 0; i < Palabras.getPalabra().length();i++) {
 			
 			x1 += 30;
 			x2 += 30;
 			
 			g.drawLine(x1, 370, x2, 370);
+			g.drawString(letraProgreso[i], x1+3, 366);
 			
 		}
-	}
 		
+		//Palabras y letras intentadas por el jugador
+		g.drawString("Letras/palabras intentadas:", 20, 420);
+		
+		for (int j = 0; j < Juego.getContadorEjecucion(); j++) {
+			
+			if (ventanaIntentos[j].length() == 1) {
+				
+				x3 += 20;
+				g.drawString(ventanaIntentos[j], x3, 420);
+				
+			}
+			else {
+				
+				x3 += 50;
+				g.drawString(ventanaIntentos[j], x3, 420);
+				
+			}
+		}
+
+		
+		//Intentos restantes:
+		g.drawString("Nº de errores: " + Juego.getFallos() + "/5", 20, 440);
+		
+		//Sistema de fallos y aciertos
+		if (Juego.isCoincidencia() == true ) {
+			
+			g.setColor(Color.green);
+			g.drawString("¡Correcto!", 270, 40);
+			
+		}
+		else {
+			
+			g.setColor(Color.red);
+			
+			if (Juego.getFallos() >= 1 && Juego.getFallos() < 5) {
+				g.drawString("¡Incorrecto!", 270, 40);
+			}
+			else {
+				if (Juego.getFallos() == 5) {
+					g.drawString("Lo siento, has perdido", 220, 40);
+				}
+			}
+		}
+		
+		
+		g.setColor(Color.red);
+		switch (Juego.getFallos()) {
+			case 1:{
+				
+				//Torso
+				g.fillRoundRect(385, 171, 25, 55, 70, 10);
+				
+				break;
+			}
+			case 2:{
+				
+				//Torso
+				g.fillRoundRect(385, 171, 25, 55, 70, 10);
+				
+				//Brazos
+				g.fillRoundRect(377, 176, 7, 57, 40, 5);
+				g.fillRoundRect(411, 176, 7, 57, 40, 5);
+				
+				break;
+			}
+			case 3:{
+				
+				//Torso
+				g.fillRoundRect(385, 171, 25, 55, 70, 10);
+				
+				//Brazos
+				g.fillRoundRect(377, 176, 7, 57, 40, 5);
+				g.fillRoundRect(411, 176, 7, 57, 40, 5);
+				
+				//Piernas
+				g.fillRoundRect(387, 210, 9, 65, 40, 5);
+				
+				break;
+			}
+			case 4:{
+
+				//Torso
+				g.fillRoundRect(385, 171, 25, 55, 70, 10);
+				
+				//Brazos
+				g.fillRoundRect(377, 176, 7, 57, 40, 5);
+				g.fillRoundRect(411, 176, 7, 57, 40, 5);
+				
+				//Piernas
+				g.fillRoundRect(387, 210, 9, 65, 40, 5);
+				g.fillRoundRect(398, 210, 9, 65, 40, 5);
+				
+				break;
+			}
+			case 5:{
+				
+				//Mensaje derrota
+				g.setColor(Color.red);
+				
+				
+				//Torso
+				g.fillRoundRect(385, 171, 25, 55, 70, 10);
+				
+				//Brazos
+				g.fillRoundRect(377, 176, 7, 57, 40, 5);
+				g.fillRoundRect(411, 176, 7, 57, 40, 5);
+				
+				//Piernas
+				g.fillRoundRect(387, 210, 9, 65, 40, 5);
+				g.fillRoundRect(398, 210, 9, 65, 40, 5);
+				
+				//Cabeza
+				g.fillOval(380, 143, 28, 28);
+				
+				//Ojos
+				g.setColor(Color.black);
+				g.drawLine(385,162,389,156);
+				g.drawLine(385,156,389,162);
+				g.drawLine(395,162,399,156);
+				g.drawLine(395,156,399,162);
+				
+				break;
+			}
+			
+		}
+	
+	
+
+	}
+	
+	
 	public static Ventana getVentana() {
 		if (ventana == null) {
 			ventana = new Ventana();
