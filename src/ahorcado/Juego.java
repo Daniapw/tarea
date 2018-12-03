@@ -82,7 +82,7 @@ public class Juego {
 			}
 			
 			//Repintar para mostrar mensaje
-			if (fallos == 5) {
+			if (fallos == 6) {
 				Ventana.getVentana().repaint();
 			}
 			
@@ -93,7 +93,7 @@ public class Juego {
 			//Añadir 1 más al contador de ejecuciones
 			contadorEjecucion++;
 
-		} while(fallos < 5 && !isTerminado(terminado, progreso));
+		} while(fallos < 6 && !isTerminado(terminado, progreso));
 		
 	}
 	

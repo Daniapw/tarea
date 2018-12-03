@@ -28,7 +28,7 @@ public class CacheImagen {
 	public BufferedImage getImagen(String nombre) {
 		URL url=null;
 		try {
-			url = getClass().getResource("C:\\Users\\Equipo\\git\\tarea\\src\\ahorcado\\recursos\\" + nombre);
+			url = getClass().getResource("/ahorcado/recursos/" + nombre);
 			return ImageIO.read(url);
 		} catch (Exception e) {
 			System.out.println("No se pudo cargar la imagen " + nombre +" de "+url);
@@ -40,7 +40,7 @@ public class CacheImagen {
 	
 	public BufferedImage getFondo() {
 		if (imagenFondo == null) {
-			imagenFondo = getCache().getImagen("cadalso.jpg");
+			imagenFondo = getCache().getImagen("cadalso2.jpg");
 		}
 		
 		return imagenFondo;
