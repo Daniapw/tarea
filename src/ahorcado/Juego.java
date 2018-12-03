@@ -28,16 +28,16 @@ public class Juego {
 		for (int i = 0; i < progreso.length; i++) {
 			progreso[i] = " ";
 		}
-		
 		do {
 			
 			Ventana.getVentana().repaint();
+	
 			
 			intento = JOptionPane.showInputDialog("Introduce una letra o una palabra:");	
 			
 			arrayIntentos[contadorEjecucion] = intento;
 			
-			//Si el jugador introduce una sola letra:
+			//Si el jugador introduce una sola letra:Correcto
 			if (intento.length() == 1) {
 				
 				//Buscar letra e imprimir resultado
@@ -55,8 +55,9 @@ public class Juego {
 				//Si la letra no se ha encontrado se a�ade un fallo
 				if (contadorCoincidencias == 0) {
 					
+					coincidencia =false;
 					fallos++;
-					coincidencia = false;
+
 				}
 				
 			}
@@ -81,11 +82,6 @@ public class Juego {
 					
 			}
 			
-			//Repintar para mostrar mensaje
-			if (fallos == 6) {
-				Ventana.getVentana().repaint();
-			}
-			
 			
 			//Resetear contador de coincidencias para el siguiente intento
 			contadorCoincidencias = 0;
@@ -93,14 +89,16 @@ public class Juego {
 			//Añadir 1 más al contador de ejecuciones
 			contadorEjecucion++;
 
-		} while(fallos < 6 && !isTerminado(terminado, progreso));
-		
+		} while(fallos < 6 && !isTerminado());
+	
+		Ventana.getVentana().repaint();
+
 	}
 	
 	
 	//Método boolean para saber si el jugador ha adivinado la palabra y el juego tiene que terminar
-	public static boolean isTerminado (boolean terminado, String progreso[]) {
-		
+	public static boolean isTerminado () {
+		terminado = true;
 		for (int i = 0; i < progreso.length; i++) {
 			
 			if (progreso[i] == " ") {
@@ -108,11 +106,6 @@ public class Juego {
 				terminado = false;
 				
 			}
-		}
-		
-		if (terminado == true) {
-			
-			Ventana.getVentana().repaint();
 		}
 		
 		return terminado;
@@ -133,10 +126,6 @@ public class Juego {
 		return contadorEjecucion;
 	}
 
-	public static int getContadorCoincidencias() {
-		return contadorCoincidencias;
-	}
-
 	public static String[] getProgreso() {
 		return progreso;
 	}
@@ -144,11 +133,6 @@ public class Juego {
 	public static boolean getTerminado() {
 		return terminado;
 	}
-
-	public static String getIntento() {
-		return intento;
-	}
-
 
 	public static boolean isCoincidencia() {
 		return coincidencia;

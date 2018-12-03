@@ -36,9 +36,7 @@ public class Ventana extends Canvas {
 		
 		//Establezco el tamaño del Canvas
 		this.setBounds(0,0,ANCHO,ALTO);
-		this.setBackground(Color.white);
 		this.setFont(new Font("Verdana", Font.PLAIN, 16));
-
 		
 		//Establezco el comportamiento al darle a la X
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +52,7 @@ public class Ventana extends Canvas {
 		
 		g.drawImage(CacheImagen.getCache().getFondo(), 0, 0, null);
 		
-		g.setColor(new Color(170, 119, 80));
+		g.setColor(new Color(112, 54, 16));
 		
 		//Base del pat�bulo
 		g.fillRect(200, 305, 130, 10);
@@ -78,7 +76,7 @@ public class Ventana extends Canvas {
 		g.fillOval(380, 145, 28, 29);
 		
 		//Cabeza
-		g.setColor(new Color(71, 138, 255));
+		g.setColor(new Color(17, 150, 15));
 		g.fillOval(380, 143, 28, 28);
 		
 		//Ojos
@@ -89,7 +87,7 @@ public class Ventana extends Canvas {
 		g.drawLine(395,156,399,162);
 		
 		//Torso
-		g.setColor(new Color(71, 138, 255));
+		g.setColor(new Color(17, 150, 15));
 		g.fillRoundRect(385, 171, 25, 55, 70, 10);
 		
 		//Brazos
@@ -106,6 +104,8 @@ public class Ventana extends Canvas {
 		
 		//Progreso del jugador (huecos y letras de la palabra)
 		int x1 = 150, x2 = 165, x3=235;
+		
+		g.setColor(Color.WHITE);
 		
 		for (int i = 0; i < Palabras.getPalabra().length();i++) {
 			
@@ -124,13 +124,13 @@ public class Ventana extends Canvas {
 			
 			if (ventanaIntentos[j].length() == 1) {
 				
-				x3 += 20;
+				x3 += 15;
 				g.drawString(ventanaIntentos[j], x3, 420);
 				
 			}
 			else {
 				
-				x3 += 50;
+				x3 += 25;
 				g.drawString(ventanaIntentos[j], x3, 420);
 				
 			}
@@ -140,13 +140,24 @@ public class Ventana extends Canvas {
 		//Intentos restantes:
 		g.drawString("Nº de errores: " + Juego.getFallos() + "/6", 20, 440);
 		
-		//Sistema de fallos y aciertos
+		
+		//Representación de fallos y aciertos
+		//Si el jugador acierta
 		if (Juego.isCoincidencia() == true ) {
-			
 			g.setColor(Color.green);
+			
+			if (!Juego.isTerminado()) {
+			
 			g.drawString("¡Correcto!", 270, 40);
+			}
+			else {
+				
+				g.drawString("¡Enhorabuena, has ganado!", 205, 40);
+				
+			}
 			
 		}
+		//Si el jugador falla
 		else {
 			
 			g.setColor(Color.red);
@@ -155,15 +166,24 @@ public class Ventana extends Canvas {
 				g.drawString("¡Incorrecto!", 270, 40);
 			}
 			else {
+				
 				if (Juego.getFallos() == 6) {
+
+					g.drawString("Lo siento, has perdido", 205, 40);
 					
-					g.drawString("Lo siento, has perdido", 220, 40);
-					
+					x1 = 150;
+					//Este bucle imprime en rojo los caracteres que el jugador no había adivinado 
 					for (int i = 0; i < Palabras.getPalabra().length();i++) {
+	
+						x1+=30;
 						
-						x1=+30;
-						g.drawString(letrasPorSeparado[i], x1, 366);
-						
+						if (letraProgreso[i] == " ") {
+							
+							g.setColor(Color.red);
+							g.drawString(letrasPorSeparado[i], x1+5, 366);
+
+						}
+
 					}
 					
 				}
@@ -171,11 +191,12 @@ public class Ventana extends Canvas {
 		}
 		
 		
+		//Dibujar partes en rojo según el número de fallos
 		g.setColor(Color.red);
 		
 		switch (Juego.getFallos()) {
 			case 1:{
-				
+				x1=+30;
 				//Torso
 				g.fillRoundRect(385, 171, 25, 55, 70, 10);
 				
