@@ -52,13 +52,13 @@ public class Ventana extends Canvas {
 		
 		g.drawImage(CacheImagen.getCache().getFondo(), 0, 0, null);
 		
-		g.setColor(new Color(112, 54, 16));
+		g.setColor(new Color(109, 38, 12));
 		
 		//Base del pat�bulo
-		g.fillRect(200, 305, 130, 10);
+		g.fillRect(200, 305, 130, 13);
 
 		//Viga principal del pat�bulo
-		g.fillRect(260, 90, 10, 220);
+		g.fillRect(260, 90, 13, 220);
 		
 		//Soporte
 		int x[] = new int[] {310, 312, 262, 260};
@@ -66,11 +66,11 @@ public class Ventana extends Canvas {
 		g.fillPolygon(x, y, 4);
 		
 		//Viga de la cuerda
-		g.fillRect(260, 80, 170, 10);
+		g.fillRect(260, 80, 170, 13);
 		
 		//Soga
-		g.setColor(Color.orange);
-		g.fillRect(400, 80, 2, 70);
+		g.setColor(new Color(237, 179, 61));
+		g.fillRect(400, 80, 3, 70);
 		
 		//C�rculo para simular la soga alrededor del cuello
 		g.fillOval(380, 145, 28, 29);
@@ -100,7 +100,7 @@ public class Ventana extends Canvas {
 		
 		//Uni�n de los palos
 		g.setColor(Color.black);
-		g.drawLine(270, 90, 260, 80);
+		g.drawLine(275, 99, 260, 80);
 		
 		//Progreso del jugador (huecos y letras de la palabra)
 		int x1 = 150, x2 = 165, x3=235;
@@ -192,7 +192,7 @@ public class Ventana extends Canvas {
 		
 		
 		//Dibujar partes en rojo según el número de fallos
-		g.setColor(Color.red);
+		g.setColor(new Color(191, 15, 15));
 		
 		switch (Juego.getFallos()) {
 			case 1:{
@@ -255,9 +255,6 @@ public class Ventana extends Canvas {
 			}
 			
 			case 6:{
-				
-				//Mensaje derrota
-				g.setColor(Color.red);
 				
 				//Torso
 				g.fillRoundRect(385, 171, 25, 55, 70, 10);
