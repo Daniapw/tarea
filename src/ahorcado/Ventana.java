@@ -56,7 +56,7 @@ public class Ventana extends Canvas {
 		
 		//Base del pat�bulo
 		g.fillRect(200, 340, 130, 13);
-
+		
 		//Viga principal del pat�bulo
 		g.fillRect(260, 120, 13, 220);
 		
@@ -98,9 +98,14 @@ public class Ventana extends Canvas {
 		g.fillRoundRect(387, 240, 9, 65, 40, 5);
 		g.fillRoundRect(398, 240, 9, 65, 40, 5);
 		
-		//Uni�n de los palos
+		
+		//Bordes
 		g.setColor(Color.black);
-		g.drawLine(278, 129, 260, 110);
+		g.drawRect(200, 340, 130, 13);
+		g.drawRect(260, 123, 13, 217);
+		g.drawRect(260, 110, 170, 13);
+
+
 		
 		//Progreso del jugador (huecos y letras de la palabra)
 		int x1 = 170, x2 = 185, x3=260;
@@ -139,7 +144,6 @@ public class Ventana extends Canvas {
 		
 		//Intentos restantes:
 		g.drawString("Nº de errores: " + Juego.getFallos() + "/6", 45, 440);
-		
 		
 		//Representación de fallos y aciertos
 		//Si el jugador acierta

@@ -40,7 +40,7 @@ public class CacheImagen {
 	
 	public BufferedImage getFondo() {
 		if (imagenFondo == null) {
-			imagenFondo = getCache().getImagen("western2.jpg");
+			imagenFondo = getCache().getImagen("western.jpg");
 		}
 		
 		return imagenFondo;
