@@ -4,8 +4,6 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,6 +16,7 @@ public class Ventana extends Canvas {
 	private static String letraProgreso[] = Juego.getProgreso();
 	private static String ventanaIntentos[] = Juego.getArrayIntentos();
 	private static String letrasPorSeparado[] = Palabras.separarLetras();
+	private static boolean trampaActivada = false;
 	
 	public static Ventana ventana = null;
 	
@@ -70,7 +69,7 @@ public class Ventana extends Canvas {
 		
 		//Soga
 		g.setColor(Color.orange);
-		g.fillRect(400, 110, 3, 70);
+		g.fillRect(400, 112, 3, 70);
 		
 		//Cï¿½rculo para simular la soga alrededor del cuello
 		g.fillOval(380, 165, 28, 29);
@@ -122,22 +121,25 @@ public class Ventana extends Canvas {
 			
 		}
 		
-		//Palabras y letras intentadas por el jugador
+		//Dibujar palabras y letras intentadas por el jugador
 		g.drawString("Letras/palabras intentadas:", 45, 420);
 		
 		for (int j = 0; j < Juego.getContadorEjecucion(); j++) {
 			
 			if (ventanaIntentos[j].length() == 1) {
 				
-				x3 += 15;
+				x3 += 10;
 				g.drawString(ventanaIntentos[j], x3, 420);
 				
 			}
 			else {
 				
-				x3 += 55;
-				g.drawString(ventanaIntentos[j], x3, 420);
-				
+				if (!esTrampa()) {
+					
+					x3 += 55;
+					g.drawString(ventanaIntentos[j], x3, 420);
+					
+				}
 			}
 		}
 
@@ -145,29 +147,49 @@ public class Ventana extends Canvas {
 		//Intentos restantes:
 		g.drawString("NÂº de errores: " + Juego.getFallos() + "/6", 45, 440);
 		
+		//Mensaje para saber si godmode está activado
+		if (Juego.isGodmode() == true) {
+			
+			g.setColor(new Color(255, 124, 25));
+			g.drawString("Modo inmortal activado", 10, 30);
+			
+		}
+		
 		//RepresentaciÃ³n de fallos y aciertos
 		//Si el jugador acierta
 		if (Juego.isCoincidencia() == true ) {
+			
 			g.setColor(new Color(0, 132, 11));
 			
-			if (!Juego.isTerminado()) {
+			if (!Juego.isTerminado() && !esTrampa()) {
 			
-			g.drawString("Correcto!", 240, 60);
+				g.drawString("Correcto!", 240, 60);
+			
 			}
 			else {
 				
-				g.drawString("Enhorabuena, has ganado!", 240, 60);
-				
+				if (!esTrampa()) {
+					
+					g.drawString("Enhorabuena, has ganado!", 240, 60);
+					
+				}
 			}
-			
 		}
 		//Si el jugador falla
 		else {
 			
 			g.setColor(new Color(247, 19, 46));
 			
-			if (Juego.getFallos() >= 1 && Juego.getFallos() < 6) {
-				g.drawString("Incorrecto!", 240, 60);
+			if (Juego.isCoincidencia() == false && Juego.getFallos() < 6 && Juego.getContadorEjecucion() > 0) {
+				
+				//Este if es para que no se imprima el mensaje cuando el jugador active o desactive un cheat
+				if (!esTrampa()){
+					
+					g.drawString("Incorrecto!", 240, 60);
+					
+				}
+				
+				
 			}
 			else {
 				
@@ -176,6 +198,7 @@ public class Ventana extends Canvas {
 					g.drawString("Lo siento, has perdido", 240, 60);
 					
 					x1 = 170;
+					
 					//Este bucle imprime en rojo los caracteres que el jugador no habÃ­a adivinado 
 					for (int i = 0; i < Palabras.getPalabra().length();i++) {
 	
@@ -189,7 +212,6 @@ public class Ventana extends Canvas {
 						}
 
 					}
-					
 				}
 			}
 		}
@@ -288,6 +310,23 @@ public class Ventana extends Canvas {
 	
 	
 
+	}
+	
+	//Boolean para saber si el jugador ha activado un cheat en esta ejecución
+	private boolean esTrampa() {
+		trampaActivada = false;
+		if (Juego.getIntento().equals("godmode on") || Juego.getIntento().equals("godmode off")) {
+			
+			trampaActivada = true;
+		
+		}
+		else {
+			
+			trampaActivada = false;
+			
+		}
+		
+		return trampaActivada;
 	}
 	
 	

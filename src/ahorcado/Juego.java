@@ -18,6 +18,9 @@ public class Juego {
 	//booleano que se le pasa al método "isTerminado", que determinará si el jugador ha completado la palabra o no
 	private static boolean terminado=true;
 
+	//Booleans para trucos
+	private static boolean godmode =false;
+	
 	//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con "_" que se irán sustituyendo por letras
 	private static String progreso[] = new String[Palabras.getPalabra().length()];
 	
@@ -28,16 +31,39 @@ public class Juego {
 		for (int i = 0; i < progreso.length; i++) {
 			progreso[i] = " ";
 		}
+		
 		do {
 			
 			Ventana.getVentana().repaint();
 	
-			
 			intento = JOptionPane.showInputDialog("Introduce una letra o una palabra:");	
 			
-			arrayIntentos[contadorEjecucion] = intento;
+			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce "godmode on" o "godmode off", ese intento se dejar� en blanco
+			//para que no salga en pantalla
+			if (intento.equals("godmode on")) {
+				
+				godmode = true;
+				
+				arrayIntentos[contadorEjecucion] = " ";
+				
+			}
+			else {
+				
+				if (intento.equals("godmode off")) {
+					
+					godmode = false;
+					
+					arrayIntentos[contadorEjecucion] = " ";
+					
+				}
+				else {
+				
+					arrayIntentos[contadorEjecucion] = intento;
+				
+				}
+			}
 			
-			//Si el jugador introduce una sola letra:Correcto
+			//Si el jugador introduce una sola letra:
 			if (intento.length() == 1) {
 				
 				//Buscar letra e imprimir resultado
@@ -52,11 +78,15 @@ public class Juego {
 					
 				}	
 				
-				//Si la letra no se ha encontrado se a�ade un fallo
+				//Si la letra no se ha encontrado y el godmode est� desactivado se a�ade un fallo
 				if (contadorCoincidencias == 0) {
 					
 					coincidencia =false;
-					fallos++;
+					
+					if (godmode == false) {
+						fallos++;
+					}
+					
 
 				}
 				
@@ -76,12 +106,19 @@ public class Juego {
 				}
 				else {
 					
-					fallos++;
-					coincidencia = false;
+					if (!intento.equals("godmode on") && !intento.equals("godmode off")) {
+						
+						coincidencia = false;
+						
+						if (godmode == false) {
+							
+							fallos++;
+						
+						}
+					}
 				}
 					
 			}
-			
 			
 			//Resetear contador de coincidencias para el siguiente intento
 			contadorCoincidencias = 0;
@@ -95,7 +132,7 @@ public class Juego {
 
 	}
 	
-	
+
 	//Método boolean para saber si el jugador ha adivinado la palabra y el juego tiene que terminar
 	public static boolean isTerminado () {
 		terminado = true;
@@ -136,6 +173,26 @@ public class Juego {
 
 	public static boolean isCoincidencia() {
 		return coincidencia;
+	}
+
+
+	public static String getIntento() {
+		return intento;
+	}
+
+
+	public static void setIntento(String intento) {
+		Juego.intento = intento;
+	}
+
+
+	public static boolean isGodmode() {
+		return godmode;
+	}
+
+
+	public static void setGodmode(boolean godmode) {
+		Juego.godmode = godmode;
 	}
 
 	
