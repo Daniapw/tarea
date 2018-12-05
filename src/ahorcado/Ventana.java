@@ -79,11 +79,12 @@ public class Ventana extends Canvas {
 		g.fillOval(380, 163, 28, 28);
 		
 		//Ojos
+		g.setColor(Color.white);
+		g.fillOval(385, 173, 7, 7);
+		g.fillOval(395, 173, 7, 7);
 		g.setColor(Color.black);
-		g.drawLine(385,182,389,176);
-		g.drawLine(385,176,389,182);
-		g.drawLine(395,182,399,176);
-		g.drawLine(395,176,399,182);
+		g.fillOval(387, 175, 4, 4);
+		g.fillOval(397, 175, 4, 4);
 		
 		//Torso
 		g.setColor(new Color(17, 150, 15));
@@ -128,7 +129,7 @@ public class Ventana extends Canvas {
 			
 			if (ventanaIntentos[j].length() == 1) {
 				
-				x3 += 10;
+				x3 += 20;
 				g.drawString(ventanaIntentos[j], x3, 420);
 				
 			}
@@ -136,7 +137,7 @@ public class Ventana extends Canvas {
 				
 				if (!esTrampa()) {
 					
-					x3 += 55;
+					x3 += 50;
 					g.drawString(ventanaIntentos[j], x3, 420);
 					
 				}
@@ -147,7 +148,7 @@ public class Ventana extends Canvas {
 		//Intentos restantes:
 		g.drawString("NÂº de errores: " + Juego.getFallos() + "/6", 45, 440);
 		
-		//Mensaje para saber si godmode está activado
+		//Mensaje para saber si godmode estï¿½ activado
 		if (Juego.isGodmode() == true) {
 			
 			g.setColor(new Color(255, 124, 25));
@@ -312,7 +313,7 @@ public class Ventana extends Canvas {
 
 	}
 	
-	//Boolean para saber si el jugador ha activado un cheat en esta ejecución
+	//Boolean para saber si el jugador ha activado un cheat en esta ejecuciï¿½n
 	private boolean esTrampa() {
 		trampaActivada = false;
 		if (Juego.getIntento().equals("godmode on") || Juego.getIntento().equals("godmode off")) {

@@ -38,7 +38,7 @@ public class Juego {
 	
 			intento = JOptionPane.showInputDialog("Introduce una letra o una palabra:");	
 			
-			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce "godmode on" o "godmode off", ese intento se dejará en blanco
+			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce "godmode on" o "godmode off", ese intento se dejarï¿½ en blanco
 			//para que no salga en pantalla
 			if (intento.equals("godmode on")) {
 				
@@ -78,7 +78,7 @@ public class Juego {
 					
 				}	
 				
-				//Si la letra no se ha encontrado y el godmode está desactivado se aï¿½ade un fallo
+				//Si la letra no se ha encontrado y el godmode estï¿½ desactivado se aï¿½ade un fallo
 				if (contadorCoincidencias == 0) {
 					
 					coincidencia =false;
@@ -129,6 +129,7 @@ public class Juego {
 		} while(fallos < 6 && !isTerminado());
 	
 		Ventana.getVentana().repaint();
+		
 
 	}
 	
