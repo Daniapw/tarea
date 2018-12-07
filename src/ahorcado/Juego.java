@@ -23,7 +23,7 @@ public class Juego {
 	private static boolean godmode = false;
 	private static boolean pista = false;
 	private static boolean navidad = false; //Este boolean servirá para saber si el jugador ha activado el modo navidad desde la clase Ventana
-	private static boolean navidadEscape = false; //Este boolean servirá para la secuencia de escape del bucle del juego cuando el jugador quiera usar el cheat christmas
+	private static boolean navidadEscape = false; //Este boolean servirá para la secuencia de escape del bucle del juego cuando el jugador quiera usar el cheat "jingle bells"
 	
 	//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con espacios en blanco que se irÃ¡n sustituyendo por letras
 	private static String progreso[] = new String[Palabras.getPalabra().length()];
@@ -86,7 +86,7 @@ public class Juego {
 			}
 
 			//Si el jugador activa el modo navideño
-			if (intento.equalsIgnoreCase("christmas")) {
+			if (intento.equalsIgnoreCase("jingle bells")) {
 				
 				navidad = true;
 				navidadEscape = true;
@@ -200,7 +200,7 @@ public class Juego {
 	//Boolean para saber si el jugador ha introducido un cheat en este turno
 	public static boolean esTrampa() {
 		
-		if (intento.equalsIgnoreCase("godmode on") || intento.equalsIgnoreCase("godmode off") || intento.equalsIgnoreCase("hint") || intento.equalsIgnoreCase("christmas")) {
+		if (intento.equalsIgnoreCase("godmode on") || intento.equalsIgnoreCase("godmode off") || intento.equalsIgnoreCase("hint") || intento.equalsIgnoreCase("jingle bells")) {
 			
 			trampaActivada = true;
 		
@@ -215,7 +215,7 @@ public class Juego {
 		
 	}
 	
-	//Método para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "christmas"
+	//Método para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "jingle bells"
 	
 	public static void resetearJuego() {
 		
