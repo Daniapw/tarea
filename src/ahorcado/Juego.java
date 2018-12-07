@@ -16,51 +16,81 @@ public class Juego {
 	private static boolean coincidencia = false;
 	
 	//booleano que se le pasa al método "isTerminado", que determinará si el jugador ha completado la palabra o no
-	private static boolean terminado=true;
+	private static boolean terminado = true;
 
-	//Booleans para trucos
-	private static boolean godmode =false;
+	//Booleans para los cheats
+	private static boolean trampaActivada = false;
+	private static boolean godmode = false;
+	private static boolean pista = false;
+	private static boolean navidad = false; //Este boolean servir� para saber si el jugador ha activado el modo navidad desde la clase Ventana
+	private static boolean navidadEscape = false; //Este boolean servir� para la secuencia de escape del bucle del juego cuando el jugador quiera usar el cheat christmas
 	
-	//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con "_" que se irán sustituyendo por letras
+	//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con espacios en blanco que se irán sustituyendo por letras
 	private static String progreso[] = new String[Palabras.getPalabra().length()];
 	
 	
-	//Método para el bucle principal del juego
+	//Método del bucle principal del juego
 	public static void bucleJuego (String letras[]) {
 				
 		for (int i = 0; i < progreso.length; i++) {
+			
 			progreso[i] = " ";
+			
 		}
 		
 		do {
 			
 			Ventana.getVentana().repaint();
-	
+			
+			trampaActivada = false;
+			
 			intento = JOptionPane.showInputDialog("Introduce una letra o una palabra:");	
 			
-			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce "godmode on" o "godmode off", ese intento se dejar� en blanco
+			arrayIntentos[contadorEjecucion] = intento;
+			
+			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce "godmode on" o "godmode off" ese intento se dejar� en blanco
 			//para que no salga en pantalla
-			if (intento.equals("godmode on")) {
+			if (intento.equalsIgnoreCase("godmode on")) {
 				
 				godmode = true;
-				
 				arrayIntentos[contadorEjecucion] = " ";
 				
 			}
 			else {
 				
-				if (intento.equals("godmode off")) {
+				if (intento.equalsIgnoreCase("godmode off")) {
 					
 					godmode = false;
-					
 					arrayIntentos[contadorEjecucion] = " ";
 					
 				}
-				else {
+			}
+			
+			//Si el jugador usa la pista (solo se puede usar una vez)
+			if (intento.equalsIgnoreCase("hint") && pista == false) {
 				
-					arrayIntentos[contadorEjecucion] = intento;
+				pista = true;		
+				fallos++;
+				arrayIntentos[contadorEjecucion] = " ";
+				int j = 0;
 				
+				for (int i = 0; i < 1; j++ ) {
+					
+					if (progreso[j].equals(" ")) {
+						
+						progreso[j] = letras[j];
+						i++;
+						
+					}	
 				}
+			}
+
+			//Si el jugador activa el modo navide�o
+			if (intento.equalsIgnoreCase("christmas")) {
+				
+				navidad = true;
+				navidadEscape = true;
+				
 			}
 			
 			//Si el jugador introduce una sola letra:
@@ -69,7 +99,7 @@ public class Juego {
 				//Buscar letra e imprimir resultado
 				for (int i = 0; i < letras.length; i++) {
 					
-					if (intento.equals(letras[i])) {
+					if (intento.equalsIgnoreCase(letras[i])) {
 						
 						progreso[i] = letras[i];
 						contadorCoincidencias++;
@@ -84,29 +114,29 @@ public class Juego {
 					coincidencia =false;
 					
 					if (godmode == false) {
+						
 						fallos++;
-					}
-					
-
+						
+					}		
 				}
-				
 			}
 			else {
 				
 				//Si el jugador introduce una palabra
 
-				if (intento.equals(Palabras.getPalabra())) {
+				if (intento.equalsIgnoreCase(Palabras.getPalabra())) {
 					
 					for (int i = 0; i < letras.length; i++) {
 							
 						progreso[i] = letras[i];
 						coincidencia = true;
+						
 					}
 					
 				}
 				else {
 					
-					if (!intento.equals("godmode on") && !intento.equals("godmode off")) {
+					if (!esTrampa()) {
 						
 						coincidencia = false;
 						
@@ -116,8 +146,7 @@ public class Juego {
 						
 						}
 					}
-				}
-					
+				}	
 			}
 			
 			//Resetear contador de coincidencias para el siguiente intento
@@ -126,14 +155,32 @@ public class Juego {
 			//Añadir 1 más al contador de ejecuciones
 			contadorEjecucion++;
 
-		} while(fallos < 6 && !isTerminado());
+		} while(fallos < 6 && !isTerminado() && navidadEscape == false);
 	
 		Ventana.getVentana().repaint();
 		
-
+		if (navidad == true) {
+			
+			modoNavidad();
+			
+		}
+		
 	}
 	
-
+	//Resetear el juego cuando el usuario use el cheat christmas
+	public static void modoNavidad() {
+		
+		Palabras.elegirPalabraNavidad();
+		
+		String letras[] = Palabras.separarLetras();
+		
+		resetearJuego();
+		
+		bucleJuego(letras);
+		
+	}
+	
+	
 	//Método boolean para saber si el jugador ha adivinado la palabra y el juego tiene que terminar
 	public static boolean isTerminado () {
 		terminado = true;
@@ -149,6 +196,57 @@ public class Juego {
 		return terminado;
 	}
 	
+	
+	//Boolean para saber si el jugador ha introducido un cheat en este turno
+	public static boolean esTrampa() {
+		
+		if (intento.equalsIgnoreCase("godmode on") || intento.equalsIgnoreCase("godmode off") || intento.equalsIgnoreCase("hint") || intento.equalsIgnoreCase("christmas")) {
+			
+			trampaActivada = true;
+		
+		}
+		else {
+			
+			trampaActivada = false;
+			
+		}
+		
+		return trampaActivada;
+		
+	}
+	
+	//M�todo para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "christmas"
+	
+	public static void resetearJuego() {
+		
+		fallos = 0;
+		contadorEjecucion = 0;
+		godmode = false;
+		pista = false;
+		coincidencia = false;
+		
+		if (navidadEscape == true) {
+			
+			navidad = false;
+			
+		}
+		
+		navidadEscape = false;
+		
+		for (int i = 0; i < arrayIntentos.length; i++) {
+			
+			arrayIntentos[i] = null;
+			
+		}
+		
+		progreso = new String[Palabras.getPalabra().length()];
+		
+		Ventana.setLetraProgreso(progreso);
+		
+		Ventana.setLetrasPorSeparado(Palabras.separarLetras());
+		
+		Ventana.setVentanaIntentos(arrayIntentos);
+	}
 	
 	
 	//Getters y setters
@@ -195,6 +293,32 @@ public class Juego {
 	public static void setGodmode(boolean godmode) {
 		Juego.godmode = godmode;
 	}
+
+
+	public static boolean isTrampaActivada() {
+		return trampaActivada;
+	}
+
+
+	public static void setTrampaActivada(boolean trampaActivada) {
+		Juego.trampaActivada = trampaActivada;
+	}
+
+
+	public static boolean isPista() {
+		return pista;
+	}
+
+
+	public static void setPista(boolean pista) {
+		Juego.pista = pista;
+	}
+
+
+	public static boolean isNavidad() {
+		return navidad;
+	}
+
 
 	
 	

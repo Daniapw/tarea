@@ -10,6 +10,7 @@ public class CacheImagen {
 	private static CacheImagen cache=null;
 	
 	private BufferedImage imagenFondo = null;
+	private BufferedImage fondoNavidad = null;
 	
 	
 	public CacheImagen () {
@@ -38,9 +39,19 @@ public class CacheImagen {
 		}
 	}
 	
+	//Fondo normal
 	public BufferedImage getFondo() {
 		if (imagenFondo == null) {
 			imagenFondo = getCache().getImagen("western.jpg");
+		}
+		
+		return imagenFondo;
+	}
+	
+	//Fondo navideño
+	public BufferedImage getFondoNavidad() {
+		if (imagenFondo == null) {
+			imagenFondo = getCache().getImagen("navidad.jpg");
 		}
 		
 		return imagenFondo;

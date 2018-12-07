@@ -16,7 +16,7 @@ public class Ventana extends Canvas {
 	private static String letraProgreso[] = Juego.getProgreso();
 	private static String ventanaIntentos[] = Juego.getArrayIntentos();
 	private static String letrasPorSeparado[] = Palabras.separarLetras();
-	private static boolean trampaActivada = false;
+
 	
 	public static Ventana ventana = null;
 	
@@ -49,7 +49,17 @@ public class Ventana extends Canvas {
 	
 	public void paint(Graphics g) {
 		
-		g.drawImage(CacheImagen.getCache().getFondo(), 0, 0, null);
+		//Establecer la imagen de fondo. Si el juego está en modo navidad, cogerá el fondo navideño
+		if (Juego.isNavidad() == false) {
+			
+			g.drawImage(CacheImagen.getCache().getFondo(), 0, 0, null);
+			
+		}
+		else {
+			
+			g.drawImage(CacheImagen.getCache().getFondoNavidad(), 0, 0, null);
+			
+		}
 		
 		g.setColor(new Color(204, 137, 75));
 		
@@ -59,13 +69,13 @@ public class Ventana extends Canvas {
 		//Viga principal del patï¿½bulo
 		g.fillRect(260, 120, 13, 220);
 		
-		//Soporte
-		int x[] = new int[] {310, 314, 264, 260};
-		int y[] = new int[] {118, 122, 166, 162};
-		g.fillPolygon(x, y, 4);
-		
 		//Viga de la cuerda
 		g.fillRect(260, 110, 170, 13);
+		
+		//Soporte
+		int x[] = new int[] {310, 314, 276, 272};
+		int y[] = new int[] {122, 126, 166, 162};
+		g.fillPolygon(x, y, 4);
 		
 		//Soga
 		g.setColor(Color.orange);
@@ -81,9 +91,9 @@ public class Ventana extends Canvas {
 		//Ojos
 		g.setColor(Color.white);
 		g.fillOval(385, 173, 7, 7);
-		g.fillOval(395, 173, 7, 7);
+		g.fillOval(395, 173, 8, 8);
 		g.setColor(Color.black);
-		g.fillOval(387, 175, 4, 4);
+		g.fillOval(387, 174, 4, 4);
 		g.fillOval(397, 175, 4, 4);
 		
 		//Torso
@@ -98,12 +108,13 @@ public class Ventana extends Canvas {
 		g.fillRoundRect(387, 240, 9, 65, 40, 5);
 		g.fillRoundRect(398, 240, 9, 65, 40, 5);
 		
-		
 		//Bordes
 		g.setColor(Color.black);
 		g.drawRect(200, 340, 130, 13);
 		g.drawRect(260, 123, 13, 217);
 		g.drawRect(260, 110, 170, 13);
+		g.drawPolygon(x, y, 4);
+		
 
 
 		
@@ -135,7 +146,7 @@ public class Ventana extends Canvas {
 			}
 			else {
 				
-				if (!esTrampa()) {
+				if (!Juego.esTrampa()) {
 					
 					x3 += 50;
 					g.drawString(ventanaIntentos[j], x3, 420);
@@ -156,20 +167,29 @@ public class Ventana extends Canvas {
 			
 		}
 		
+		//Mensaje para saber si se ha usado la pista
+		if (Juego.isPista() == true) {
+			
+			g.setColor(new Color(255, 124, 25));
+			g.drawString("Has usado la pista", 10, 50);
+			
+		}
+				
 		//RepresentaciÃ³n de fallos y aciertos
 		//Si el jugador acierta
 		if (Juego.isCoincidencia() == true ) {
 			
 			g.setColor(new Color(0, 132, 11));
 			
-			if (!Juego.isTerminado() && !esTrampa()) {
+			if (!Juego.isTerminado() && !Juego.esTrampa()) {
 			
 				g.drawString("Correcto!", 240, 60);
-			
+				
+				
 			}
 			else {
 				
-				if (!esTrampa()) {
+				if (!Juego.esTrampa()) {
 					
 					g.drawString("Enhorabuena, has ganado!", 240, 60);
 					
@@ -184,7 +204,7 @@ public class Ventana extends Canvas {
 			if (Juego.isCoincidencia() == false && Juego.getFallos() < 6 && Juego.getContadorEjecucion() > 0) {
 				
 				//Este if es para que no se imprima el mensaje cuando el jugador active o desactive un cheat
-				if (!esTrampa()){
+				if (!Juego.esTrampa()){
 					
 					g.drawString("Incorrecto!", 240, 60);
 					
@@ -205,7 +225,7 @@ public class Ventana extends Canvas {
 	
 						x1+=30;
 						
-						if (letraProgreso[i] == " ") {
+						if (letraProgreso[i].equals(" ")) {
 							
 							g.setColor(Color.red);
 							g.drawString(letrasPorSeparado[i], x1+2, 380);
@@ -314,28 +334,46 @@ public class Ventana extends Canvas {
 	}
 	
 	//Boolean para saber si el jugador ha activado un cheat en esta ejecuciï¿½n
-	private boolean esTrampa() {
-		trampaActivada = false;
-		if (Juego.getIntento().equals("godmode on") || Juego.getIntento().equals("godmode off")) {
-			
-			trampaActivada = true;
-		
-		}
-		else {
-			
-			trampaActivada = false;
-			
-		}
-		
-		return trampaActivada;
-	}
-	
-	
+
 	public static Ventana getVentana() {
 		if (ventana == null) {
 			ventana = new Ventana();
 		}
 		return ventana;
 	}
+
+
+	public static String[] getLetraProgreso() {
+		return letraProgreso;
+	}
+
+
+	public static void setLetraProgreso(String[] letraProgreso) {
+		Ventana.letraProgreso = letraProgreso;
+	}
+
+
+	public static String[] getVentanaIntentos() {
+		return ventanaIntentos;
+	}
+
+
+	public static void setVentanaIntentos(String[] ventanaIntentos) {
+		Ventana.ventanaIntentos = ventanaIntentos;
+	}
+
+
+	public static String[] getLetrasPorSeparado() {
+		return letrasPorSeparado;
+	}
+
+
+	public static void setLetrasPorSeparado(String[] letrasPorSeparado) {
+		Ventana.letrasPorSeparado = letrasPorSeparado;
+	}
+	
+	
+	//Getters y setters
+	
 	
 }
