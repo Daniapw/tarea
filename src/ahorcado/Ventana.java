@@ -443,6 +443,7 @@ public class Ventana extends Canvas {
 	}
 	
 	
+	
 	//Getters y setters
 	
 	

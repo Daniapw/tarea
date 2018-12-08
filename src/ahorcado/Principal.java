@@ -23,6 +23,7 @@ public class Principal {
 				
 			}
 			
+			
 			jugarotravez = JOptionPane.showInputDialog("Gracias por jugar a mi juego!"
 					+ "\n Jugar otra vez (escribe S o N)?");
 			
