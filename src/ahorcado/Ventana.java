@@ -61,7 +61,17 @@ public class Ventana extends Canvas {
 			
 		}
 		
-		g.setColor(new Color(204, 137, 75));
+		
+		if (Juego.isNavidad() == true) {
+			
+			g.setColor(Color.white);
+			
+		}
+		else {
+			
+			g.setColor(new Color(204, 137, 75));
+			
+		}
 		
 		//Base del patï¿½bulo
 		g.fillRect(200, 340, 130, 13);
@@ -79,7 +89,7 @@ public class Ventana extends Canvas {
 		
 		//Soga
 		g.setColor(Color.orange);
-		g.fillRect(400, 112, 3, 70);
+		g.fillRect(400, 110, 3, 70);
 		
 		//Cï¿½rculo para simular la soga alrededor del cuello
 		g.fillOval(380, 165, 28, 29);
@@ -87,6 +97,23 @@ public class Ventana extends Canvas {
 		//Cabeza
 		g.setColor(new Color(17, 150, 15));
 		g.fillOval(380, 163, 28, 28);
+		
+		int xGorro[] = new int[] { 380, 408, 395};
+		int yGorro[] = new int[] { 170, 170, 139};
+		
+		
+		//Si el juego está en modo navidad le dibujará un gorrito al personaje
+		if (Juego.isNavidad() == true) {
+			
+			g.setColor(Color.red);
+			
+
+			g.fillPolygon(xGorro, yGorro, 3);
+			
+			g.setColor(Color.white);
+			g.fillRect(380, 169, 30, 3);
+			g.fillOval(391, 138, 7, 7);
+		}
 		
 		//Ojos
 		g.setColor(Color.white);
@@ -115,11 +142,10 @@ public class Ventana extends Canvas {
 		g.drawRect(260, 110, 170, 13);
 		g.drawPolygon(x, y, 4);
 		
-
-
+		
 		
 		//Progreso del jugador (huecos y letras de la palabra)
-		int x1 = 170, x2 = 185, x3=260;
+		int x1 = 100, x2 = 115, x3=260;
 		
 		g.setColor(Color.black);
 		
@@ -128,20 +154,20 @@ public class Ventana extends Canvas {
 			x1 += 30;
 			x2 += 30;
 			
-			g.drawLine(x1, 384, x2, 384);
-			g.drawString(letraProgreso[i], x1+4, 380);
+			g.drawLine(x1, 400, x2, 400);
+			g.drawString(letraProgreso[i], x1+4, 397);
 			
 		}
 		
 		//Dibujar palabras y letras intentadas por el jugador
-		g.drawString("Letras/palabras intentadas:", 45, 420);
+		g.drawString("Letras/palabras intentadas:", 45, 430);
 		
 		for (int j = 0; j < Juego.getContadorEjecucion(); j++) {
 			
 			if (ventanaIntentos[j].length() == 1) {
 				
 				x3 += 20;
-				g.drawString(ventanaIntentos[j], x3, 420);
+				g.drawString(ventanaIntentos[j], x3, 430);
 				
 			}
 			else {
@@ -149,7 +175,7 @@ public class Ventana extends Canvas {
 				if (!Juego.esTrampa()) {
 					
 					x3 += 50;
-					g.drawString(ventanaIntentos[j], x3, 420);
+					g.drawString(ventanaIntentos[j], x3, 430);
 					
 				}
 			}
@@ -157,7 +183,7 @@ public class Ventana extends Canvas {
 
 		
 		//Intentos restantes:
-		g.drawString("NÂº de errores: " + Juego.getFallos() + "/6", 45, 440);
+		g.drawString("NÂº de errores: " + Juego.getFallos() + "/6", 45, 448);
 		
 		//Mensaje para saber si godmode estï¿½ activado
 		if (Juego.isGodmode() == true) {
@@ -174,12 +200,33 @@ public class Ventana extends Canvas {
 			g.drawString("Has usado la pista", 10, 50);
 			
 		}
-				
+		
+		//Mensaje del modo navideño
+		
+		if (Juego.isNavidad() == true) {
+			
+			g.setColor(Color.white);
+			g.drawString("Modo navideño activado!", 10, 70);
+			
+		}
+		
 		//RepresentaciÃ³n de fallos y aciertos
 		//Si el jugador acierta
 		if (Juego.isCoincidencia() == true ) {
 			
-			g.setColor(new Color(0, 132, 11));
+			//Poner un tono más brillante si el modo navideño está activado
+			if (Juego.isNavidad() == true) {
+			
+				g.setColor(new Color(21, 252, 0));
+				
+			}
+			
+			else {
+				
+				g.setColor(new Color(0, 132, 11));
+				
+			}
+			
 			
 			if (!Juego.isTerminado() && !Juego.esTrampa()) {
 			
@@ -196,10 +243,23 @@ public class Ventana extends Canvas {
 				}
 			}
 		}
+		
 		//Si el jugador falla
 		else {
 			
-			g.setColor(new Color(247, 19, 46));
+			//Poner un tono más brillante si el modo navideño está activado
+			if (Juego.isNavidad() == true) {
+			
+				g.setColor(new Color(255, 35, 35));
+				
+			}
+			
+			else {
+				
+				g.setColor(new Color(247, 19, 46));
+				
+			}
+			
 			
 			if (Juego.isCoincidencia() == false && Juego.getFallos() < 6 && Juego.getContadorEjecucion() > 0) {
 				
@@ -218,7 +278,7 @@ public class Ventana extends Canvas {
 
 					g.drawString("Lo siento, has perdido", 240, 60);
 					
-					x1 = 170;
+					x1 = 100;
 					
 					//Este bucle imprime en rojo los caracteres que el jugador no habÃ­a adivinado 
 					for (int i = 0; i < Palabras.getPalabra().length();i++) {
@@ -228,7 +288,7 @@ public class Ventana extends Canvas {
 						if (letraProgreso[i].equals(" ")) {
 							
 							g.setColor(Color.red);
-							g.drawString(letrasPorSeparado[i], x1+2, 380);
+							g.drawString(letrasPorSeparado[i], x1+2, 397);
 
 						}
 
@@ -316,6 +376,16 @@ public class Ventana extends Canvas {
 				
 				//Cabeza
 				g.fillOval(380, 163, 28, 28);
+				
+				//Gorro (si el modo navideño está activado). Lo dibujo otra vez para que se superponga a la cabeza en rojo
+				if (Juego.isNavidad() == true) {
+					
+					g.fillPolygon(xGorro, yGorro, 3);
+					
+					g.setColor(Color.white);
+					g.fillRect(380, 169, 30, 3);
+					g.fillOval(391, 138, 7, 7);
+				}
 				
 				//Ojos
 				g.setColor(Color.black);

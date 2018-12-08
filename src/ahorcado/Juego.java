@@ -85,18 +85,33 @@ public class Juego {
 				}
 			}
 
-			//Si el jugador activa el modo navideño
-			if (intento.equalsIgnoreCase("jingle bells")) {
+			//Si el jugador activa el modo navideño. Solo se puede activar una vez por partida
+			if (intento.equalsIgnoreCase("jingle bells") && navidad == false) {
 				
 				navidad = true;
 				navidadEscape = true;
 				
 			}
+			else {
+				//Cheat para desactivar el tema navideño (no resetea el juego)
+				if (intento.equalsIgnoreCase("grinch")) {
+					
+					navidad = false;
+					arrayIntentos[contadorEjecucion] = " ";
+				}
+				
+			}
+			if (intento.equalsIgnoreCase("jingle bells")) {
+				
+				arrayIntentos[contadorEjecucion] = " ";
+				
+			}
+			
 			
 			//Si el jugador introduce una sola letra:
 			if (intento.length() == 1) {
 				
-				//Buscar letra e imprimir resultado
+				//Buscar letra
 				for (int i = 0; i < letras.length; i++) {
 					
 					if (intento.equalsIgnoreCase(letras[i])) {
@@ -158,16 +173,11 @@ public class Juego {
 		} while(fallos < 6 && !isTerminado() && navidadEscape == false);
 	
 		Ventana.getVentana().repaint();
-		
-		if (navidad == true) {
-			
-			modoNavidad();
-			
-		}
+
 		
 	}
 	
-	//Resetear el juego cuando el usuario use el cheat christmas
+	//Resetear el juego cuando el usuario use el cheat jingle bells
 	public static void modoNavidad() {
 		
 		Palabras.elegirPalabraNavidad();
@@ -200,7 +210,8 @@ public class Juego {
 	//Boolean para saber si el jugador ha introducido un cheat en este turno
 	public static boolean esTrampa() {
 		
-		if (intento.equalsIgnoreCase("godmode on") || intento.equalsIgnoreCase("godmode off") || intento.equalsIgnoreCase("hint") || intento.equalsIgnoreCase("jingle bells")) {
+		if (intento.equalsIgnoreCase("godmode on") || intento.equalsIgnoreCase("godmode off") || intento.equalsIgnoreCase("hint") 
+				|| intento.equalsIgnoreCase("jingle bells") || intento.equalsIgnoreCase("grinch")) {
 			
 			trampaActivada = true;
 		
@@ -215,8 +226,8 @@ public class Juego {
 		
 	}
 	
-	//Método para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "jingle bells"
 	
+	//Método para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "jingle bells"
 	public static void resetearJuego() {
 		
 		fallos = 0;
@@ -225,7 +236,7 @@ public class Juego {
 		pista = false;
 		coincidencia = false;
 		
-		if (navidadEscape == true) {
+		if (navidadEscape == false) {
 			
 			navidad = false;
 			

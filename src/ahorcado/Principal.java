@@ -7,29 +7,27 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
-		Palabras.elegirPalabra();
-	
-		String letras[] = Palabras.separarLetras();
-		
-		Juego.bucleJuego(letras);
-		
-		jugarotravez = JOptionPane.showInputDialog("Gracias por jugar a mi juego!"
-				+ "\n Jugar otra vez (escribe S o N)?");
-		
-		while (jugarotravez.equalsIgnoreCase("S")) {
-			
+		do {
 			Palabras.elegirPalabra();
 			
-			Juego.resetearJuego();;
+			Juego.resetearJuego();
 			
-			letras = Palabras.separarLetras();
+			String letras[] = Palabras.separarLetras();
 			
 			Juego.bucleJuego(letras);
-
+			
+			
+			if (Juego.isNavidad() == true) {
+				
+				Juego.modoNavidad();
+				
+			}
+			
 			jugarotravez = JOptionPane.showInputDialog("Gracias por jugar a mi juego!"
 					+ "\n Jugar otra vez (escribe S o N)?");
-		}
-		
+			
+		}while (jugarotravez.equalsIgnoreCase("S"));
+
 		System.exit(0);
 	}
 	

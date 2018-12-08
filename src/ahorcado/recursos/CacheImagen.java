@@ -50,10 +50,10 @@ public class CacheImagen {
 	
 	//Fondo navideño
 	public BufferedImage getFondoNavidad() {
-		if (imagenFondo == null) {
-			imagenFondo = getCache().getImagen("navidad.jpg");
+		if (fondoNavidad == null) {
+			fondoNavidad = getCache().getImagen("navidad.jpg");
 		}
 		
-		return imagenFondo;
+		return fondoNavidad;
 	}
 }
