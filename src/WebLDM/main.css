@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+
+    body{
+        
+        font-family:"Oswald";
+        
+    }
+
+    .encabezado{
+
+        background-color:#424344;
+        width:100%;
+        
+    }
+
+    .divlogo{
+
+        padding-top: 20px;
+        width:100%;
+
+    }
+
+    .divlogo img{
+
+        width:10%;
+        height:auto;
+        display:block;
+        margin:auto;
+
+    }
+
+
+    .menu{
+
+        width:100%;
+        background-color:red;
+        margin:auto;
+        text-align: center;
+
+    }
+
+    .menu ul{
+
+        padding:10px;
+
+    }
+
+    .menu ul li{
+
+        display:inline;
+        list-style: none;
+        padding: 10px 80px 10px 80px;
+        color: white;
+        font-size: 20px;
+        font-weight:bold;
+    }
+
+    .menu ul a{
+
+        text-decoration:none;
+
+    }
+
+    .menu ul li:hover{
+
+        background-color:#a30d0d;
+
+    }
+
+    #contenido{
+
+        margin-top:80px;
+        position:relative;
+        margin:auto;
+        width: 100%;
+    }
+
+    #imagenHistoria{
+        
+        display:block;
+        margin:auto;
+        width: 90%;
+        background-color:red;
+
+    }
+    #imagenHistoria img {
+
+        display:block;
+        margin:auto;
+        width: 100%;
+
+    }
+
+    #overlayHistoria{
+        
+        position: absolute;
+        color:white;
+        background-color:black;
+        width: 90%;
+        height:100%;
+        opacity:0.7;
+        text-align: center;
+
+    }
+
+    #textoHistoria{
+        
+        padding-top: 130px;
+        font-weight: bold;
+        font-size:60px;
+
+    }
+
