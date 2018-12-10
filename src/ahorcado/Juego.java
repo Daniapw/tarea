@@ -22,8 +22,8 @@ public class Juego {
 	private static boolean trampaActivada = false;
 	private static boolean godmode = false;
 	private static boolean pista = false;
-	private static boolean navidad = false; //Este boolean servirá para saber si el jugador ha activado el modo navidad desde la clase Ventana
-	private static boolean navidadEscape = false; //Este boolean servirá para la secuencia de escape del bucle del juego cuando el jugador quiera usar el cheat "jingle bells"
+	private static boolean navidad = false; //Este boolean servirï¿½ para saber si el jugador ha activado el modo navidad desde la clase Ventana
+	private static boolean navidadEscape = false; //Este boolean servirï¿½ para la secuencia de escape del bucle del juego cuando el jugador quiera usar el cheat "jingle bells"
 	
 	//progreso es el Array en el que se va guardando el progreso del jugador. Se inicializa con espacios en blanco que se irÃ¡n sustituyendo por letras
 	private static String progreso[] = new String[Palabras.getPalabra().length()];
@@ -48,7 +48,8 @@ public class Juego {
 			
 			arrayIntentos[contadorEjecucion] = intento;
 			
-			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce "godmode on" o "godmode off" ese intento se dejarï¿½ en blanco
+			//Activar y desactivar modo sin fallos (godmode). Si el usuario introduce
+			//"godmode on" o "godmode off" ese intento se dejarï¿½ en blanco
 			//para que no salga en pantalla
 			if (intento.equalsIgnoreCase("godmode on")) {
 				
@@ -70,9 +71,14 @@ public class Juego {
 			if (intento.equalsIgnoreCase("hint") && pista == false) {
 				
 				pista = true;		
-				fallos++;
 				arrayIntentos[contadorEjecucion] = " ";
 				int j = 0;
+				
+				if (godmode == false) {
+					
+					fallos++;
+					
+				}
 				
 				for (int i = 0; i < 1; j++ ) {
 					
@@ -84,8 +90,17 @@ public class Juego {
 					}	
 				}
 			}
+			else {
+				
+				if (intento.equalsIgnoreCase("hint") && pista == true) {
+					
+					arrayIntentos[contadorEjecucion] = " ";
+					
+				}
+				
+			}
 
-			//Si el jugador activa el modo navideño. Solo se puede activar una vez por partida
+			//Si el jugador activa el modo navideï¿½o. Solo se puede activar una vez por partida
 			if (intento.equalsIgnoreCase("jingle bells") && navidad == false) {
 				
 				navidad = true;
@@ -93,7 +108,7 @@ public class Juego {
 				
 			}
 			else {
-				//Cheat para desactivar el tema navideño (no resetea el juego)
+				//Cheat para desactivar el tema navideï¿½o (no resetea el juego)
 				if (intento.equalsIgnoreCase("grinch")) {
 					
 					navidad = false;
@@ -227,7 +242,7 @@ public class Juego {
 	}
 	
 	
-	//Método para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "jingle bells"
+	//Mï¿½todo para resetear juego cuando el usuario quiera jugar otra vez o use el cheat "jingle bells"
 	public static void resetearJuego() {
 		
 		fallos = 0;

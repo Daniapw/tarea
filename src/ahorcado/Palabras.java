@@ -16,6 +16,8 @@ public class Palabras {
 				
 		palabra = palabrasPosibles[azar];
 		
+		System.out.println(palabra);
+		
 		return palabra;
 	}
 	
@@ -25,6 +27,8 @@ public class Palabras {
 		int azar = (int) Math.round(Math.random() * (palabrasNavidad.length - 1));
 				
 		palabra = palabrasNavidad[azar];
+		
+		System.out.println(palabra);
 		
 		return palabra;
 	}

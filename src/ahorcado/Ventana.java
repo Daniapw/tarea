@@ -49,7 +49,7 @@ public class Ventana extends Canvas {
 	
 	public void paint(Graphics g) {
 		
-		//Establecer la imagen de fondo. Si el juego está en modo navidad, cogerá el fondo navideño
+		//Establecer la imagen de fondo. Si el juego estï¿½ en modo navidad, cogerï¿½ el fondo navideï¿½o
 		if (Juego.isNavidad() == false) {
 			
 			g.drawImage(CacheImagen.getCache().getFondo(), 0, 0, null);
@@ -102,7 +102,7 @@ public class Ventana extends Canvas {
 		int yGorro[] = new int[] { 170, 170, 139};
 		
 		
-		//Si el juego está en modo navidad le dibujará un gorrito al personaje
+		//Si el juego estï¿½ en modo navidad le dibujarï¿½ un gorrito al personaje
 		if (Juego.isNavidad() == true) {
 			
 			g.setColor(Color.red);
@@ -117,10 +117,10 @@ public class Ventana extends Canvas {
 		
 		//Ojos
 		g.setColor(Color.white);
-		g.fillOval(385, 173, 7, 7);
+		g.fillOval(385, 173, 8, 8);
 		g.fillOval(395, 173, 8, 8);
 		g.setColor(Color.black);
-		g.fillOval(387, 174, 4, 4);
+		g.fillOval(387, 175, 4, 4);
 		g.fillOval(397, 175, 4, 4);
 		
 		//Torso
@@ -201,12 +201,12 @@ public class Ventana extends Canvas {
 			
 		}
 		
-		//Mensaje del modo navideño
+		//Mensaje del modo navideï¿½o
 		
 		if (Juego.isNavidad() == true) {
 			
 			g.setColor(Color.white);
-			g.drawString("Modo navideño activado!", 10, 70);
+			g.drawString("Modo navideÃ±o activado!", 10, 70);
 			
 		}
 		
@@ -214,7 +214,7 @@ public class Ventana extends Canvas {
 		//Si el jugador acierta
 		if (Juego.isCoincidencia() == true ) {
 			
-			//Poner un tono más brillante si el modo navideño está activado
+			//Poner un tono mï¿½s brillante si el modo navideï¿½o estï¿½ activado
 			if (Juego.isNavidad() == true) {
 			
 				g.setColor(new Color(21, 252, 0));
@@ -247,7 +247,7 @@ public class Ventana extends Canvas {
 		//Si el jugador falla
 		else {
 			
-			//Poner un tono más brillante si el modo navideño está activado
+			//Poner un tono mï¿½s brillante si el modo navideï¿½o estï¿½ activado
 			if (Juego.isNavidad() == true) {
 			
 				g.setColor(new Color(255, 35, 35));
@@ -377,7 +377,7 @@ public class Ventana extends Canvas {
 				//Cabeza
 				g.fillOval(380, 163, 28, 28);
 				
-				//Gorro (si el modo navideño está activado). Lo dibujo otra vez para que se superponga a la cabeza en rojo
+				//Gorro (si el modo navideï¿½o estï¿½ activado). Lo dibujo otra vez para que se superponga a la cabeza en rojo
 				if (Juego.isNavidad() == true) {
 					
 					g.fillPolygon(xGorro, yGorro, 3);
@@ -403,8 +403,8 @@ public class Ventana extends Canvas {
 
 	}
 	
-	//Boolean para saber si el jugador ha activado un cheat en esta ejecuciï¿½n
 
+	//Getters y setters
 	public static Ventana getVentana() {
 		if (ventana == null) {
 			ventana = new Ventana();
@@ -442,9 +442,6 @@ public class Ventana extends Canvas {
 		Ventana.letrasPorSeparado = letrasPorSeparado;
 	}
 	
-	
-	
-	//Getters y setters
 	
 	
 }

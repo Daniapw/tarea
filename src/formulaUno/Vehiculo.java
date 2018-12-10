@@ -5,7 +5,7 @@ public abstract class Vehiculo {
 	private String piloto;
 	private int posicion;
 	private int turno = -1;
-	private int pista = -1;
+	private int pista;
 	
 	public int avanza() {
 		
@@ -44,6 +44,16 @@ public abstract class Vehiculo {
 
 	public void setTurno(int turno) {
 		this.turno = turno;
+	}
+
+
+	public int getPista() {
+		return pista;
+	}
+
+
+	public void setPista(int pista) {
+		this.pista = pista;
 	}
 	
 	
