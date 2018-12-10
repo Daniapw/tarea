@@ -1,114 +1,140 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 
-    body{
-        
-        font-family:"Oswald";
-        
-    }
+body{
 
-    .encabezado{
+    font-family:"Oswald";
+    margin:0;
+}
 
-        background-color:#424344;
-        width:100%;
-        
-    }
+.encabezado{
 
-    .divlogo{
+    background-color:#202021;
+    width:100%;
+    position:fixed;
+    z-index: 1;
+}
 
-        padding-top: 20px;
-        width:100%;
+.divlogo{
 
-    }
+    padding-top: 20px;
+    width:100%;
 
-    .divlogo img{
+}
 
-        width:10%;
-        height:auto;
-        display:block;
-        margin:auto;
+.divlogo img{
 
-    }
+    width:10%;
+    height:auto;
+    display:block;
+    margin:auto;
+
+}
 
 
-    .menu{
+.menu{
 
-        width:100%;
-        background-color:red;
-        margin:auto;
-        text-align: center;
+    width:100%;
+    background-color:red;
+    text-align: center;
 
-    }
+}
 
-    .menu ul{
+.menu ul{
 
-        padding:10px;
+    padding:10px;
+    margin-bottom:0px;
+}
 
-    }
+.menu ul li{
 
-    .menu ul li{
+    display:inline;
+    list-style: none;
+    padding: 10px 80px 10px 80px;
+    color: white;
+    font-size: 20px;
+    font-weight:bold;
+}
 
-        display:inline;
-        list-style: none;
-        padding: 10px 80px 10px 80px;
-        color: white;
-        font-size: 20px;
-        font-weight:bold;
-    }
+.menu ul a{
 
-    .menu ul a{
+    text-decoration:none;
 
-        text-decoration:none;
+}
 
-    }
+.menu ul li:hover{
 
-    .menu ul li:hover{
+    background-color:#a30d0d;
 
-        background-color:#a30d0d;
+}
 
-    }
+#contenido{
 
-    #contenido{
+    margin-top:180px;
+    position:absolute;
+    width: 100%;
+}
 
-        margin-top:80px;
-        position:relative;
-        margin:auto;
-        width: 100%;
-    }
+#imagenHistoria{
 
-    #imagenHistoria{
-        
-        display:block;
-        margin:auto;
-        width: 90%;
-        background-color:red;
+    position:absolute;
+    display:block;
+    width: 100%;
 
-    }
-    #imagenHistoria img {
+}
 
-        display:block;
-        margin:auto;
-        width: 100%;
 
-    }
+#imagenHistoria img {
 
-    #overlayHistoria{
-        
-        position: absolute;
-        color:white;
-        background-color:black;
-        width: 90%;
-        height:100%;
-        opacity:0.7;
-        text-align: center;
+    display:block;
+    margin:auto;
+    width: 100%;
+    height:65%
+}
 
-    }
+#overlayHistoria{
 
-    #textoHistoria{
-        
-        padding-top: 130px;
-        font-weight: bold;
-        font-size:60px;
+    position: absolute;
+    color:white;
+    background-color:black;
+    width: 100%;
+    height:100%;
+    opacity:0.7;
+    text-align: center;
 
-    }
+}
 
+#overlayHistoria h1{
+
+    padding-top: 130px;
+    font-weight: bold;
+    font-size:60px;
+
+}
+
+#overlayHistoria p{
+
+    font-size:30px;
+
+}
+
+#divTabla{
+    position:relative;
+    margin:auto;
+    margin-top:700px;
+    width:75%;
+
+}
+
+#contenidoIzda{
+
+    float:left;
+    width:50%;
+    font-size:20px;
+
+}
+
+#contenidoDrcha{
+    float:right;
+
+}
