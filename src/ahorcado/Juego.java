@@ -116,6 +116,7 @@ public class Juego {
 				}
 				
 			}
+			
 			if (intento.equalsIgnoreCase("jingle bells")) {
 				
 				arrayIntentos[contadorEjecucion] = " ";

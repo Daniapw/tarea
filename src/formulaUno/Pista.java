@@ -8,6 +8,12 @@ public class Pista {
 		//Crear array de obstáculos para la pista
 		Obstaculo obstaculos[] = new Obstaculo[4];
 		
+		for (int i = 0; i < trayecto.length; i++) {
+			
+			trayecto[i] = i;
+			
+		}
+		
 		double azar;
 		
 		//Determinar aleatoramiente si el obstáculo va a ser una rampa o una mancha de aceite y crearlo
