@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 
+@keyframes agrandar{
+    
+    transform:
+    
+}
 
 body{
 
@@ -71,6 +76,66 @@ body{
 
 }
 
+
+/*Footer*/
+
+.footer{
+    
+    text-align:center;
+    letter-spacing: 2px;
+    color:white;
+    font-size:14px;
+    margin-top:200px;
+    padding-top:10px;
+    float: left;
+    width:100%;
+    background-color:#202021;
+    
+}
+
+.footer ul li{
+    
+    text-align:left;
+    list-style: none;
+    padding-bottom:10px;
+    
+}
+
+.divsFooter{
+    
+    float:left;
+    width:27%;
+    padding: 30px 10px 15px 100px;
+
+    
+}
+
+.divsFooter img{
+    
+    padding-right:30px;
+    float:left;
+    width:20%;
+    
+}
+
+.divsFooter ul li a{
+    
+    color:white;
+    text-decoration:none;
+    
+}
+
+.redesSociales img{
+    
+    float:none;
+    width:8%;
+    padding:10px 10px 5px 5px;
+
+}
+
+
+
+
 /*PÁGINA PRINCIPAL
 ////////////////////////////
 
@@ -81,18 +146,18 @@ Div en el que se mete todo el contenido*/
     margin-top:180px;
     position:absolute;
     width: 100%;
+    background-color:#fcfcfc;
 }
 
 /*Banner (imagen)*/
-#imagenHistoria{
+#imagenBanner{
 
-    position:absolute;
+    position:relative;
     display:block;
     width: 100%;
-
 }
 
-#imagenHistoria img {
+#imagenBanner img {
 
     display:block;
     width: 100%;
@@ -100,76 +165,80 @@ Div en el que se mete todo el contenido*/
 }
 
 /*Overlay del banner*/
-#overlayHistoria{
+#overlayBanner{
 
     position: absolute;
     color:white;
-    background-color:black;
+    background-color:rgba(0, 0, 0, 0.5);
     width: 100%;
     height:100%;
-    opacity:0.6;
     text-align:center;
-
-}
-
-#overlayHistoria h1{
     
-    padding-top:30px;
-    font-weight: bold;
-    font-size:60px;
+
+}
+#textoBanner{
+    
+    position:absolute;
+    top:40%;
+    transform: translate(0, -50%);
+    width:100%;
+    opacity:0.8;
+}
+
+#textoBanner h1{
+    
+    font-size:80px;
 
 }
 
-#overlayHistoria p{
+#Selling p{
 
     font-size:30px;
-
+    font-style:italic;
 }
 
-/*Contenido de la página Principal (3 divs)*/
+
+
+/*Contenido de la página Principal (3 divs)
+
+Div que los contiene*/
 #divPropiedades{
+    
     position:relative;
-    text-align:center;
     margin:auto;
-    margin-top:500px;
-    width:85%;
+    margin-top:120px;
+    width:90%;
 
 }
 
+/*Divs con las imágenes y los textos*/
 .contenidoPrincipal{
     
+    margin:auto;
     float:left;
-    height:30%;
     width:30%;
-    padding-top:10px;
-    padding-left: 30px;
+    height:100%;
+    padding:10px;
+    margin-left: 30px;
+    text-align:center;
+    font-size:20px;
+    background-color:white;
+    box-shadow:2px 2px 10px;
     
 }
 
 .contenidoPrincipal img{
     
-    width:30%;
-    
+    width:41%;
+    transition: all 1s ease;
 }
 
-.contenidoIzda{
+.contenidoPrincipal img:hover{
     
-    padding-left:0px;
-    
+    transform:rotateY(360deg);
 }
 
-/*Footer*/
-
-.footer{
+.contenidoIzda img{
     
-    color:white;
-    font-size:12px;
-    margin-top:80px;
-    padding-top:100px;
-    float: left;
-    width:100%;
-    height:110px;
-    background-color:#202021;
-    text-align:center;
-    
+    width:95%;
 }
