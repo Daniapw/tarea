@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
-
-@keyframes agrandar{
-    
-    transform:
-    
-}
-
 body{
 
     font-family:"Oswald";
@@ -84,7 +77,8 @@ body{
     text-align:center;
     letter-spacing: 2px;
     color:white;
-    font-size:14px;
+    font-size:15px;
+    margin:auto;
     margin-top:200px;
     padding-top:10px;
     float: left;
@@ -94,7 +88,6 @@ body{
 }
 
 .footer ul li{
-    
     text-align:left;
     list-style: none;
     padding-bottom:10px;
@@ -103,32 +96,40 @@ body{
 
 .divsFooter{
     
+    margin:auto;
     float:left;
-    width:24%;
-    padding: 30px 10px 15px 100px;
-
+    width:30%;
+    padding: 30px 10px 15px 20px;
     
 }
 
 .divsFooter img{
     
+    padding-left:50px;
     padding-right:30px;
+    padding-top:10px;
     float:left;
     width:20%;
     
 }
 
 .divsFooter ul li a{
-    
+
     color:white;
     text-decoration:none;
+    
+}
+
+.redesSociales{
+    
+    width:32.5%;
     
 }
 
 .redesSociales img{
     
     float:none;
-    width:8%;
+    width:10%;
     padding:10px 10px 5px 5px;
 
 }
@@ -176,6 +177,7 @@ Div en el que se mete todo el contenido*/
     
 
 }
+
 #textoBanner{
     
     position:absolute;
@@ -208,6 +210,7 @@ Div que los contiene*/
     margin:auto;
     margin-top:120px;
     width:90%;
+    height:380px;
 
 }
 
@@ -236,6 +239,12 @@ Div que los contiene*/
 .contenidoPrincipal img:hover{
     
     transform:rotateY(360deg);
+}
+
+.contenidoPrincipal p{
+    
+    padding:5px;
+    
 }
 
 .contenidoIzda img{
