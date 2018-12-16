@@ -1,0 +1,194 @@
+<html>
+<head>
+    
+    <title>Trabajo LDM Daniel Ruiz</title>
+    <meta name="description" content="Trabajo de HTML y CSS para Lenguaje de Marcas">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="content-language" content="es_es"> 
+    <meta name="author" content="Daniel Ruiz Hidalgo">
+    <meta name="date" content="09-12-2018">
+    <meta name="generator" content="Brackets">
+    <meta name="keywords" content="Trabajo Lenguaje de Marcas HTML CSS Marvel Fanpage">
+    <meta name="locality" content="Lucena, Cordoba">
+    <meta name="robots" content="index"> 
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    
+</head>
+    
+<body>
+
+        
+    <!-- Div del encabezado -->
+    <div class ="encabezado">
+        
+        <!-- Div del logo -->
+        <div class="divlogo">
+            <img src="Imagenes/Marvel.png" alt="Logo de Marvel">
+        </div>
+        
+        <!-- Menú de navegación -->
+        <div class="menu">
+
+            <ul>
+
+                <a href="index.html"><li>Inicio</li></a>
+                <a href="personajes.html"><li>Personajes</li></a>
+                <a href="formulario.html"><li>Formulario</li></a>
+                <a href="#"><li>MCU</li></a>
+                <a href="#"><li>Netflix</li></a>
+
+            </ul>
+
+        </div>
+    </div>    
+
+    <!-- Contenido -->
+    <div class="contenido">
+        
+        <!-- Formulario -->
+        <div id="divFormulario">
+            <h1>¿Qué clase de héroe eres?</h1>
+            
+            <form id="formulario" name="formularioHeroe">
+                <legend>Información personal</legend>
+                <fieldset>
+                    <label for="nombre">¿Cómo te llamas?</label><br>
+                    <input type="text" name="nombre" class="formTipo1"><br>
+
+                    <label for="fecha">Fecha de nacimiento</label><br>
+                    <input type="date" name="fecha" class="formTipo1" ><br>
+
+                    <label for="genero">¿Eres un chico o una chica?</label><br>
+                    <input type="radio" name="genero" id="chico" value="chico">
+                    <label for="chico">Chico</label><br>
+                    <input type="radio" name="genero" id="chica" value="chica">
+                    <label for="chica">Chica</label><br>
+                    
+                    <label for="altura">¿Cuánto mides (en cm)?</label><br>
+                    <input type="number" name="altura" max="250" maxlength="3" class="formTipo1"><br>
+
+                    <label for="hora">¿A qué hora estás rellenando este formulario?</label><br>
+                    <input type="time" name="hora"><br>
+                    
+                    <label for="email">Correo electrónico</label><br>
+                    <input type="email" name="email" class="formTipo1">
+
+                </fieldset>
+                
+                <legend>Preguntas</legend>
+                <fieldset>
+                    <label for="nombre">Y...¿te gustaría ser un superhéroe/superheroína?</label><br>
+                    <input type="radio" name="tegustaria" id="si" value="si">
+                    <label for="si">Sí</label><br>
+                    <input type="radio" name="tegustaria" id="no" value="no">
+                    <label for="no">No</label><br>
+                    
+                    <label for="por_que">¿Por qué?</label><br>
+                    <textarea name="por_que" rows="4" cols="50"></textarea><br>
+
+                    <label for="nombreClave">Nombre en clave:</label><br>
+                    <input type="password" name="nombreClave" class="formTipo1"><br>
+                    
+                    <label for="importante">¿Cuál de estas opciones te parece la mejor forma de hacer el bien?</label><br>
+                    <select name="mejorar" size="1">
+                        <option value="familia">Matar a los malhechores</option>
+                        <option value="familia">Salvar las vidas de aquellos en peligro a costa de tu bienestar</option>
+                        <option value="familia">Donar grandes cantidades de dinero a la caridad</option>
+                        <option value="familia">Trabajar dentro del sistema establecido para que haya justicia</option>
+
+                    </select><br>
+
+                    <label for="valentia">Marca las cualidades que te parezcan más importantes en una persona:</label><br>
+                    <input type="checkbox" name="valentia"> Valentía<br>
+                    <input type="checkbox" name="inteligencia"> Inteligencia<br>
+                    <input type="checkbox" name="honor"> Honor<br>
+                    <input type="checkbox" name="astucia"> Astucia<br>
+                    <input type="checkbox" name="voluntad"> Voluntad<br>
+                    <input type="checkbox" name="valiente"> Honestidad<br>
+                    <input type="checkbox" name="valiente"> Sentido del humor<br>
+
+                    <label for="colorTraje">¿Cuál sería el color predominante de tu traje?</label><br> 
+                    <input type="color" name="colorTraje"><br>
+                    
+                    <label for="simboloHeroe">¿Y tu símbolo?</label><br>
+                    <input type="file" name="simboloHeroe"><br>
+                    
+                    <label for ="motivacion">¿Qué te motiva a seguir adelante?</label><br>
+                    <input list="motivacion">
+                    <datalist id="motivacion">
+                        <option value="Quiero que haya justicia para todos">
+                        <option value="Quiero venganza">
+                        <option value="Mi sentido del deber"> 
+                        <option value="Quiero ser un modelo un seguir">
+                        <option value="Quiero ser mejor que los demás">
+                        <option value="Meh, solo hago lo que quiero">
+                    </datalist>
+                </fieldset>
+            
+                <input type="submit" class="boton">
+                <input type="reset" class="boton">
+                
+            </form>
+        </div>
+    
+    <!--Footer-->
+        
+        <div class="footer">
+            
+            <!-- Div sobre Marvel -->
+            <div class="divsFooter">
+                
+                <img src="Imagenes/M.PNG">
+                
+                <ul>
+                    <li><a href="https://www.marvel.com/corporate/about/">SOBRE MARVEL</a></li>
+                    <li><a href="https://www.marvel.com/help/">AYUDA/FAQ</a></li>
+                    <li><a href="https://jobs.disneycareers.com/category/marvel-jobs/391-5733-5732/2274/1/">CARRERAS</a></li>
+                    <li><a href="https://www.marvel.com/corporate/interns/">PUESTOS DE PRÁCTICA</a></li>
+                
+                </ul>
+                
+                
+            
+            </div>
+            
+            <!-- Div frase -->
+            <div class="divsFooter">
+                <br>
+                <br>
+                <p>Ésta NO es una página oficial de Marvel, sino una página creada con propósitos meramente académicos</p>
+            
+            </div>
+            
+            <!-- Div redes sociales -->
+            <div class="divsFooter redesSociales">
+                <table>
+                    <tr>
+                        <td colspan ="3"><p>Sigue a Marvel en las redes sociales</p></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://facebook.com/marvel"><img src="Imagenes/facebook.png"></a></td>
+                        <td><a href="http://twitter.com/marvel"><img src="Imagenes/twitter.png"></a></td>
+                        <td><a href="http://instagram.com/marvel"><img src="Imagenes/instagram.png"></a></td>
+                    </tr>
+                    
+                    <tr>
+                        
+                        <td><a href="http://marvelentertainment.tumblr.com/"><img src="Imagenes/tumblr.png"></a></td>
+                        <td><a href="http://youtube.com/marvel"><img src="Imagenes/youtube.png"></a></td>
+                        <td><a href="https://www.snapchat.com/add/marvelhq"><img src="Imagenes/snapchat.png"></a></td>
+                    </tr> 
+                </table>
+            </div>
+            
+
+        </div>
+    </div>
+    
+    
+    
+    
+</body>
+
+
+</html>

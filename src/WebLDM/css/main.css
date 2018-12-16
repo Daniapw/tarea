@@ -1,0 +1,502 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body{
+
+    font-family:"Oswald";
+    margin:0;
+}
+
+/*ENCABEZADO
+///////////////////////////*/
+
+.encabezado{
+
+    background-color:#202021;
+    width:100%;
+    position:fixed;
+    z-index: 1;
+    
+}
+
+.divlogo{
+
+    padding-top: 20px;
+    width:100%;
+
+}
+
+.divlogo img{
+
+    width:10%;
+    height:auto;
+    display:block;
+    margin:auto;
+
+}
+
+.menu{
+
+    width:100%;
+    background-color:red;
+    text-align:center;
+}
+
+.menu ul{
+
+    padding:10px;
+    margin-bottom:0px;
+}
+
+.menu ul li{
+
+    display:inline;
+    list-style: none;
+    padding: 10px 80px 10px 80px;
+    color: white;
+    font-size: 20px;
+    font-weight:bold;
+}
+
+.menu ul a{
+
+    text-decoration:none;
+
+}
+
+.menu ul li:hover{
+
+    background-color:#a30d0d;
+
+}
+
+
+/*Footer*/
+
+.footer{
+    
+    text-align:center;
+    letter-spacing: 2px;
+    color:white;
+    font-size:15px;
+    margin:auto;
+    margin-top:200px;
+    padding-top:10px;
+    float: right;
+    width:100%;
+    background-color:#202021;
+    
+}
+
+.footer ul li{
+    text-align:left;
+    list-style: none;
+    padding-bottom:10px;
+    
+}
+
+.divsFooter{
+    
+    margin:auto;
+    float:left;
+    width:30%;
+    padding: 30px 10px 15px 20px;
+    
+}
+
+.divsFooter img{
+    
+    padding-left:50px;
+    padding-right:30px;
+    padding-top:10px;
+    float:left;
+    width:17%;
+    
+}
+
+.divsFooter ul li a{
+
+    color:white;
+    text-decoration:none;
+    
+}
+
+.redesSociales{
+
+    width:32.5%;
+    
+}
+
+.redesSociales table{
+    color:white;
+    font-size:18px;
+    margin:auto;
+    text-align:center;
+}
+
+.redesSociales table a img{
+
+    width:30%;
+
+
+}
+
+
+/*Div en el que se mete todo el contenido*/
+.contenido{
+
+    padding-top:190px;
+    width: 100%;
+    background-color:#fcfcfc;
+}
+
+/*Banner de la página principal*/
+.imagenBanner{
+
+    position:relative;
+    display:block;
+    margin: auto;
+    width: 100%;
+}
+
+.imagenBanner img {
+
+    width: 100%;
+    height:60%
+}
+
+/*Banner para las otras páginas*/
+.bannerPaginas{
+    
+    position:relative;
+    display:block;
+    margin: auto;
+    width: 100%;
+    
+}
+
+.bannerPaginas img {
+
+    width: 100%;
+
+}
+
+
+/*Overlay del banner principal*/
+.overlayBanner{
+
+    position: absolute;
+    color:white;
+    background-color:rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height:100%;
+    text-align:center;
+    
+
+}
+
+/*Overlay del banner de las páginas secundarias*/
+.overlayBannerPaginas{
+
+    position: absolute;
+    color:white;
+    background-color:rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height:100%;
+    text-align:center;
+    
+
+}
+
+/*Texto del overlay de los banners*/
+.textoBanner{
+    
+    position:absolute;
+    top:40%;
+    transform: translate(0, -50%);
+    width:100%;
+    opacity:0.8;
+}
+
+.textoBanner h1{
+    
+    font-size:80px;
+
+}
+
+.subtituloBanner p{
+
+    font-size:30px;
+    font-style:italic;
+}
+
+
+
+
+/*PÁGINA PRINCIPAL
+////////////////////////////*/
+
+
+/*Contenido de la página Principal (3 divs)
+
+Div que los contiene*/
+#divPropiedades{
+    
+    position:relative;
+    margin:auto;
+    margin-top:120px;
+    width:90%;
+    height:380px;
+
+}
+
+/*Divs con las imágenes y los textos*/
+.contenidoPrincipal{
+    
+    margin:auto;
+    float:left;
+    width:29%;
+    height:100%;
+    padding:10px;
+    margin-left: 30px;
+    text-align:center;
+    font-size:20px;
+    background-color:white;
+    box-shadow:2px 2px 10px;
+    
+}
+
+.contenidoPrincipal img{
+    
+    width:41%;
+    transition: all 1s ease;
+}
+
+.contenidoPrincipal img:hover{
+    
+    transform:rotateY(360deg);
+}
+
+.contenidoPrincipal p{
+    
+    padding:5px;
+    
+}
+
+.contenidoIzda img{
+    
+    width:95%;
+}
+
+
+/*PÁGINA PERSONAJES
+/////////////////*/
+
+#iconosPersonajes{
+    text-align:center;
+    position:relative;
+    margin:auto;
+    margin-top:70px;
+    width:65%;
+    
+}
+
+#iconosPersonajes img{
+    
+    width:100%;
+    
+}
+
+/*Divs con información sobre los personajes*/
+#personajes{
+    float:none;
+    width:95%;
+    margin:auto;
+    margin-top:100px;
+    font-size:26px;
+
+}
+
+.divsHeroe{
+    
+    float:none;
+    box-shadow: 2px 2px 10px;
+    margin-top:60px;
+    width:100%;
+    height:70%;
+    overflow:hidden;
+    text-align:left;
+    background-color:#202021;
+}
+
+.daredevil{
+    
+    height:87%;
+    
+}
+
+.daredevil iframe{
+    
+    margin:auto;
+    width:100%;
+    height:50%;
+}
+
+/*Divs que contienen las imágenes*/
+.imagenHeroe{
+    
+    clip-path: polygon(0 0, 100% 0%, 87% 100%, 0% 100%);
+    float:left;
+    width:44%;
+    height:100%;
+    background-color:gray;
+}
+
+.imagenHeroeDrcha{
+    
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 13% 100%);
+    float:right;
+    width:44%;
+}
+
+.imagenHeroeDrcha img{
+    
+    width:100%;
+    
+}
+
+.imagenHeroe img{
+    
+    height:100%;
+
+}
+
+/*Divs que contienen el texto*/
+.textoHeroe{
+    
+    color:white;
+    padding-left:40px;
+    float:left;
+    width:48%;
+    height:100%;
+}
+
+.textoHeroe img{
+    
+    padding-top:10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:49%;
+    
+}
+
+/*FORMULARIO
+////////////////////////////////*/
+
+#divFormulario{
+    color:black;
+    border:1px solid black;
+    box-shadow: 2px 2px 10px black;
+    margin:auto;
+    width:80%;
+    font-size: 24px;
+    
+}
+
+#divFormulario h1{
+    font-size:60px;
+    margin-top:0px;
+    text-align:center;
+    color:white;
+    border-bottom:1px solid black;
+    background-image:url(../Imagenes/bannerFormulario.jpg);
+    background-size:100%;
+
+}
+
+#formulario {
+    padding:30px;
+    
+}
+
+#formulario legend{
+    color:darkred;
+    margin-top:10px;
+    font-size:28px;
+    font-weight:bold;
+    
+}
+
+#formulario fieldset{
+    
+    border: 1px solid black;
+    
+}
+
+#formulario input{
+    
+    font-family:"Oswald";
+    font-size:16px;
+    border-style:solid;
+    border-width:0.5px;
+    border-color:gray;
+    margin-top:10px;
+    margin-bottom:20px;
+    border-radius:3px;
+    padding-left:5px;
+    transition:all 0.2s ease;
+}
+
+#formulario input:hover, textarea:hover{
+    
+    transition: all 0.2s ease;
+    background-color:#f4f4f4;
+    
+}
+
+#formulario input:focus, textarea:focus{
+    
+    transition: all 0.2s ease;
+    background-color:#e5e5e5;
+    
+}
+
+#formulario textarea{
+    font-family:"Oswald";
+    font-size:16px;
+    padding-left:5px;
+    margin-top:10px;
+    margin-bottom:20px;
+    transition:all 0.2s ease;
+}
+
+#formulario select{
+    font-family:"Oswald";
+    font-size:16px;
+    margin-top:10px;
+    margin-bottom:20px;
+    border-radius:3px;  
+    height:30px;
+}
+
+.formTipo1{
+
+    width:30%;
+    height:30px;
+}
+
+.boton{
+    
+    font-family:"Oswald";
+    font-size:20px;
+    padding:12px!important;
+    background-color:#ff3030;
+    color:white;
+    margin-right:10px;
+    transition:all 0.2s ease;
+}
+
+.boton:hover{
+    transition:all 0.2s ease;
+    background-color:darkred!important;
+}
