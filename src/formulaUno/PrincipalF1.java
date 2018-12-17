@@ -43,9 +43,28 @@ public class PrincipalF1 {
 				i++;
 				
 			}
-
-			
 		}
+		
+		//Carrera
+		
+		do {
+			
+			for (int i = 0; i < participantes.length; i++) {
+				
+				if (!participantes[i].haTerminado()) {
+					
+					participantes[i].avanza();
+					System.out.println(participantes[i].getPiloto() + " avanza a la posición " + participantes[i].getPosicion());
+					
+				}
+
+			}
+			
+			
+		}while(!participantes[0].haTerminado());
+		
 	}
+	
+
 
 }

@@ -6,7 +6,9 @@ public abstract class Vehiculo {
 	private int posicion;
 	private int turno = -1;
 	private int pista;
+	private boolean terminado = false;
 	
+	//Metodo para que el vehículo avance
 	public int avanza() {
 		
 		int numero = (int) Math.round(Math.random()* (50 - 3)) + 3;
@@ -17,6 +19,18 @@ public abstract class Vehiculo {
 		
 	}
 	
+	//Método para saber si un vehículo ha terminado
+	public boolean haTerminado(){
+		
+		if (this.posicion >= 500) {
+			
+			terminado = true;
+			
+		}
+		
+		return terminado;
+	}
+
 	
 	public abstract void paint();
 

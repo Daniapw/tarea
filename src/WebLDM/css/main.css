@@ -479,6 +479,7 @@ Div que los contiene*/
     height:30px;
 }
 
+
 .formTipo1{
 
     width:30%;
@@ -498,5 +499,10 @@ Div que los contiene*/
 
 .boton:hover{
     transition:all 0.2s ease;
+    background-color:darkred!important;
+}
+
+.boton:focus{
+    
     background-color:darkred!important;
 }
