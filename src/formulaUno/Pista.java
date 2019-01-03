@@ -42,10 +42,6 @@ public class Pista {
 	//Método para posicionar obstáculos
 	private void posicionarObstaculos() {
 		
-		int lugarInicio;
-		int lugarFin;
-		int azar;
-		
 		//Dado que el primer obstáculo siempre va a ser una rampa y siempre va a estar en el mismo lugar,
 		//el lugar de inicio se establece manualmente
 		obstaculos[0].setLugarInicio(100);
@@ -75,9 +71,10 @@ public class Pista {
 		//Bucle que recorre el array de obstáculos de la pista en cuestión y aplica los cambios a la posición del participante
 		for (int j = 0; j < obstaculos.length; j++) {
 			
-			//Si una de las ruedas del vehículo del  participante cae en el obstáculo se aplicará su efecto y se imprimirá un mensaje
-			if (participante.getPosicion() +5 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +5 <= this.obstaculos[j].getLugarFin()|| 
-					participante.getPosicion() + 50 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +50 <= this.obstaculos[j].getLugarFin()) {
+			//Si una de las ruedas o gran parte del vehículo del participante cae en el obstáculo se aplicará su efecto y se imprimirá un mensaje
+			if (participante.getPosicion() +3 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +3 <= this.obstaculos[j].getLugarFin()|| 
+					participante.getPosicion() + 45 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +45 <= this.obstaculos[j].getLugarFin()
+					|| participante.getPosicion() + 3 > this.obstaculos[j].getLugarInicio() && participante.getPosicion() +40 <= this.obstaculos[j].getLugarFin()) {
 				
 				//Si el vehículo ha caído en una rampa, la rampa lo moverá hacia delante
 				if (this.obstaculos[j] instanceof Rampa) {

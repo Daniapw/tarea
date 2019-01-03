@@ -32,7 +32,6 @@ public class Carrera {
 			
 			posicionY += 120;
 			
-			System.out.println("\n" + participantes[i].getPiloto() + " - Pista: " + participantes[i].getPista());
 			
 		}
 		
@@ -57,27 +56,35 @@ public class Carrera {
 			//Bucle para los turnos
 			for (int i = 0; i < participantes.length; i++) {
 				
-				ventana.repaint();
-				//Si el participante no ha terminado llevará a cabo su turno
-				if (!participantes[i].haTerminado()) {
+				//Se recorre el array de participantes y, cuando el turno de un participante coincide con i, éste ejecutará su turno
+				for (int j = 0; j < participantes.length; j++) {
 					
-					//El participante ejecuta su turno
-					//Primero se muestra un mensaje que muestra la distancia que avanza el vehículo
-					JOptionPane.showMessageDialog(null, participantes[i].getPiloto() + " avanza "+ participantes[i].avanza() + " metros");
+					ventana.repaint();
 					
-					pistas[participantes[i].getPista() - 1].determinacionObstaculos(participantes[i], ventana);
+					//Si el participante no ha terminado llevará a cabo su turno
+					if (!participantes[j].haTerminado() && participantes[j].getTurno() == i) {
+						
+						//El participante ejecuta su turno
+						//Primero se muestra un mensaje que muestra la distancia que avanza el vehículo
+						JOptionPane.showMessageDialog(null, participantes[j].getPiloto() + " avanza "+ participantes[j].avanza() + " metros");
+						
+						pistas[participantes[j].getPista() - 1].determinacionObstaculos(participantes[j], ventana);
+	
+						//Mensaje para mostrar la posición en la que se ha quedado el participante
+						JOptionPane.showMessageDialog(null, participantes[j].toString());
+						
+						//Si el participante termina se le clasifica en el pódium
+						if (participantes[j].haTerminado()) {
+							
+							clasificarEnPodium(participantes[j]);
+							
+							JOptionPane.showMessageDialog(null, participantes[j].getPiloto() + " ha llegado a la meta!");
+							
+						}
+						
 
-					//Si el participante termina se le clasifica en el pódium
-					if (participantes[i].haTerminado()) {
-						
-						clasificarEnPodium(participantes[i]);
-						
 					}
-					
-					//Mensaje para mostrar la posición en la que se ha quedado el participante
-					JOptionPane.showMessageDialog(null, participantes[i].toString());
 				}
-
 			}
 			
 
@@ -93,24 +100,14 @@ public class Carrera {
 	//Asignar turnos al azar a cada participante
 	private void asignarTurnos(){
 		int azar = 0;
-		Vehiculo aux = null;
-		String colorI, colorAzar;
 		
 		for (int i = 0; i < 5; ) {
 			//El auxiliar guarda el participante
-			aux = participantes[i];
 			azar = ((int) Math.round(Math.random() * 4));
 			
 			if (participantes[azar].getTurno() == -1) {
 			
-				colorI = participantes[i].getColor();
-				colorAzar = participantes[azar].getColor();
-				
 				participantes[azar].setTurno(i);
-
-				participantes[i] = participantes[azar];
-			
-				participantes[azar] = aux;
 				
 				i++;
 				

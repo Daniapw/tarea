@@ -85,7 +85,7 @@ public class VentanaCarrera extends Canvas{
 			
 			//Nombres de los participantes
 			g.setColor(Color.decode(carrera.participantes[i].getColor()));
-			g.drawString(carrera.participantes[i].getPiloto(), 240, yPistas-65);
+			g.drawString(carrera.participantes[i].getPiloto() + " (Turno " + (carrera.participantes[i].getTurno() + 1) + " )" , 220, yPistas-65);
 			
 			//Pintar línea de inicio
 			g.setColor(Color.blue);

@@ -12,7 +12,7 @@ public class ManchaAceite extends Obstaculo {
 	//Método que inicializa el obstáculo
 	public int inicializa() {
 		
-		int numero = ((int) Math.round(Math.random() * (-5 -(-20)))) + (-20);
+		int numero = ((int) Math.round(Math.random() * (-10 -(-20)))) + (-20);
 
 		return numero;
 	}

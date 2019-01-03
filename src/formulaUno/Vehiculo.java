@@ -39,7 +39,7 @@ public abstract class Vehiculo {
 	//Método para saber si un vehículo ha terminado
 	public boolean haTerminado(){
 		
-		if (this.posicion >= 500) {
+		if (this.posicion >= 530) {
 			
 			terminado = true;
 			
