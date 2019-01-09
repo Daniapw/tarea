@@ -6,7 +6,7 @@ public class Carrera {
 	public Vehiculo participantes[] = new Vehiculo[5];
 	public Pista pistas[] = new Pista[5];
 	public Vehiculo clasificacion[] = new Vehiculo[] {null,null,null};
-	public String nombres[] = new String[] {"Fernando Alonso", "Dani Pedrosa", "Lewis Hamilton", "Marc Márquez", "Kimi Raikkonen"};
+	public String nombres[] = new String[] {"Fernando Alonso", "Dani Pedrosa", "Lewis Hamilton", "Marc MÃ¡rquez", "Kimi Raikkonen"};
 	public String colores[] = new String[] {"#2073f9" , "#f92044", "#0ed15f", "#d1830e", "#9900e5"};
 	
 	//Constructor
@@ -37,43 +37,43 @@ public class Carrera {
 		
 	}
 	
-	//Bucle principal del juego. Se repetirá hasta que el método carreraTerminada devuelva true
+	//Bucle principal del juego. Se repetirï¿½ hasta que el mï¿½todo carreraTerminada devuelva true
 	public void bucleJuego() {
 		
 		//Primero se asignan los turnos a los jugadores
 		asignarTurnos();
 		
-		//Se crea la ventana donde se va a ver el juego y se le añade el objeto carrera
+		//Se crea la ventana donde se va a ver el juego y se le aï¿½ade el objeto carrera
 		VentanaCarrera ventana = new VentanaCarrera(this);
 		
 		//Se pinta la ventana con las posiciones de inicio
 		ventana.repaint();
 		
 		JOptionPane.showMessageDialog(null, "Comienza la carrera!");
-		//Este es el bucle que llevará a cabo la carrera
+		//Este es el bucle que llevarï¿½ a cabo la carrera
 		do {
 			
 			//Bucle para los turnos
 			for (int i = 0; i < participantes.length; i++) {
 				
-				//Se recorre el array de participantes y, cuando el turno de un participante coincide con i, éste ejecutará su turno
+				//Se recorre el array de participantes y, cuando el turno de un participante coincide con i, ï¿½ste ejecutarï¿½ su turno
 				for (int j = 0; j < participantes.length; j++) {
 					
 					ventana.repaint();
 					
-					//Si el participante no ha terminado llevará a cabo su turno
+					//Si el participante no ha terminado llevarï¿½ a cabo su turno
 					if (!participantes[j].haTerminado() && participantes[j].getTurno() == i) {
 						
 						//El participante ejecuta su turno
-						//Primero se muestra un mensaje que muestra la distancia que avanza el vehículo
+						//Primero se muestra un mensaje que muestra la distancia que avanza el vehï¿½culo
 						JOptionPane.showMessageDialog(null, participantes[j].getPiloto() + " avanza "+ participantes[j].avanza() + " metros");
 						
 						pistas[participantes[j].getPista() - 1].determinacionObstaculos(participantes[j], ventana);
 	
-						//Mensaje para mostrar la posición en la que se ha quedado el participante
+						//Mensaje para mostrar la posiciï¿½n en la que se ha quedado el participante
 						JOptionPane.showMessageDialog(null, participantes[j].toString());
 						
-						//Si el participante termina se le clasifica en el pódium
+						//Si el participante termina se le clasifica en el pï¿½dium
 						if (participantes[j].haTerminado()) {
 							
 							clasificarEnPodium(participantes[j]);
@@ -117,7 +117,7 @@ public class Carrera {
 	}
 	
 	
-	//Método que determina si la carrera ha terminado o no
+	//Mï¿½todo que determina si la carrera ha terminado o no
 	private boolean carreraTerminada(Vehiculo participantes[]){
 		boolean carreraTerminada = true;
 		
@@ -135,12 +135,12 @@ public class Carrera {
 	}
 	
 	
-	//Método para ir clasificando a los jugadores según acaban
+	//Mï¿½todo para ir clasificando a los jugadores segï¿½n acaban
 	private void clasificarEnPodium(Vehiculo participante) {
 		
 		for (int j = 0; j < clasificacion.length; j++) {
 			
-			//Si el puesto no está ocupado se le asignará al participante
+			//Si el puesto no estï¿½ ocupado se le asignarï¿½ al participante
 			if (clasificacion[j] == null && participante.getPodium() == -1){
 				
 				participante.setPodium(j + 1);

@@ -10,13 +10,13 @@ public class PrincipalTresEnRaya {
 	public static void main(String[] args) {
 		
 		jugadores[0] = new Jugador("Equis", 1);
-		jugadores[1] = new Jugador("Círculo", 2);
+		jugadores[1] = new Jugador("CÃ­rculo", 2);
 		
 		ventana.repaint();
 
 	}
 	
-	//Método para avanzar al siguiente turno
+	//Mï¿½todo para avanzar al siguiente turno
 	public static int avanzarTurno() {
 		
 		if (indiceJugadorActivo== 1) {
@@ -34,7 +34,7 @@ public class PrincipalTresEnRaya {
 		
 	}
 
-	//Método para resetear el juego en caso de que los jugadores quieran volver a jugar
+	//Mï¿½todo para resetear el juego en caso de que los jugadores quieran volver a jugar
 	public static void resetearJuego() {
 		
 		ventana.resetearCeldas();
@@ -52,8 +52,5 @@ public class PrincipalTresEnRaya {
 		PrincipalTresEnRaya.indiceJugadorActivo = indiceJugadorActivo;
 	}
 
-	
-	
-	
 
 }

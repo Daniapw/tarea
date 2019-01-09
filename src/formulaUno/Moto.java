@@ -15,7 +15,7 @@ public class Moto extends Vehiculo {
 		this.setColor(color);
 	}
 	
-	//Método abstracto heredado de la superclase Vehículo: pinta el coche en pantalla según su posición
+	//Mï¿½todo abstracto heredado de la superclase Vehï¿½culo: pinta el coche en pantalla segï¿½n su posiciï¿½n
 	public void paint(Graphics g) {
 		
 		int x = this.getPosicion();
@@ -42,8 +42,8 @@ public class Moto extends Vehiculo {
 		g.fillRect(x+58, y-30, 5, 20);
 		
 		//Chasis ruedas
-		g.fillOval(x + 5, y - 8 , 19, 19);
-		g.fillOval(x + 53, y - 7, 19, 19);
+		g.fillOval(x + 6, y - 7 , 17, 17);
+		g.fillOval(x + 53, y - 7, 17, 17);
 		
 		//Asiento
 		g.setColor(Color.black);
@@ -51,19 +51,19 @@ public class Moto extends Vehiculo {
 		
 		//Ruedas y llantas
 		g.setColor(Color.black);
-		g.fillOval(x + 6, y - 5 , 18, 18);
-		g.fillOval(x + 54, y - 5, 18, 18);
+		g.fillOval(x + 6, y - 5 , 17, 17);
+		g.fillOval(x + 54, y - 5, 17, 17);
 		
 		g.setColor(Color.gray);
-		g.fillOval(x+ 9, y - 2, 10, 10);
-		g.fillOval(x+ 57, y - 2, 10, 10);
+		g.fillOval(x+ 9, y - 2, 11, 11);
+		g.fillOval(x+ 57, y - 2, 11, 11);
 		
 	}
 
 	public String toString() {
 		
 		String str;
-		str= "[Posición actual de " + this.getPiloto() + ": " + this.getPosicion() + "]";
+		str= "[PosiciÃ³n actual de " + this.getPiloto() + ": " + this.getPosicion() + "]";
 		return str;
 	}
 	

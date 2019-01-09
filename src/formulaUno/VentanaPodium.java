@@ -20,12 +20,12 @@ public class VentanaPodium extends Canvas {
 	public VentanaPodium(Vehiculo clasificacion[] ) {
 		
 		//JFrame para mostrar la ventana en la que se ve el juego
-		JFrame ventanaPodium = new JFrame("Pódium");
+		JFrame ventanaPodium = new JFrame("Pï¿½dium");
 		
 		//Establezco las dimensiones de la ventana
 		ventanaPodium.setBounds(600,300,ANCHO,ALTO);
 		
-		//Creación del panel principal de la ventana y le aÃ±adimos el objeto Ventana (el canvas)
+		//Creaciï¿½n del panel principal de la ventana y le aÃ±adimos el objeto Ventana (el canvas)
 		JPanel panel = (JPanel)ventanaPodium.getContentPane();
 
 		panel.add(this);
@@ -55,7 +55,7 @@ public class VentanaPodium extends Canvas {
 		g.setFont(new Font("Verdana", Font.BOLD, 16)); 
 		
 		g.setColor(new Color(46, 198, 0));
-		g.drawString("¡Enhorabuena, habéis ganado!", 170, 45);
+		g.drawString("Â¡Enhorabuena, habÃ©is ganado!", 170, 45);
 		//Establecer las posiciones del primero, segundo y tercero respectivamente
 		
 		clasificacion[0].setPosicion(262);
@@ -67,7 +67,7 @@ public class VentanaPodium extends Canvas {
 		clasificacion[2].setPosicion(398);
 		clasificacion[2].setPosicionY(213);
 		
-		//Dibujar los vehículos con los nombres por encima (el nombre del tercero se escribe más a la derecha que el de los demás para que no se superponga con la imagen
+		//Dibujar los vehï¿½culos con los nombres por encima (el nombre del tercero se escribe mï¿½s a la derecha que el de los demï¿½s para que no se superponga con la imagen
 		for (int i = 0; i < clasificacion.length; i++) {
 			
 			clasificacion[i].paint(g);

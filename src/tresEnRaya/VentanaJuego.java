@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 
 public class VentanaJuego extends Canvas {
 
-	private static final int ANCHO = 610;
-	private static final int ALTO = 630;
+	private static final int ANCHO = 603;
+	private static final int ALTO = 632;
 	public Celda celdas[] = new Celda[9];
 	
 	public VentanaJuego() {
@@ -42,14 +42,14 @@ public class VentanaJuego extends Canvas {
 			
 			this.setBackground(Color.WHITE);
 			
-			//Añadir MouseListener y su comportamiento
+			//Aï¿½adir MouseListener y su comportamiento
 			this.addMouseListener(new MouseAdapter(){
 				
 				public void mouseClicked(MouseEvent e) {
 
 					for (int i = 0; i < celdas.length; i++) {
 						
-						//Se comprueba si el jugador ha hecho clic en una celda y, si lo ha hecho, se ejecuta el método clicCelda() de dicha celda
+						//Se comprueba si el jugador ha hecho clic en una celda y, si lo ha hecho, se ejecuta el mï¿½todo clicCelda() de dicha celda
 						if (celdas[i].comprobarCoordenadas(e.getX(), e.getY())) {
 							
 							celdas[i].clicCelda();
@@ -66,7 +66,7 @@ public class VentanaJuego extends Canvas {
 			inicializarCeldas();
 	}
 	
-	//Método para inicializar las celdas
+	//Mï¿½todo para inicializar las celdas
 	private void inicializarCeldas() {
 		celdas[0] = new Celda (0, 0, this);
 		celdas[1] = new Celda (200, 0, this);
@@ -79,7 +79,7 @@ public class VentanaJuego extends Canvas {
 		celdas[8] = new Celda (400, 400, this);
 	}
 	
-	//Método para resetear las celdas en caso de que los jugadores quieran volver a jugar
+	//Mï¿½todo para resetear las celdas en caso de que los jugadores quieran volver a jugar
 	
 	public void resetearCeldas() {
 		
@@ -92,7 +92,7 @@ public class VentanaJuego extends Canvas {
 		
 	}
 	
-	//Método para pintar las celdas
+	//Mï¿½todo para pintar las celdas
 	public void paint(Graphics g) {
 		
 		for (int i = 0; i < celdas.length; i++) {

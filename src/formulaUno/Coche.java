@@ -14,20 +14,20 @@ public class Coche extends Vehiculo {
 		this.setColor(color);
 	}
 	
-	//Método abstracto heredado de la superclase Vehículo: imprime el coche en pantalla
+	//Mï¿½todo abstracto heredado de la superclase Vehï¿½culo: imprime el coche en pantalla
 	public void paint(Graphics g){
 		
 		int x = this.getPosicion();
 		int y = this.getPosicionY();
 		
-		//Coordenadas para dibujar los polígonos
+		//Coordenadas para dibujar los polï¿½gonos
 		int posicionesX[] = new int[] {x, x, x+13, x + 23, x + 46, x + 63, x + 78, x +78, x} ;
 		int posicionesY[] = new int[] {y, y - 15, y - 15, y - 23, y - 23, y - 15, y-11 ,y, y};
 		
 		int ventanaX[] = new int[] {x + 36, x + 46, x + 60, x+36};
 		int ventanaY[] = new int[] {y- 19, y - 19, y - 11, y - 11};
 		
-		//Dibujar el polígono
+		//Dibujar el polï¿½gono
 		g.setColor(Color.decode(getColor()));
 		g.fillPolygon(posicionesX, posicionesY, 9);
 		
@@ -44,8 +44,8 @@ public class Coche extends Vehiculo {
 		g.fillOval(x + 54, y - 5, 15, 15);
 		
 		g.setColor(Color.gray);
-		g.fillOval(x+ 9, y - 3, 9, 9);
-		g.fillOval(x+ 57, y - 3, 9, 9);
+		g.fillOval(x+ 9, y - 2, 9, 9);
+		g.fillOval(x+ 57, y - 2, 9, 9);
 		
 		
 	}
@@ -53,7 +53,7 @@ public class Coche extends Vehiculo {
 	public String toString() {
 		
 		String str;
-		str= "[Posición actual de " + this.getPiloto() + ": " + this.getPosicion() + "]";
+		str= "[PosiciÃ³n actual de " + this.getPiloto() + ": " + this.getPosicion() + "]";
 		return str;
 	}
 }

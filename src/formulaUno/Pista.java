@@ -32,22 +32,22 @@ public class Pista {
 			
 		}
 		
-		//Llamar al método para posicionar los obstáculos
+		//Llamar al mï¿½todo para posicionar los obstï¿½culos
 		posicionarObstaculos();
 		
 		
 		this.numeroPista = numero;
 	}
 	
-	//Método para posicionar obstáculos
+	//Mï¿½todo para posicionar obstï¿½culos
 	private void posicionarObstaculos() {
 		
-		//Dado que el primer obstáculo siempre va a ser una rampa y siempre va a estar en el mismo lugar,
+		//Dado que el primer obstï¿½culo siempre va a ser una rampa y siempre va a estar en el mismo lugar,
 		//el lugar de inicio se establece manualmente
 		obstaculos[0].setLugarInicio(100);
 		obstaculos[0].setLugarFin(150);
 		
-		//Los obstáculos se van posicionando a partir del lugar donde acaba el obstáculo anterior (con un pequeño margen para que no aparezcan pegados)
+		//Los obstï¿½culos se van posicionando a partir del lugar donde acaba el obstï¿½culo anterior (con un pequeï¿½o margen para que no aparezcan pegados)
 		int j=160;
 		
 		for (int i=1;i<4;i++){
@@ -65,18 +65,18 @@ public class Pista {
 	}
 		
 	
-	//Método para determinar qué ha ocurrido en el turno del piloto de esta pista
+	//Mï¿½todo para determinar quï¿½ ha ocurrido en el turno del piloto de esta pista
 	public void determinacionObstaculos(Vehiculo participante, VentanaCarrera ventana) {
 		
-		//Bucle que recorre el array de obstáculos de la pista en cuestión y aplica los cambios a la posición del participante
+		//Bucle que recorre el array de obstï¿½culos de la pista en cuestiï¿½n y aplica los cambios a la posiciï¿½n del participante
 		for (int j = 0; j < obstaculos.length; j++) {
 			
-			//Si una de las ruedas o gran parte del vehículo del participante cae en el obstáculo se aplicará su efecto y se imprimirá un mensaje
-			if (participante.getPosicion() +3 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +3 <= this.obstaculos[j].getLugarFin()|| 
+			//Si una de las ruedas o gran parte del vehï¿½culo del participante cae en el obstï¿½culo se aplicarï¿½ su efecto y se imprimirï¿½ un mensaje
+			if (participante.getPosicion() +5 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +5 <= this.obstaculos[j].getLugarFin()|| 
 					participante.getPosicion() + 45 >= this.obstaculos[j].getLugarInicio() && participante.getPosicion() +45 <= this.obstaculos[j].getLugarFin()
-					|| participante.getPosicion() + 3 > this.obstaculos[j].getLugarInicio() && participante.getPosicion() +40 <= this.obstaculos[j].getLugarFin()) {
+					|| participante.getPosicion() + 5 > this.obstaculos[j].getLugarInicio() && participante.getPosicion() +40 <= this.obstaculos[j].getLugarFin()) {
 				
-				//Si el vehículo ha caído en una rampa, la rampa lo moverá hacia delante
+				//Si el vehï¿½culo ha caï¿½do en una rampa, la rampa lo moverï¿½ hacia delante
 				if (this.obstaculos[j] instanceof Rampa) {
 					
 					JOptionPane.showMessageDialog(null, participante.getPiloto() + " se impulsa con la rampa y avanza "
@@ -87,10 +87,10 @@ public class Pista {
 					ventana.repaint();
 				}
 				
-				//Si el vehículo ha caído en una mancha se le restará el valor de la mancha
+				//Si el vehï¿½culo ha caï¿½do en una mancha se le restarï¿½ el valor de la mancha
 				else {
 					
-					JOptionPane.showMessageDialog(null, "El vehículo de " + participante.getPiloto() + " resbala con la mancha de aceite, por lo que retrocede "
+					JOptionPane.showMessageDialog(null, "El vehï¿½culo de " + participante.getPiloto() + " resbala con la mancha de aceite, por lo que retrocede "
 							+ this.obstaculos[j].getValor() + " metros!" );
 					
 					participante.setPosicion(participante.getPosicion() + this.obstaculos[j].getValor());
