@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="segundoEjemplo.xsl"?>
+
+<ligaEndesa>
+	<fechaCreacion>2010-2012</fechaCreacion>
+	<nombreCompleto>Liga Baloncesto Endesa</nombreCompleto>
+	<equipos>
+		
+		<nombreEquipo0>A</nombreEquipo0>
+		<nombreEquipo1>B</nombreEquipo1>
+		<nombreEquipo2>C</nombreEquipo2>
+		<nombreEquipo3>D</nombreEquipo3>
+		<nombreEquipo4>E</nombreEquipo4>
+		<nombreEquipo5>F</nombreEquipo5>
+		
+	</equipos>
+		
+</ligaEndesa>
