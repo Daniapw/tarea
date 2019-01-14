@@ -9,7 +9,7 @@ public class Ejercicio4 {
 
 		imprimeMatriz();
 
-		comprobarDispersa();
+		comprobarSimetrica();
 	}
 	/**
 	 * 
@@ -24,13 +24,14 @@ public class Ejercicio4 {
 				
 					matriz[i][j] = 1;
 					
+					
 				
 			}
 			
 			diagonal++;
 			
 		}
-		
+
 	}
 	
 	/**
@@ -172,6 +173,7 @@ public class Ejercicio4 {
 		
 		//Boolean que indicar√° si la fila es dispersa
 		boolean filaDispersa = false;
+		boolean columnaDispersa = false;
 		
 		//Bucle para comprobar las filas
 		for (int i = 0; i < matriz.length; i++) {
@@ -181,39 +183,15 @@ public class Ejercicio4 {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-				//Si un valor de la columna es nulo, el boolean se cambiar√° a true
+				//El boolean se reinicia en cada columna
+				columnaDispersa = false;
+				
+				//Si un valor de la fila es nulo, el boolean se cambiar√° a true
 				if (matriz[i][j] == 0) {
 					
 					filaDispersa = true;
 					
 				}
-				
-			}
-			
-			/*Si ning√∫n elemento de la fila es nulo la matriz no es dispersa, por lo que
-			se imprimir√° un mensaje y terminar√° la ejecuci√≥n del m√©todo*/
-			if (filaDispersa == false) {
-				
-				System.out.println("La matriz no es dispersa");
-
-				
-			}
-			
-		}
-		
-		//Boolean que indicar√° si la fila es dispersa
-		boolean columnaDispersa = false;
-		
-		
-		int i = 0, j = 0;
-		
-		//Bucle para comprobar las filas
-		for (i = 0; i < matriz.length; i++) {
-			
-			//El boolean se reinicia en cada columna
-			columnaDispersa = false;
-			
-			for (j = 0; j < matriz[0].length; j++) {
 				
 				//Si un valor de la columna es nulo, el boolean se cambiar√° a true
 				if (matriz[j][i] == 0) {
@@ -221,19 +199,75 @@ public class Ejercicio4 {
 					columnaDispersa = true;
 					
 				}
-				
 			}
 			
-			/*Si ning√∫n elemento de la columna es nulo la matriz no es dispersa, por lo que
+			/*Si ning√∫n elemento de la fila/columna es nulo la matriz no es dispersa, por lo que
 			se imprimir√° un mensaje y terminar√° la ejecuci√≥n del m√©todo*/
-			if (columnaDispersa == false) {
+			if (filaDispersa == false || columnaDispersa == false) {
 				
 				System.out.println("La matriz no es dispersa");
-
+				
+				return;
 				
 			}
 			
 		}
+		
+		//Si el mÈtodo sale del bucle significa que la matriz es dispersa, por lo que se imprimir· este mensaje
+		System.out.println("La matriz es dispersa");
+		
+	}
+	
+	/**
+	 * 
+	 */
+	//MÈtodo que convierte la matriz en un array unidimensional
+	public static void construirArray() {
+		
+		int array[] = new int[25];
+		int contadorIteracion = 0;
+		
+		for (int i = 0; i < matriz.length; i++) {
+			
+			for (int j = 0; j < matriz[0].length; j++) {
+				
+				array[contadorIteracion] = matriz[i][j];
+				
+				System.out.print(array[contadorIteracion] + " ");
+				
+				contadorIteracion++;
+				
+				
+			}
+			
+		}
+		
+	}
+	/**
+	 * 
+	 */
+	//MÈtodo que comprueba si la matriz es simÈtrica
+	public static void comprobarSimetrica() {
+
+		for (int i = 0; i < matriz.length; i++) {
+			
+			for (int j = 0; j < matriz[0].length; j++) {
+				
+				/*Si el valor de las coordenadas [i][j] no es el mismo que el de [j][i] la matriz no es simÈtrica, por lo que se
+				imprimir· un mensaje y se detendr· la ejecuciÛn del mÈtodo*/
+				if (matriz[i][j] != matriz[j][i]) {
+					
+					System.out.println("La matriz no es simÈtrica");
+					return;
+				
+				}
+				
+			}
+			
+		}
+
+		//Si la ejecuciÛn del mÈtodo llega a este punto significa que la matriz es simÈtrica, por lo que se mostrar· un mensaje diciÈndolo
+		System.out.println("La matriz es simÈtrica");
 		
 	}
 }
