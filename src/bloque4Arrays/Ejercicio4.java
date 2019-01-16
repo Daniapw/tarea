@@ -1,15 +1,18 @@
 package bloque4Arrays;
 
 public class Ejercicio4 {
+	//Matriz principal
 	public static int matriz[][] = new int[5][5];
+	
+	//Matriz traspuesta:
+	public static int matrizTraspuesta[][] = new int[5][5];	
 	
 	public static void main(String[] args) {
 		
 		rellenarAlAzar();
-
-		imprimeMatriz();
-
-		comprobarSimetrica();
+		
+		construirArray();
+		
 	}
 	/**
 	 * 
@@ -17,14 +20,14 @@ public class Ejercicio4 {
 	//M√©todo que rellena la matriz con n√∫meros al azar entre -10 y 100
 	public static void rellenarAlAzar() {
 		int diagonal = 0;
-		
+		int contador= 0;
 		for (int i = 0; i < matriz.length; i++) {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-					matriz[i][j] = 1;
+					matriz[i][j] = contador;
 					
-					
+					contador++;
 				
 			}
 			
@@ -38,7 +41,7 @@ public class Ejercicio4 {
 	 * 
 	 */
 	//M√©todo que recorre la matriz y la imprime
-	public static void imprimeMatriz() {
+	public static void imprimeMatriz(int[][] matriz) {
 		
 		for (int i = 0; i < matriz.length; i++) {
 			
@@ -51,7 +54,7 @@ public class Ejercicio4 {
 			
 			System.out.println();
 		}
-		
+	
 	}
 	
 	/**
@@ -178,12 +181,12 @@ public class Ejercicio4 {
 		//Bucle para comprobar las filas
 		for (int i = 0; i < matriz.length; i++) {
 			
-			//El boolean se reinicia en cada fila
+			//El boolean filaDispersa se reinicia en cada fila
 			filaDispersa = false;
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-				//El boolean se reinicia en cada columna
+				//El boolean columnaDispersa se reinicia en cada columna
 				columnaDispersa = false;
 				
 				//Si un valor de la fila es nulo, el boolean se cambiar√° a true
@@ -213,7 +216,7 @@ public class Ejercicio4 {
 			
 		}
 		
-		//Si el mÈtodo sale del bucle significa que la matriz es dispersa, por lo que se imprimir· este mensaje
+		//Si el mÔøΩtodo sale del bucle significa que la matriz es dispersa, por lo que se imprimirÔøΩ este mensaje
 		System.out.println("La matriz es dispersa");
 		
 	}
@@ -221,14 +224,15 @@ public class Ejercicio4 {
 	/**
 	 * 
 	 */
-	//MÈtodo que convierte la matriz en un array unidimensional
+	//MÔøΩtodo que convierte la matriz en un array unidimensional
 	public static void construirArray() {
 		
 		int array[] = new int[25];
 		int contadorIteracion = 0;
 		
 		for (int i = 0; i < matriz.length; i++) {
-			
+			/*La variable contadorIteracion aumentar√° en 1 cada iteraci√≥n,
+			por lo que se usar√° como √≠ndice del array*/
 			for (int j = 0; j < matriz[0].length; j++) {
 				
 				array[contadorIteracion] = matriz[i][j];
@@ -246,18 +250,18 @@ public class Ejercicio4 {
 	/**
 	 * 
 	 */
-	//MÈtodo que comprueba si la matriz es simÈtrica
+	//MÔøΩtodo que comprueba si la matriz es simÔøΩtrica
 	public static void comprobarSimetrica() {
 
 		for (int i = 0; i < matriz.length; i++) {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-				/*Si el valor de las coordenadas [i][j] no es el mismo que el de [j][i] la matriz no es simÈtrica, por lo que se
-				imprimir· un mensaje y se detendr· la ejecuciÛn del mÈtodo*/
+				/*Si el valor de las coordenadas [i][j] no es el mismo que el de [j][i] la matriz no es simÔøΩtrica, por lo que se
+				imprimirÔøΩ un mensaje y se detendrÔøΩ la ejecuciÔøΩn del mÔøΩtodo*/
 				if (matriz[i][j] != matriz[j][i]) {
 					
-					System.out.println("La matriz no es simÈtrica");
+					System.out.println("La matriz no es simÔøΩtrica");
 					return;
 				
 				}
@@ -266,8 +270,47 @@ public class Ejercicio4 {
 			
 		}
 
-		//Si la ejecuciÛn del mÈtodo llega a este punto significa que la matriz es simÈtrica, por lo que se mostrar· un mensaje diciÈndolo
-		System.out.println("La matriz es simÈtrica");
+		//Si la ejecuciÔøΩn del mÔøΩtodo llega a este punto significa que la matriz es simÔøΩtrica, por lo que se mostrarÔøΩ un mensaje diciÔøΩndolo
+		System.out.println("La matriz es simÔøΩtrica");
+		
+	}
+	
+	/**
+	 * 
+	 */
+	//M√©todo para sacar la matriz traspuesta
+	public static void matrizTraspuesta() {
+		
+		for (int i = 0; i < matriz.length; i++) {
+			
+			/*Se recorre la matrizTraspuesta y se establece que el valor de la columna[j][i] es igual al
+			valor de la fila [i][j]*/
+			for (int j = 0; j < matriz[0].length; j++) {
+				
+				matrizTraspuesta[j][i] = matriz[i][j];
+				
+			}
+			
+		}
+			
+	}
+	
+	public static void matrizOpuesta() {
+		
+		for (int i = 0; i < matriz.length; i++) {
+			
+			for (int j = 0; j < matriz[0].length; j++) {
+				
+				if (matriz[i][j] < 0) {
+					
+					
+					
+				}
+				
+			}
+			
+		}
+		
 		
 	}
 }
