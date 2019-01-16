@@ -1,5 +1,7 @@
 package bloque4Arrays;
 
+import javax.swing.JOptionPane;
+
 public class Ejercicio4 {
 	//Matriz principal
 	public static int matriz[][] = new int[5][5];
@@ -11,7 +13,11 @@ public class Ejercicio4 {
 		
 		rellenarAlAzar();
 		
-		construirArray();
+		imprimeMatriz(matriz);
+		
+		System.out.println();
+		
+		borrarFila();
 		
 	}
 	/**
@@ -34,6 +40,7 @@ public class Ejercicio4 {
 			diagonal++;
 			
 		}
+		
 
 	}
 	
@@ -105,6 +112,8 @@ public class Ejercicio4 {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
+				/*Si un número que NO sea parte de la diagonal no es 0 o si un número de la diagonal es 0 la matriz no es diagonal,
+				por lo que el boolean se cambia a false*/
 				if (matriz[i][j] != 0 && j != diagonal || matriz[i][diagonal] == 0) {
 					
 					esDiagonal = false;
@@ -112,11 +121,12 @@ public class Ejercicio4 {
 				}
 				
 			}
-			
+			//La diagonal estará un espacio más a la derecha en cada fila
 			diagonal++;
 			
 		}
 		
+		//Dependiendo del estado del boolean se imprime un mensaje u otro
 		if (esDiagonal == false) {
 			
 			System.out.println("La matriz no es diagonal");
@@ -284,7 +294,7 @@ public class Ejercicio4 {
 		for (int i = 0; i < matriz.length; i++) {
 			
 			/*Se recorre la matrizTraspuesta y se establece que el valor de la columna[j][i] es igual al
-			valor de la fila [i][j]*/
+			valor de la fila [i][j] de la matriz original*/
 			for (int j = 0; j < matriz[0].length; j++) {
 				
 				matrizTraspuesta[j][i] = matriz[i][j];
@@ -294,22 +304,76 @@ public class Ejercicio4 {
 		}
 			
 	}
-	
+	/**
+	 * 
+	 */
+	//Método para obtener la matriz opuesta
 	public static void matrizOpuesta() {
 		
 		for (int i = 0; i < matriz.length; i++) {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
+				//Si matriz[i][j] es menor que 0 se le sumará su valor absoluto del número * 2 (el doble del número)
 				if (matriz[i][j] < 0) {
 					
+					matriz[i][j] += (Math.abs(matriz[i][j])*2);
 					
+				}
+				//Si, por el contrario, matriz[i][j] es mayor que 0 se hará lo contrario: se le restará su valor absoluto * 2
+				else {
+				
+					matriz[i][j] -= (Math.abs(matriz[i][j]*2));
 					
 				}
 				
 			}
 			
 		}
+		
+	}
+	/**
+	 * 
+	 */
+	//Método que permite al usuario borrar una matriz
+	public static void borrarFila() {
+		
+		int numeroFila;
+		
+		//Primero se le pide al usuario el número de fila que quiere borrar 
+		do {
+		
+			numeroFila = Integer.parseInt(JOptionPane.showInputDialog("Escribe el número de la fila que quieres borrar (entre 0 y 4)"));
+			
+		}while (numeroFila < 0 || numeroFila > 4);
+		
+		//Esta es la matriz que se rellenará sin la fila que ha especificado el usuario
+		int matrizSinFila[][] = new int[4][5];
+		
+		//El bucle se repetirá 4 veces, la longitud de matrizSinFila
+		for (int i = 0; i < matrizSinFila.length; i++) {
+			
+			for (int j = 0; j < matriz[0].length; j++) {
+				
+				//Las filas anteriores a la que se va a borrar se rellenan normalmente...
+				if (i < numeroFila) {
+					
+					matrizSinFila[i][j] = matriz[i][j];
+					
+				}
+				//...pero a partir de esa fila inclusive se copiará la fila i+1 de la matriz original, es decir, nos saltamos una
+				else {
+					
+					matrizSinFila[i][j] = matriz[i+1][j];
+					
+				}
+					
+			}
+			
+		}
+		
+		//Por último se imprime la matriz resultante
+		imprimeMatriz(matrizSinFila);
 		
 		
 	}
