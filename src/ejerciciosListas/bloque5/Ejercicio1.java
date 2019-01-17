@@ -21,26 +21,26 @@ public class Ejercicio1 {
 		do {
 			
 			opcion = Integer.parseInt(JOptionPane.showInputDialog("Elige una de las siguientes opciones:"
-					+ "\n1. Añadir una línea al texto"
-					+ "\n2. Insertar una línea en cualquier posición del texto"
-					+ "\n3. Editar una línea (reescribir su contenido)"
-					+ "\n4. Borrar una línea"
-					+ "\n5. Cortar un conjunto de líneas"
-					+ "\n6. Pegar un conjunto de líneas cortadas"
+					+ "\n1. Aï¿½adir una lï¿½nea al texto"
+					+ "\n2. Insertar una lï¿½nea en cualquier posiciï¿½n del texto"
+					+ "\n3. Editar una lï¿½nea (reescribir su contenido)"
+					+ "\n4. Borrar una lï¿½nea"
+					+ "\n5. Cortar un conjunto de lï¿½neas"
+					+ "\n6. Pegar un conjunto de lï¿½neas cortadas"
 					+ "\n7. Imprimir texto"
 					+ "\n0. Salir."));
 			
 			while (opcion < 0 || opcion > 7) {
 
-				JOptionPane.showMessageDialog(null, "Opción inválida, elige otra");
+				JOptionPane.showMessageDialog(null, "Opciï¿½n invï¿½lida, elige otra");
 
 				opcion = Integer.parseInt(JOptionPane.showInputDialog("Elige una de las siguientes opciones:"
-						+ "\n1. Añadir una línea al texto"
-						+ "\n2. Insertar una línea en cualquier posición del texto"
-						+ "\n3. Editar una línea (reescribir su contenido)"
-						+ "\n4. Borrar una línea"
-						+ "\n5. Cortar un conjunto de líneas"
-						+ "\n6. Pegar un conjunto de líneas cortadas"
+						+ "\n1. Aï¿½adir una lï¿½nea al texto"
+						+ "\n2. Insertar una lï¿½nea en cualquier posiciï¿½n del texto"
+						+ "\n3. Editar una lï¿½nea (reescribir su contenido)"
+						+ "\n4. Borrar una lï¿½nea"
+						+ "\n5. Cortar un conjunto de lï¿½neas"
+						+ "\n6. Pegar un conjunto de lï¿½neas cortadas"
 						+ "\n7. Imprimir texto"
 						+ "\n0. Salir."));
 				
@@ -66,6 +66,7 @@ public class Ejercicio1 {
 				case 7:{
 					
 					imprimirTexto();
+					
 					break;
 				}
 				
@@ -82,7 +83,7 @@ public class Ejercicio1 {
 	 */
 	public static void anadirLinea() {
 		
-		String nuevoTexto = JOptionPane.showInputDialog("Introduce el texto que quieres añadir");
+		String nuevoTexto = JOptionPane.showInputDialog("Introduce el texto que quieres aï¿½adir");
 
 		editor.add(nuevoTexto);
 		
@@ -93,9 +94,9 @@ public class Ejercicio1 {
 	 */
 	public static void insertarLinea() {
 		
-		String nuevoTexto = JOptionPane.showInputDialog("Introduce el texto que quieres añadir");
+		String nuevoTexto = JOptionPane.showInputDialog("Introduce el texto que quieres aï¿½adir");
 
-		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posición en la que quieres insertar el texto"));
+		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posiciï¿½n en la que quieres insertar el texto"));
 		
 		if (posicion > editor.size()) {
 			

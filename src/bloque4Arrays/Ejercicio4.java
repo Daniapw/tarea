@@ -40,7 +40,6 @@ public class Ejercicio4 {
 			diagonal++;
 			
 		}
-		
 
 	}
 	
@@ -112,7 +111,7 @@ public class Ejercicio4 {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-				/*Si un número que NO sea parte de la diagonal no es 0 o si un número de la diagonal es 0 la matriz no es diagonal,
+				/*Si un nï¿½mero que NO sea parte de la diagonal no es 0 o si un nï¿½mero de la diagonal es 0 la matriz no es diagonal,
 				por lo que el boolean se cambia a false*/
 				if (matriz[i][j] != 0 && j != diagonal || matriz[i][diagonal] == 0) {
 					
@@ -121,7 +120,7 @@ public class Ejercicio4 {
 				}
 				
 			}
-			//La diagonal estará un espacio más a la derecha en cada fila
+			//La diagonal estarï¿½ un espacio mï¿½s a la derecha en cada fila
 			diagonal++;
 			
 		}
@@ -241,6 +240,7 @@ public class Ejercicio4 {
 		int contadorIteracion = 0;
 		
 		for (int i = 0; i < matriz.length; i++) {
+			
 			/*La variable contadorIteracion aumentarÃ¡ en 1 cada iteraciÃ³n,
 			por lo que se usarÃ¡ como Ã­ndice del array*/
 			for (int j = 0; j < matriz[0].length; j++) {
@@ -307,20 +307,20 @@ public class Ejercicio4 {
 	/**
 	 * 
 	 */
-	//Método para obtener la matriz opuesta
+	//Mï¿½todo para obtener la matriz opuesta
 	public static void matrizOpuesta() {
 		
 		for (int i = 0; i < matriz.length; i++) {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-				//Si matriz[i][j] es menor que 0 se le sumará su valor absoluto del número * 2 (el doble del número)
+				//Si matriz[i][j] es menor que 0 se le sumarï¿½ su valor absoluto del nï¿½mero * 2 (el doble del nï¿½mero)
 				if (matriz[i][j] < 0) {
 					
 					matriz[i][j] += (Math.abs(matriz[i][j])*2);
 					
 				}
-				//Si, por el contrario, matriz[i][j] es mayor que 0 se hará lo contrario: se le restará su valor absoluto * 2
+				//Si, por el contrario, matriz[i][j] es mayor que 0 se harï¿½ lo contrario: se le restarï¿½ su valor absoluto * 2
 				else {
 				
 					matriz[i][j] -= (Math.abs(matriz[i][j]*2));
@@ -335,22 +335,22 @@ public class Ejercicio4 {
 	/**
 	 * 
 	 */
-	//Método que permite al usuario borrar una matriz
+	//Mï¿½todo que permite al usuario borrar una matriz
 	public static void borrarFila() {
 		
 		int numeroFila;
 		
-		//Primero se le pide al usuario el número de fila que quiere borrar 
+		//Primero se le pide al usuario el nï¿½mero de fila que quiere borrar 
 		do {
 		
-			numeroFila = Integer.parseInt(JOptionPane.showInputDialog("Escribe el número de la fila que quieres borrar (entre 0 y 4)"));
+			numeroFila = Integer.parseInt(JOptionPane.showInputDialog("Escribe el nï¿½mero de la fila que quieres borrar (entre 0 y 4)"));
 			
 		}while (numeroFila < 0 || numeroFila > 4);
 		
-		//Esta es la matriz que se rellenará sin la fila que ha especificado el usuario
+		//Esta es la matriz que se rellenarï¿½ sin la fila que ha especificado el usuario
 		int matrizSinFila[][] = new int[4][5];
 		
-		//El bucle se repetirá 4 veces, la longitud de matrizSinFila
+		//El bucle se repetirï¿½ 4 veces, la longitud de matrizSinFila
 		for (int i = 0; i < matrizSinFila.length; i++) {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
@@ -361,7 +361,7 @@ public class Ejercicio4 {
 					matrizSinFila[i][j] = matriz[i][j];
 					
 				}
-				//...pero a partir de esa fila inclusive se copiará la fila i+1 de la matriz original, es decir, nos saltamos una
+				//...pero a partir de esa fila inclusive se copiarï¿½ la fila i+1 de la matriz original, es decir, nos saltamos una
 				else {
 					
 					matrizSinFila[i][j] = matriz[i+1][j];
@@ -372,7 +372,7 @@ public class Ejercicio4 {
 			
 		}
 		
-		//Por último se imprime la matriz resultante
+		//Por ï¿½ltimo se imprime la matriz resultante
 		imprimeMatriz(matrizSinFila);
 		
 		
