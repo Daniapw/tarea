@@ -6,17 +6,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Ejercicio1 {
-	public static List<String> editor = new ArrayList<String>(80);
+	public static List<String> editor = new ArrayList<String>();
+	public static List<String> textoCortado = new ArrayList<String>();
+	
 	
 	public static void main(String[] args) {
 
 		int opcion;
-		
-		for (int i = 0; i < editor.size(); i++) {
-			
-			editor.add("");
-			
-		}
 		
 		do {
 			
@@ -60,6 +56,44 @@ public class Ejercicio1 {
 				case 2:{
 					
 					insertarLinea();
+					
+					break;
+				}
+				
+				case 3:{
+					
+					editarTexto();
+					
+					break;
+										
+				}
+				
+				case 4:{
+					
+					borrarLinea();
+					
+					break;
+				}
+				
+				case 5:{
+					
+					cortar();
+					
+					break;
+				}
+				
+				case 6:{
+					
+					if (textoCortado.isEmpty()) {
+						
+						JOptionPane.showMessageDialog(null, "No hay ningún texto cortado");
+						
+					}
+					else {
+						
+						pegar();
+						
+					}
 					
 					break;
 				}
@@ -118,10 +152,64 @@ public class Ejercicio1 {
 		
 		for (int i = 0; i < editor.size(); i++) {
 			
-			System.out.println( "-"+ (i + 1) + ": " +  editor.get(i));
+			System.out.println( "-"+ (i) + ": " +  editor.get(i));
 			
 		}
 		
+		System.out.println();
+	}
+	/**
+	 * 
+	 * 
+	 */
+	public static void editarTexto() {
+		
+		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posiciï¿½n de la frase que quieres reemplazar"));
+		
+		String nuevoTexto = JOptionPane.showInputDialog("Introduce el nuevo texto");
+		
+		editor.set(posicion, nuevoTexto);
+		
+	}
+	/**
+	 * 
+	 */
+	public static void borrarLinea() {
+		
+		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posición de la frase que quieres borrar"));
+
+		if (posicion > editor.size()) {
+			
+			editor.remove(editor.size() - 1);
+			
+		}else {
+
+			editor.remove(posicion);
+			
+		}
+		
+	}
+	/**
+	 * 
+	 */
+	public static void cortar() {
+		
+		int posicion1 = Integer.parseInt(JOptionPane.showInputDialog("Línea desde la cual se empezará a cortar"));
+		int posicion2 = Integer.parseInt(JOptionPane.showInputDialog("Línea hasta la que se cortará"));
+		
+		textoCortado = editor.subList(posicion1, posicion2);
+		editor.removeAll(textoCortado);
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public static void pegar() {
+		
+		int posicion = Integer.parseInt(JOptionPane.showInputDialog("¿En qué posición quieres pegar el texto?"));
+		
+		editor.addAll(posicion, textoCortado);
 		
 	}
 }
