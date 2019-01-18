@@ -4,10 +4,16 @@ public class Ejercicio1 {
 
 	public static void main(String[] args) {
 		
-		int array[] = new int[29];
-		
-		System.out.println(devolverMedio(array));
+		int array[] = new int[10];
 
+		for (int i = 0; i < array.length; i++) {
+			
+			array[i] = (int) (Math.random() * 100);
+			
+			System.out.print(array[i] + " ");
+		}
+		
+		System.out.println("\nValor central: " +devolverMedio(array));
 	}
 	
 	/**
@@ -26,12 +32,12 @@ public class Ejercicio1 {
 			
 		}
 		/*Si no es par el método devuelve el número medio 
-		 * (la longitud del array - la mitad de la longitud del array redondeado*/
+		 * (la longitud del array dividido entre 2*/
 		else {
 			
-			medio = ((int) array.length - (array.length/2));
+			medio = ((int) array.length/2);
 			
-			return medio;
+			return array[medio];
 		}
 		
 		

@@ -6,9 +6,6 @@ public class Ejercicio4 {
 	//Matriz principal
 	public static int matriz[][] = new int[5][5];
 	
-	//Matriz traspuesta:
-	public static int matrizTraspuesta[][] = new int[5][5];	
-	
 	public static void main(String[] args) {
 		
 		rellenarAlAzar();
@@ -17,7 +14,7 @@ public class Ejercicio4 {
 		
 		System.out.println();
 		
-		borrarFila();
+		comprobarTriangularSuperior();
 		
 	}
 	/**
@@ -31,16 +28,18 @@ public class Ejercicio4 {
 			
 			for (int j = 0; j < matriz[0].length; j++) {
 				
-					matriz[i][j] = contador;
+				if (i==j) {
+					matriz[i][j] = 1;
 					
 					contador++;
-				
+				}
 			}
 			
 			diagonal++;
 			
 		}
 
+		matriz[2][1] = 1;
 	}
 	
 	/**
@@ -236,7 +235,7 @@ public class Ejercicio4 {
 	//M�todo que convierte la matriz en un array unidimensional
 	public static void construirArray() {
 		
-		int array[] = new int[25];
+		int array[] = new int[matriz.length * matriz[0].length];
 		int contadorIteracion = 0;
 		
 		for (int i = 0; i < matriz.length; i++) {
@@ -290,6 +289,7 @@ public class Ejercicio4 {
 	 */
 	//Método para sacar la matriz traspuesta
 	public static void matrizTraspuesta() {
+		int matrizTraspuesta[][] = new int[5][5];
 		
 		for (int i = 0; i < matriz.length; i++) {
 			
