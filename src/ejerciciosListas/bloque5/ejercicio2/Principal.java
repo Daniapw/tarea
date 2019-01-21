@@ -6,41 +6,69 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Principal {
-	public static List<Cliente> caja1 = new ArrayList<Cliente>();
 	
 	public static void main(String[] args) {
 
-		int opcion = -1;
-
+		Cliente clientes[] = new Cliente[10];
+		String nombres[] = new String[] {"Dani", "Rafa", "Joaqu√≠n", "Eva", "Miguel", "Jorge" ,"Juan","Antonio","Carmen","Juan Carlos"}; 
+		
+		for (int i = 0; i < clientes.length; i++) {
+			
+			clientes[i] = new Cliente(nombres[i]);
+			
+		}
+		
+		Cola cola1 = new Cola();
+		Cola cola2 = new Cola();
+		double numero;
+		int clienteAleatorio;
 		
 		do {
 			
-			while (opcion < 0 || opcion > 4) {
+			numero =  Math.random();
 			
-				opcion = Integer.parseInt(JOptionPane.showInputDialog("Selecciona lo que quieres hacer:"
-						+ "\n1. Anadir cliente"
-						+ "\n2. Despachar cliente"
-						+ "\n3. Dividir cola"
-						+ "\n4. Comportamiento aleatorio"
-						+ "\n0. Salir"));
+			clienteAleatorio = (int) Math.round(Math.random() * 9);
 			
-				if (opcion < 0 || opcion > 4) {
+			if (numero < 0.5) {
+				
+				cola1.anadirCliente(clientes[clienteAleatorio]);
+				
+			}
+			else {
+				
+				if (cola1.clientes.size() > 4) {
 					
-					JOptionPane.showMessageDialog(null, "OpciÛn inv·lida, introduce otra");
+					cola1.despacharCliente();
 					
 				}
 				
 			}
 			
+			if (cola1.clientes.size() >= 8) {
+				
+				cola2.clientes = cola1.dividirCola();
+				
+			}
 			
+			cola1.imprimirCola();
 			
-		}while (opcion!= 0);
+			System.out.println();
+			
+			if (cola2.clientes.size() > 0) {
+				
+				System.out.println("Cola 2: ");
+				cola2.imprimirCola();
+				
+			}
+			
+			JOptionPane.showMessageDialog(null,"Pausa");
+			
+			System.out.println();
+		}while(true);
+		
+		
 	}
-
 	
-	public static void anadirClientes() {
-		
-		
-	}
+	
 	
 }
