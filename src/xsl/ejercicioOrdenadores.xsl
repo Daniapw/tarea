@@ -24,27 +24,31 @@
 				<tr>
 					<td> <xsl:value-of select="procesador/@generacion"/> - <xsl:value-of select="procesador"/> </td>
 					
-					<xsl:apply-templates/>
+					<xsl:apply-templates select="RAM | ROM | HDD"/>
 					
 					<td>
-						<xsl:for-each select="transporte/localidad"/>
-						<table>
+						
+						<table border="1px" style="border-collapse:collapse">
 							<tr>
 								<th>Localidad</th>
 								<th>Fecha</th>
 							</tr>
 							
-							<tr>
-								<td><xsl:value-of select="."/></td>
-								<td><xsl:value-of select="@fechaSalida"/></td>
-							</tr>
+							<xsl:for-each select="transporte/localidad">
+								
+								<tr>
+									<td><xsl:value-of select="."/></td>
+									<td><xsl:value-of select="@fechaSalida"/></td>
+								</tr>
+								
+							</xsl:for-each>
 						
 						</table>
 					
 					</td>
 				</tr>
 			
-			</table>
+			</table><br></br>
 		
 		</xsl:for-each>
 	</xsl:template>
