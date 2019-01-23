@@ -163,7 +163,7 @@ public class Ejercicio1 {
 	 * 
 	 */
 	public static void editarTexto() {
-		textoCortado
+
 		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posici�n de la frase que quieres reemplazar"));
 		
 		String nuevoTexto = JOptionPane.showInputDialog("Introduce el nuevo texto");
@@ -193,12 +193,14 @@ public class Ejercicio1 {
 	 * 
 	 */
 	public static void cortar() {
-		
+		List<String> texto = new ArrayList<String>();
 		int posicion1 = Integer.parseInt(JOptionPane.showInputDialog("L�nea desde la cual se empezar� a cortar"));
 		int posicion2 = Integer.parseInt(JOptionPane.showInputDialog("L�nea hasta la que se cortar�"));
 		
-		textoCortado = editor.subList(posicion1, posicion2);
-		editor.removeAll(textoCortado);
+		
+		texto = editor.subList(posicion1, posicion2);
+		textoCortado.addAll(texto);
+		editor.removeAll(texto);
 		
 	}
 	
@@ -210,6 +212,7 @@ public class Ejercicio1 {
 		int posicion = Integer.parseInt(JOptionPane.showInputDialog("�En qu� posici�n quieres pegar el texto?"));
 		
 		editor.addAll(posicion, textoCortado);
+		
 		
 	}
 }

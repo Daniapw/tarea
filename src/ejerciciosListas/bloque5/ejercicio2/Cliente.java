@@ -10,6 +10,7 @@ public class Cliente {
 	 * @param nombre
 	 * @param numero
 	 */
+	//Constructor
 	public Cliente(String nombre) {
 		
 		super();

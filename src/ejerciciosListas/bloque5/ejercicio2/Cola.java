@@ -6,7 +6,10 @@ import java.util.List;
 public class Cola {
 	
 	public List<Cliente> clientes= new ArrayList<Cliente>();
-	
+	/**
+	 * 
+	 */
+	//Constructor
 	public Cola() {
 		
 		super();
@@ -16,6 +19,7 @@ public class Cola {
 	 * 
 	 * @param cliente
 	 */
+	//Método para agregar un cliente a la cola
 	public void anadirCliente(Cliente cliente) {
 		
 		clientes.add(cliente);
@@ -24,6 +28,7 @@ public class Cola {
 	/**
 	 * 
 	 */
+	//Método para despachar un cliente
 	public void despacharCliente() {
 		
 		clientes.remove(0);
@@ -33,6 +38,7 @@ public class Cola {
 	 * 
 	 * @return
 	 */
+	//Método que divide la cola en dos colas
 	public List<Cliente> dividirCola() {
 		
 		List<Cliente> nuevaCola = new ArrayList<Cliente>();
@@ -56,6 +62,7 @@ public class Cola {
 	 * 
 	 * @param lista
 	 */
+	//Método para imprimir la cola
 	public void imprimirCola() {
 		
 		for (int i = 0; i < this.clientes.size(); i++) {
