@@ -15,18 +15,18 @@
 			
 			<div id="tabla1">	
 			
-				<table border="1 px">
-					
-					<th></th>
-					<th>Gormiti</th>
-					<th>Tribu</th>
-					
+				<table border="3 px solid">
+					<tr id="filaTitulos">
+						<th></th>
+						<th>Gormiti</th>
+						<th>Tribu</th>
+					</tr>
 					<xsl:for-each select="gormiti">
 						<xsl:choose>
 							<xsl:when test="position() mod 2 = 1">
 								<xsl:call-template name="gormitiTabla">
 									
-									<xsl:with-param name="color">#afceff</xsl:with-param>
+									<xsl:with-param name="color">#b7cff7</xsl:with-param>
 									<xsl:with-param name="imagen"><xsl:value-of select="."/></xsl:with-param>
 									<xsl:with-param name="tribu"><xsl:value-of select="@tribu"/></xsl:with-param>
 								
@@ -66,7 +66,7 @@
 				
 			<xsl:attribute name="bgcolor"><xsl:value-of select="$color"/></xsl:attribute>			
 			<td class="td1"> <b><xsl:value-of select="position()"/></b></td>
-			<td><img src="{$imagen}"/></td>
+			<td class="tdImagenes"><img src="{$imagen}"/></td>
 			<td><xsl:value-of select="$tribu"/></td>
 		</tr>
 		
@@ -79,28 +79,53 @@
 			margin:auto;
 			width:50%;
 			
+			
 		}
 		
 		#tabla1 table{
 		
-			text-align:center;
-			
+			border-color: #7aacff;
+			border-collapse: collapse;
+			font-size:16px;
+			font-family:'Arial', Helvetica,sans-serif;
 		}
 		
+		#tabla1 tr{
+			
+			border:2px solid #7aacff;
+			
+		
+		}
 		
 		#tabla1 img{
 		
-		 	width:20%;
+		 	width:80%;
 		 	
+		}
+		
+		
+		#filaTitulos{
+		
+			color:white;
+			background-color: #2176ff;
+			font-weight:bold;
+			
+			
 		}
 		
 		.td1{
 			
-			width:40px;
-			text-align:left;
-			
+			width:30px;
+			text-align:center;
+			vertical-align:top;
+			font-weight:bold;
 		}
 		
+		.tdImagenes{
+		
+			width: 20%;
+			text-align:center;
+		}
 		
 	</xsl:template>
 </xsl:stylesheet>
