@@ -1,0 +1,70 @@
+package arkanoid.version01;
+
+public class Bola extends Actor {
+	private int vX, vY;
+	
+	/**
+	 * 
+	 * @param posX
+	 * @param posY
+	 * @param vX
+	 * @param vY
+	 */
+	
+	//Constructor
+	public Bola(int posX, int posY, int vX, int vY) {
+		super(posX, posY);
+		this.vX = vX;
+		this.vY = vY;
+	}
+	/**
+	 *  
+	 * @param ancho
+	 * @param alto
+	 * @param vX
+	 * @param vY
+	 */
+	//Metodo que hace que la bola se mueva
+	public void actua(int ancho, int alto) {
+		
+		//Si la posicion X de la bola es superior al ancho de la pantalla cambiará de dirección, es decir, se invertirá el signo de vX
+		if (this.getPosX() + 20 > ancho) {
+			
+			this.vX =  -vX;
+			
+		}
+		else {
+			
+			if (this.getPosX() < 0) {
+				
+				this.vX = Math.abs(vX);
+				
+			}
+			
+		}
+		
+		//Lo mismo con la posicion Y
+		if (this.getPosY() +50 > alto) {
+			
+			this.vY = -vY;
+			
+		}
+		else {
+			
+			if (this.getPosY() < 0) {
+				
+				this.vY = Math.abs(vY);
+				
+			}
+			
+		}
+		
+		this.setPosX(this.getPosX() + this.vX);
+		
+		this.setPosY(this.getPosY() + this.vY);		
+	
+		
+		
+	}
+
+}
