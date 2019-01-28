@@ -7,23 +7,20 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Arkanoid extends Canvas {
 	
 	public static final int ANCHO = 500; 
-	public static final int ALTO = 800;
-	public Nave nave = new Nave(210, 740);
-	public Bola bola = new Bola(250, 640, 2, 2);
+	public static final int ALTO = 700;
+	public Nave nave = new Nave(210, 640);
+	public Bola bola = new Bola(250, 540, 3, 3);
 	public List<Ladrillo> ladrillos = new ArrayList<Ladrillo>();
 	private BufferStrategy estrategia;
 	
@@ -64,53 +61,95 @@ public class Arkanoid extends Canvas {
 		//Estrategia de buffer
 		createBufferStrategy(2);
 		
-		
 		estrategia = getBufferStrategy();
 		requestFocus();
 		
-
+		//Listener del teclado
+		this.addKeyListener(new KeyAdapter() {
+			
+			//Cuando se pulse una tecla se ejecutara el metodo teclaPulsada() de la nave
+			public void keyPressed(KeyEvent e) {
+				
+				nave.teclaPulsada(e);
+				
+			}
+			
+			//Cuando se suelte una tecla se ejecutara el metodo teclaSoltada() de la nave
+			public void keyReleased(KeyEvent e) {
+				
+				nave.teclaSoltada(e);
+				
+			}
+		});
+		
+		//Listener del raton
+		this.addMouseMotionListener(new MouseAdapter() {
+			
+			//Cuando el raton se mueve dentro de la ventana se ejecutara el metodo controlRaton() de la nave
+			public void mouseMoved(MouseEvent e) {
+				
+				nave.controlRaton(e);
+				
+			}
+			
+			
+			
+		});
+		
+		
 	
 	}
-
+	/**
+	 * 
+	 */
 	//Bucle que inicializa los ladrillos
 	public void initLadrillos() {
 		
 		Ladrillo ladrillo = null;
-		
-		int x = 47;
-		int y = 100;
-		
-		Integer numero;
-		int  numeroAF;
-		double numeroAleat;
-		
-		String af[] = new String[] { "A", "B", "C", "D", "E", "F"};
 		String color = "#";
+		int x = 28;
+		int y = 100;
+
 		
 		for (int i = 0; i < 60; i++) {
 			
-			//Bucle para generar el numero hexadecimal para el color del ladrillo
-			for (int j = 0; j < 6; j++) {
-				
-				numero = (int) (Math.random() * 9);
-
-				numeroAF = (int) (Math.random() * 5);
-				
-				numeroAleat = Math.random();
-
-				if (numeroAleat < 0.5) {
+			switch (i) {
+				case 0:{
 					
-					color = color.concat(numero.toString());
+					color = "#77abff";
+					
+					break;
+				}
+				case 10:{
+					
+					color = "#b8f759";
+					break;
 					
 				}
-				else {
+				case 20:{
 					
-					color = color.concat(af[numeroAF]);
+					color = "#fcfc2d";
+					break;
 					
 				}
+				case 30:{
+					
+					color = "#f49529";
+					break;
+				}
+				case 40:{
+					
+					color = "#9128f4";
+					break;
+				}
 				
+				case 50:{
+					
+					color = "#ff052a";
+					break;
+				}
 			}
-
+			
 			ladrillo = new Ladrillo(0, 0, color);
 			
 			ladrillos.add(ladrillo);
@@ -118,41 +157,46 @@ public class Arkanoid extends Canvas {
 			ladrillos.get(i).setPosX(x);
 			ladrillos.get(i).setPosY(y);
 			
-			x += 38;
+			x += 44;
 			
 			if (i == 9 || i  == 19 || i  == 29 || i  == 39 || i  == 49) {
 				
-				y += 23;
-				x = 47;
+				y += 28;
+				x = 28;
 				
 				
 			}
-			
-			color = "#";
+
 		}
 		
 		
 	}
+	/**
+	 * 
+	 * @param g
+	 */
 	//Metodo para inicializar la lista de ladrillos
 	public void paintLadrillos(Graphics g) {
-	
+		
 		for (int i = 0; i < ladrillos.size(); i++) {
 			
 			g.setColor(Color.decode(ladrillos.get(i).color));
-			g.fillRoundRect(ladrillos.get(i).getPosX(), ladrillos.get(i).getPosY(), 35, 20, 5, 10);
+			g.fillRoundRect(ladrillos.get(i).getPosX(), ladrillos.get(i).getPosY(), 42, 22, 5, 10);
 			g.setColor(Color.black);
-			g.drawRoundRect(ladrillos.get(i).getPosX(),ladrillos.get(i).getPosY() , 35, 20, 1, 10);
+			g.drawRoundRect(ladrillos.get(i).getPosX(),ladrillos.get(i).getPosY() , 42, 22, 1, 10);
 		
 
 		}
 		
 	}
-	
+	/**
+	 * 
+	 */
 	//Metodo que cambia el mundo en cada fotograma
 	public void actualizarMundo() {
 		
 		bola.actua(ANCHO, ALTO);
-	
+		
 	}
 	
 	/**
@@ -165,15 +209,16 @@ public class Arkanoid extends Canvas {
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
 			
-			//Se ejecutara el metodo actualizarMundo()
-			actualizarMundo();
-			
-			//Se repintara la escena
-			paintMundo();
-			
 			try { 
 				 Thread.sleep(10);
 			} catch (InterruptedException e) {}
+			
+			//Se ejecutara el metodo actualizarMundo()
+			actualizarMundo();			
+			
+			//Se repintara la escena
+			paintMundo();
+
 		}
 		
 	}
@@ -192,6 +237,11 @@ public class Arkanoid extends Canvas {
 		estrategia.show();
 		
 	}
+	
+	/**
+	 * 
+	 * @param args
+	 */
 	
 	//Main
 	public static void main(String[] args) {

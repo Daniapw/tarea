@@ -5,7 +5,7 @@ public class Ladrillo extends Actor {
 	private int alto = 8, ancho = 10;
 	
 	//Constructor
-	public Ladrillo(int posX, int posY, String color) {
+	public Ladrillo(int posX, int posY,String color) {
 		super(posX, posY);
 		
 		this.color = color;
