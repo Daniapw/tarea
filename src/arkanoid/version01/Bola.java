@@ -16,6 +16,9 @@ public class Bola extends Actor {
 		super(posX, posY);
 		this.vX = vX;
 		this.vY = vY;
+		
+		this.setAlto(20);
+		this.setAncho(20);
 	}
 	/**
 	 *  
@@ -59,12 +62,19 @@ public class Bola extends Actor {
 			
 		}
 		
+		
 		this.setPosX(this.getPosX() + this.vX);
 		
 		this.setPosY(this.getPosY() + this.vY);		
 	
+	}
+	
+	public void colision() {
 		
+		this.vX = -vX;
+		this.vY = -vY;
 		
 	}
+
 
 }

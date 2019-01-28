@@ -19,7 +19,9 @@ public class Nave extends Actor {
 	//Constructor
 	public Nave(int posX, int posY) {
 		super(posX, posY);
-
+		
+		this.setAlto(22);
+		this.setAncho(90);
 	}
 	
 	/**
