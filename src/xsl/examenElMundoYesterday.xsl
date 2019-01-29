@@ -54,13 +54,55 @@
 	         <!-- Noticias -->
 	         <div style="width: 700px; float: left;">
 	         	
-	         	<for-each select="noticias/noticia">
+	         	<!-- Bucle para las noticias -->
+	         	<xsl:for-each select="noticias/noticia">
 	         		
-	         		<div></div>
+					<xsl:choose>
+						<!-- Si el atributo dobleAncho es "s" se llamara a la template clase con el parametro noticiaDobleAncho -->
+						<xsl:when test="@dobleAncho = 's'">
+					
+							<xsl:call-template name="noticias">
+								
+								<xsl:with-param name="clase">noticiaDobleAncho</xsl:with-param>
+								
+							</xsl:call-template>
+							
+						</xsl:when>
+						
+						<!-- Si el atributo dobleAncho es "n" se llamara a la template clase con el parametro noticia -->
+						<xsl:otherwise>
+						
+							<xsl:call-template name="noticias">
+								
+								<xsl:with-param name="clase">noticia</xsl:with-param>
+								
+							</xsl:call-template>
+					
+						</xsl:otherwise>
+						
+					</xsl:choose>
+	         	
+	         	</xsl:for-each>
+	         	
+	         </div>
+	         
+	         <!-- Anuncios -->
+	         <div style="width: 295px; float: right;">
+	         
+	         	<!-- Bucle para los anuncios -->
+	         	<xsl:for-each select="publicidad/anuncio">
 	         		
+	         		<!-- Se ordenaran segun el valor del atributo orden -->
+	         		<xsl:sort select="@orden" order="ascending"/>
+	         		
+	         			<div class="divPublicidad">
+	         			
+	         				<img src="{@imagen}" width="280px"/>
+	         			
+	         			</div>
 	         	
-	         	</for-each>
-	         	
+	         	</xsl:for-each>
+	         
 	         </div>
 	         
 		</div>
@@ -69,7 +111,7 @@
 	
 	</xsl:template>
 
-
+	<!-- Template del menu -->
 	<xsl:template name="menu">
 		<xsl:param name="color"/>
 	   	
@@ -77,7 +119,23 @@
             
 	</xsl:template>
 	
+	<!-- Template de noticias -->
+	<xsl:template name="noticias">
+		<xsl:param name="clase"/>
+		
+			 <div class="{$clase}">
+			 
+			 	<h2><xsl:value-of select="titular"/></h2><br></br>
+			 	<h4><xsl:value-of select="subtitular"/></h4><br></br>
+				<img src="{@imagen}"/><br></br>
+				<span class="fechaNoticia"><xsl:value-of select="@fecha"></xsl:value-of></span>
+				<span class="comentariosNoticia"><xsl:value-of select="@comentarios"/> comentarios</span>
+			
+			</div>
 	
+	</xsl:template>
+	
+	<!-- Template del head y css -->
 	<xsl:template name="headYCSS">
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
