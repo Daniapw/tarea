@@ -30,7 +30,7 @@ public class Bola extends Actor {
 	//Metodo que hace que la bola se mueva
 	public void actua(int ancho, int alto) {
 		
-		//Si la posicion X de la bola es superior al ancho de la pantalla cambiará de dirección, es decir, se invertirá el signo de vX
+		//Si la posicion X de la bola es superior al ancho de la pantalla cambiarï¿½ de direcciï¿½n, es decir, se invertirï¿½ el signo de vX
 		if (this.getPosX() + 20 > ancho) {
 			
 			this.vX =  -vX;
@@ -71,7 +71,6 @@ public class Bola extends Actor {
 	
 	public void colision() {
 		
-		this.vX = -vX;
 		this.vY = -vY;
 		
 	}

@@ -13,9 +13,10 @@
 		
 		<body>
 			
+			<!-- Primera tabla -->
 			<div id="tabla1">	
 			
-				<table border="3 px solid">
+				<table border="2 px solid">
 					<tr id="filaTitulos">
 						<th></th>
 						<th>Gormiti</th>
@@ -49,6 +50,96 @@
 					</xsl:for-each>
 				
 				</table>
+			</div><br></br>
+			
+			<!-- Segunda tabla -->
+			<div id="divMapa">
+				
+				<table id="tablaMapa" border="1px solid">
+					<xsl:attribute name="background"><xsl:value-of select = "tablero/@url"/></xsl:attribute>
+					
+					<!-- Fila 1 -->
+					<tr>
+						
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">1</xsl:with-param>						
+							<xsl:with-param name="y">1</xsl:with-param>						
+						
+						</xsl:call-template>
+					
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">2</xsl:with-param>						
+							<xsl:with-param name="y">1</xsl:with-param>						
+						
+						</xsl:call-template>
+
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">3</xsl:with-param>						
+							<xsl:with-param name="y">1</xsl:with-param>						
+						
+						</xsl:call-template>						
+						
+					</tr>
+					
+					<!-- Fila 2 -->
+					<tr>
+						
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">1</xsl:with-param>						
+							<xsl:with-param name="y">2</xsl:with-param>						
+						
+						</xsl:call-template>
+					
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">2</xsl:with-param>						
+							<xsl:with-param name="y">2</xsl:with-param>						
+						
+						</xsl:call-template>
+
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">3</xsl:with-param>						
+							<xsl:with-param name="y">2</xsl:with-param>						
+						
+						</xsl:call-template>						
+						
+					</tr>
+					
+					<!-- Fila 3 -->
+					<tr>
+						
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">1</xsl:with-param>						
+							<xsl:with-param name="y">3</xsl:with-param>						
+						
+						</xsl:call-template>
+					
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">2</xsl:with-param>						
+							<xsl:with-param name="y">3</xsl:with-param>						
+						
+						</xsl:call-template>
+
+						<xsl:call-template name="celda">
+							
+							<xsl:with-param name="x">3</xsl:with-param>						
+							<xsl:with-param name="y">3</xsl:with-param>						
+						
+						</xsl:call-template>						
+						
+					</tr>
+				</table>
+			
+			
+			
+			
 			</div>			
 		</body>
 		
@@ -57,6 +148,7 @@
 	
 	</xsl:template>
 	
+	<!-- Template primera tabla -->
 	<xsl:template name="gormitiTabla">
 		<xsl:param name="color"/>
 		<xsl:param name="imagen"/>
@@ -72,8 +164,60 @@
 		
 	</xsl:template>
 	
-	<xsl:template name="css">
+	
+	
+	<!-- Template tabla mapa -->
+	
+	<xsl:template name="celda">
+		<xsl:param name="x"/>
+		<xsl:param name="y"/>
 		
+		<td>
+			<xsl:for-each select="tablero/gormitiEnMapa">
+			
+				<xsl:choose>
+				
+					<xsl:when test="@x = $x and @y = $y and @tribu ='volcan'">
+					
+						<img src="{../../gormiti[1]/.}"/>
+					
+					</xsl:when>
+				
+					<xsl:when test="@x = $x and @y = $y and @tribu ='agua'">
+					
+						<img src="{../../gormiti[2]/.}"	/>
+					
+					</xsl:when>
+					
+					<xsl:when test="@x = $x and @y = $y and @tribu ='aire'">
+					
+						<img src="{../../gormiti[3]/.}"	/>
+					
+					</xsl:when>
+
+					<xsl:when test="@x = $x and @y = $y and @tribu ='bosque'">
+					
+						<img src="{../../gormiti[4]/.}"	/>
+					
+					</xsl:when>
+
+					<xsl:when test="@x = $x and @y = $y and @tribu ='montana'">
+					
+						<img src="{../../gormiti[5]/.}"	/>
+					
+					</xsl:when>
+				</xsl:choose>
+			</xsl:for-each>	
+		
+		</td>
+	
+	</xsl:template>
+	
+	
+	
+	<!-- Template css -->
+	<xsl:template name="css">
+		<!-- CSS de la primera tabla -->
 		#tabla1{
 		
 			margin:auto;
@@ -92,7 +236,7 @@
 		
 		#tabla1 tr{
 			
-			border:2px solid #7aacff;
+			border-bottom: 2px solid  #7aacff;
 			
 		
 		}
@@ -114,7 +258,7 @@
 		}
 		
 		.td1{
-			
+			border-color:white;
 			width:30px;
 			text-align:center;
 			vertical-align:top;
@@ -122,9 +266,45 @@
 		}
 		
 		.tdImagenes{
-		
+			
+			border-right: 1px solid white;
 			width: 20%;
 			text-align:center;
+		}
+		
+		<!-- CSS de la segunda tabla -->
+		#divMapa{
+			
+			margin:auto;
+			width:70%;
+			height: 85%;	
+		}
+		
+		
+		
+		#tablaMapa{
+			
+			background-repeat: no-repeat;
+			background-size:100%;
+			border-collapse:collapse;
+			border-color: black;
+			text-align:center;
+			width:100%;
+			height:100%;
+			
+		}
+		
+		#tablaMapa td{
+			
+			width:33%;
+			
+		}
+		
+		
+		#tablaMapa img{
+			
+			width:40%;
+			
 		}
 		
 	</xsl:template>

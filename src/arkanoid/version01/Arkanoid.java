@@ -23,7 +23,6 @@ public class Arkanoid extends Canvas {
 	public static final int ALTO = 700;
 	public Nave nave = new Nave(210, 640);
 	public Bola bola = new Bola(250, 540, 3, 3);
-	public List<Ladrillo> ladrillos = new ArrayList<Ladrillo>();
 	public List<Actor> actores = new ArrayList<Actor>();
 	private BufferStrategy estrategia;
 	
@@ -63,7 +62,6 @@ public class Arkanoid extends Canvas {
 		initLadrillos();
 		
 		//Anado todos los actores a la lista
-		actores.addAll(ladrillos);
 		actores.add(nave);
 		actores.add(bola);
 
@@ -73,7 +71,7 @@ public class Arkanoid extends Canvas {
 		
 		estrategia = getBufferStrategy();
 		requestFocus();
-		
+
 		//Listener del teclado
 		this.addKeyListener(new KeyAdapter() {
 			
@@ -158,10 +156,10 @@ public class Arkanoid extends Canvas {
 			
 			ladrillo = new Ladrillo(0, 0, color);
 			
-			ladrillos.add(ladrillo);
+			actores.add(ladrillo);
 			
-			ladrillos.get(i).setPosX(x);
-			ladrillos.get(i).setPosY(y);
+			actores.get(i).setPosX(x);
+			actores.get(i).setPosY(y);
 			
 			x += 44;
 			
@@ -182,14 +180,17 @@ public class Arkanoid extends Canvas {
 	//Metodo para inicializar la lista de ladrillos
 	public void paintLadrillos(Graphics g) {
 		
-		for (int i = 0; i < ladrillos.size(); i++) {
-			
-			g.setColor(Color.decode(ladrillos.get(i).getColor()));
-			g.fillRoundRect(ladrillos.get(i).getPosX(), ladrillos.get(i).getPosY(), 42, 22, 5, 10);
-			g.setColor(Color.black);
-			g.drawRoundRect(ladrillos.get(i).getPosX(),ladrillos.get(i).getPosY() , 42, 22, 1, 10);
 		
-
+		for (int i = 0; i < actores.size(); i++) {
+			
+			if (actores.get(i) instanceof Ladrillo) {
+				
+				g.setColor(Color.decode(actores.get(i).getColor()));
+				g.fillRoundRect(actores.get(i).getPosX(), actores.get(i).getPosY(), 42, 22, 5, 10);
+				g.setColor(Color.black);
+				g.drawRoundRect(actores.get(i).getPosX(),actores.get(i).getPosY() , 42, 22, 1, 10);
+			
+			}
 		}
 		
 	}
@@ -211,6 +212,7 @@ public class Arkanoid extends Canvas {
 			if (bolaRec.intersects(r2) && !actores.get(i).isBorrar()) {
 				
 				actores.get(i).colision();
+				
 				bola.colision();
 				
 			}	
@@ -224,12 +226,12 @@ public class Arkanoid extends Canvas {
 	public void actualizarMundo() {
 		
 		bola.actua(ANCHO, ALTO);
-		
-		for (int i = 0; i < ladrillos.size(); i++) {
+
+		for (int i = 0; i < actores.size(); i++) {
 			
-			if (ladrillos.get(i).isBorrar()) {
+			if (actores.get(i).isBorrar()) {
 				
-				ladrillos.remove(i);
+				actores.remove(i);
 				
 			}
 			
@@ -251,11 +253,13 @@ public class Arkanoid extends Canvas {
 				 Thread.sleep(10);
 			} catch (InterruptedException e) {}
 			
+			//Se ejecutara el metodo buscarColisiones()
+			buscarColisiones();
+			
 			//Se ejecutara el metodo actualizarMundo()
 			actualizarMundo();			
 			
-			buscarColisiones();
-			
+
 			//Se repintara la escena
 			paintMundo();
 

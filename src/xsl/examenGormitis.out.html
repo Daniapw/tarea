@@ -21,7 +21,7 @@
 		
 		#tabla1 tr{
 			
-			border:2px solid #7aacff;
+			border-bottom: 2px solid  #7aacff;
 			
 		
 		}
@@ -43,7 +43,7 @@
 		}
 		
 		.td1{
-			
+			border-color:white;
 			width:30px;
 			text-align:center;
 			vertical-align:top;
@@ -51,16 +51,52 @@
 		}
 		
 		.tdImagenes{
-		
+			
+			border-right: 1px solid white;
 			width: 20%;
 			text-align:center;
+		}
+		
+		
+		#divMapa{
+			
+			margin:auto;
+			width:70%;
+			height: 85%;	
+		}
+		
+		
+		
+		#tablaMapa{
+			
+			background-repeat: no-repeat;
+			background-size:100%;
+			border-collapse:collapse;
+			border-color: black;
+			text-align:center;
+			width:100%;
+			height:100%;
+			
+		}
+		
+		#tablaMapa td{
+			
+			width:33%;
+			
+		}
+		
+		
+		#tablaMapa img{
+			
+			width:40%;
+			
 		}
 		
 	</style>
 </head>
 <body>
 <div id="tabla1">
-<table border="3 px solid">
+<table border="2 px solid">
 <tr id="filaTitulos">
 <th></th><th>Gormiti</th><th>Tribu</th>
 </tr>
@@ -78,6 +114,20 @@
 </tr>
 <tr bgcolor="#b7cff7">
 <td class="td1"><b>5</b></td><td class="tdImagenes"><img src="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/montana.jpg"></td><td>montana</td>
+</tr>
+</table>
+</div>
+<br>
+<div id="divMapa">
+<table id="tablaMapa" border="1px solid" background="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/islagorm.jpg">
+<tr>
+<td></td><td><img src="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/aire.jpg"></td><td></td>
+</tr>
+<tr>
+<td><img src="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/bosque.png"></td><td></td><td><img src="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/volcan.png"></td>
+</tr>
+<tr>
+<td></td><td><img src="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/agua.png"></td><td><img src="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2014-enero/gormitis/montana.jpg"></td>
 </tr>
 </table>
 </div>
