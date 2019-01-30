@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -27,10 +28,9 @@ public class Arkanoid extends Canvas {
 	private BufferStrategy estrategia;
 	
 	/**
-	 * 
+	 * Constructor
 	 */
 	
-	//Constructor
 	public Arkanoid() {
 		
 		//JFrame para mostrar la ventana en la que se ve el juego
@@ -57,6 +57,7 @@ public class Arkanoid extends Canvas {
 		//Hago visible la ventana y que no se pueda redimensionar
 		ventana.setVisible(true);
 		ventana.setResizable(false);
+		ventana.setIgnoreRepaint(true);
 		
 		//Inicializo los ladrillos
 		initLadrillos();
@@ -103,10 +104,11 @@ public class Arkanoid extends Canvas {
 		});
 	
 	}
+	
 	/**
-	 * 
+	 * Metodo que inicializa los ladrillos
 	 */
-	//Bucle que inicializa los ladrillos
+	
 	public void initLadrillos() {
 		
 		Ladrillo ladrillo = null;
@@ -173,11 +175,12 @@ public class Arkanoid extends Canvas {
 		}
 		
 	}
+	
 	/**
-	 * 
+	 * Metodo para pintar la lista de ladrillos
 	 * @param g
 	 */
-	//Metodo para inicializar la lista de ladrillos
+
 	public void paintLadrillos(Graphics g) {
 		
 		
@@ -196,10 +199,9 @@ public class Arkanoid extends Canvas {
 	}
 	
 	/**
-	 * 
+	 * Metodo que busca colisiones
 	 */
 	
-	//Metodo que busca colisiones
 	public void buscarColisiones() {
 		
 		Rectangle bolaRec = bola.getMedidas();
@@ -220,13 +222,15 @@ public class Arkanoid extends Canvas {
 	}
 	
 	/**
-	 * 
+	 * Metodo que cambia el mundo en cada fotograma
 	 */
-	//Metodo que cambia el mundo en cada fotograma
+	
 	public void actualizarMundo() {
 		
+		//La bola ejecuta su metodo actua
 		bola.actua(ANCHO, ALTO);
 
+		//Los ladrillos cuyo boolean borrar este en true seran borrados
 		for (int i = 0; i < actores.size(); i++) {
 			
 			if (actores.get(i).isBorrar()) {
@@ -240,12 +244,11 @@ public class Arkanoid extends Canvas {
 	}
 	
 	/**
-	 * 
+	 * Bucle principal del juego (el que pinta los fotogramas)
 	 */
 	
-	//Bucle principal del juego (el que pinta los fotogramas)
 	public void bucleJuego() {
-		
+
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
 			
@@ -269,11 +272,14 @@ public class Arkanoid extends Canvas {
 	}
 	
 	/**
-	 * 
+	 * Metodo que pinta los actores
 	 */
-	
-	//Metodo que pinta los actores
+
 	public void paintMundo() {
+		
+		//Esta linea evita que el juego se lagee en Linux
+		Toolkit.getDefaultToolkit().sync();
+		
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(SpriteCache.getSpriteCache().getSprite("fondoArkanoid1.jpg"), 0, 0, this);
 		g.drawImage(SpriteCache.getSpriteCache().getSprite("vaus.png"), nave.getPosX(), nave.getPosY(), this);
@@ -284,11 +290,10 @@ public class Arkanoid extends Canvas {
 	}
 	
 	/**
-	 * 
+	 * Main
 	 * @param args
 	 */
 	
-	//Main
 	public static void main(String[] args) {
 		
 		Arkanoid juego = new Arkanoid();

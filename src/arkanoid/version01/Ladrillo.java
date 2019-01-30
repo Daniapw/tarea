@@ -3,7 +3,13 @@ package arkanoid.version01;
 public class Ladrillo extends Actor {
 	public String color;
 	
-	//Constructor
+	/**
+	 * Constructor
+	 * @param posX
+	 * @param posY
+	 * @param color
+	 */
+	
 	public Ladrillo(int posX, int posY,String color) {
 		super(posX, posY);
 		
@@ -14,10 +20,9 @@ public class Ladrillo extends Actor {
 	}
 
 	/**
-	 * 
+	 * Metodo que gestiona la colision
 	 */
 	
-	//Metodo que lleva la colision
 	public void colision() {
 		
 		this.setBorrar(true);
@@ -25,9 +30,9 @@ public class Ladrillo extends Actor {
 	}
 	
 	/**
-	 * 
-	 * 	
+	 * Getters y setters
 	 */
+	
 	public String getColor() {
 		
 		return color;

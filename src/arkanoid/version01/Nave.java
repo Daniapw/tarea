@@ -10,13 +10,13 @@ public class Nave extends Actor {
 	private boolean derecha, izda;
 	
 	/**
-	 * 
+	 * Constructor
 	 * @param posX
 	 * @param posY
 	 * @param vX
 	 * @param vY
 	 */
-	//Constructor
+	
 	public Nave(int posX, int posY) {
 		super(posX, posY);
 		
@@ -25,9 +25,10 @@ public class Nave extends Actor {
 	}
 	
 	/**
-	 * 
+	 * Metodo que ejecutara el actor cuando se pulsa o suelta una tecla
+	 * @param borde
 	 */
-	//Metodo que ejecutara el actor cuando se pulsa o suelta una tecla
+	
 	public void actua(int borde) {
 		
 		//Posicion en el eje X de la nave
@@ -55,10 +56,10 @@ public class Nave extends Actor {
 	}
 
 	/**
-	 * 
+	 * Metodo que verificara que tecla se esta pulsando
 	 * @param e
 	 */
-	//Metodo que verificara que tecla se esta pulsando
+	
 	public void teclaPulsada(KeyEvent e) {
 		
 		switch (e.getKeyCode()) {
@@ -84,10 +85,10 @@ public class Nave extends Actor {
 	}
 	
 	/**
-	 * 
+	 * Metodo que comprobara si se ha soltado una tecla
 	 * @param e
 	 */
-	//Metodo que comprobara si se ha soltado una tecla
+	
 	public void teclaSoltada(KeyEvent e) {
 		
 		switch (e.getKeyCode()) {
@@ -111,11 +112,12 @@ public class Nave extends Actor {
 		this.actua(Arkanoid.ANCHO);
 		
 	}
+	
 	/**
-	 * 
+	 * Metodo que controla el movimiento de la nave con el raton
 	 * @param e
 	 */
-	//Metodo que controla el movimiento de la nave con el raton
+	
 	public void controlRaton(MouseEvent e) {
 		
 		int posicionRaton = e.getX();
@@ -145,11 +147,12 @@ public class Nave extends Actor {
 		}
 
 	}
+	
 	/**
-	 * 
+	 * Getters y setters
 	 * @return
 	 */
-	//Getters y setters
+	
 	public int getvX() {
 		return vX;
 	}

@@ -4,14 +4,13 @@ public class Bola extends Actor {
 	private int vX, vY;
 	
 	/**
-	 * 
+	 * Constructor
 	 * @param posX
 	 * @param posY
 	 * @param vX
 	 * @param vY
 	 */
 	
-	//Constructor
 	public Bola(int posX, int posY, int vX, int vY) {
 		super(posX, posY);
 		this.vX = vX;
@@ -20,14 +19,15 @@ public class Bola extends Actor {
 		this.setAlto(20);
 		this.setAncho(20);
 	}
+	
 	/**
-	 *  
+	 *  Metodo que hace que la bola se mueva
 	 * @param ancho
 	 * @param alto
 	 * @param vX
 	 * @param vY
 	 */
-	//Metodo que hace que la bola se mueva
+	
 	public void actua(int ancho, int alto) {
 		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
@@ -69,6 +69,9 @@ public class Bola extends Actor {
 	
 	}
 	
+	/**
+	 * Metodo que gestiona las colisiones
+	 */
 	public void colision() {
 		
 		this.vY = -vY;

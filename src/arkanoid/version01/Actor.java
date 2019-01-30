@@ -8,14 +8,12 @@ public class Actor {
 	private boolean borrar = false;
 	
 	/**
-	 *  
+	 *  Constructor
 	 * @param posX
 	 * @param pos
 	 */
 	
-	//Constructor
 	public Actor(int posX, int posY) {
-		
 		super();
 		this.posX = posX;
 		this.posY = posY;
@@ -23,31 +21,28 @@ public class Actor {
 	}
 	
 	/**
-	 * 
+	 * Metodo que ejecutaran los actores
 	 */
 	
-	//Metodo que ejecutaran los actores
 	public void actua() {}
 	
 	/**
-	 * 
+	 * Metodo que cambiara el objeto si colisiona
 	 */
 	
-	//Metodo que cambiara el objeto si colisiona
 	public void colision() {}
 	
 	/**
-	 *
+	 * Getter para el color
 	 */
-	//Getter para el color
+	
 	public String getColor() {return "";}
 	
 	/**
-	 * 
+	 * Metodo que devuelve el rectangulo que encapsula al actor
 	 * @return
 	 */
 	
-	//Metodo que devuelve el rectangulo que encapsula al actor
 	public Rectangle getMedidas() {
 		
 		return new Rectangle(posX, posY, ancho, alto);
@@ -55,10 +50,9 @@ public class Actor {
 	}
 	
 	/**
-	 * 
+	 * Getters y Setters
 	 */
 	
-	//Getters y Setters
 	public int getPosX() {
 		return posX;
 	}

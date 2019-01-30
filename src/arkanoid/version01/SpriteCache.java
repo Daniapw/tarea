@@ -10,16 +10,22 @@ public class SpriteCache {
 	public static HashMap<String, BufferedImage> sprites;
 	public static SpriteCache cache = null;
 	
-	//Constructor
+	/**
+	 * Constructor
+	 */
+	
 	public SpriteCache() {
 		
 		super();
 		
-		//Aquí se inicia el HashMap
+		//Aquï¿½ se inicia el HashMap
 		sprites = new HashMap<String, BufferedImage>();
 	}
 	
-	//Singleton
+	/**
+	 * Singleton
+	 * @return
+	 */
 	public static SpriteCache getSpriteCache() {
 		if (cache == null) {
 			
@@ -31,7 +37,12 @@ public class SpriteCache {
 		
 	}
 	
-	//Metodo que carga las imagenes
+	/**
+	 * Metodo que carga las imagenes
+	 * @param nombre
+	 * @return
+	 */
+	
 	public BufferedImage loadImage(String nombre) {
 		URL url=null;
 		try {
@@ -46,7 +57,12 @@ public class SpriteCache {
 	}
 	
 	
-	//Metodo que coge los sprites del HashMap y, si no estan, los anade
+	/**
+	 * Metodo que coge los sprites del HashMap y, si no estan, los anade
+	 * @param nombre
+	 * @return
+	 */
+	
 	public BufferedImage getSprite(String nombre) {
 		
 		BufferedImage img = (BufferedImage)sprites.get(nombre);
