@@ -26,6 +26,8 @@ public class Arkanoid extends Canvas {
 	public Bola bola = new Bola(250, 540, 3, 3);
 	public List<Actor> actores = new ArrayList<Actor>();
 	private BufferStrategy estrategia;
+	private long tiempoUsado;
+	
 	
 	/**
 	 * Constructor
@@ -249,12 +251,12 @@ public class Arkanoid extends Canvas {
 	
 	public void bucleJuego() {
 
+		tiempoUsado = 1000;
+		
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
-			
-			try { 
-				 Thread.sleep(10);
-			} catch (InterruptedException e) {}
+			long tiempoComienzo = System.currentTimeMillis();
+
 			
 			//Se ejecutara el metodo buscarColisiones()
 			buscarColisiones();
@@ -262,10 +264,15 @@ public class Arkanoid extends Canvas {
 			//Se ejecutara el metodo actualizarMundo()
 			actualizarMundo();			
 			
-
 			//Se repintara la escena
 			paintMundo();
-
+			
+			//Se mide el tiempo que ha tardado en pintarse el frame
+			tiempoUsado = System.currentTimeMillis() - tiempoComienzo;
+			
+			try { 
+				 Thread.sleep(10);
+			} catch (InterruptedException e) {}
 			
 		}
 		
@@ -285,6 +292,20 @@ public class Arkanoid extends Canvas {
 		g.drawImage(SpriteCache.getSpriteCache().getSprite("vaus.png"), nave.getPosX(), nave.getPosY(), this);
 		g.drawImage(SpriteCache.getSpriteCache().getSprite("bola.png"), bola.getPosX(), bola.getPosY(), this);
 		paintLadrillos(g);
+		
+		//Pintar medidor de fps
+		g.setColor(Color.white);
+		if (tiempoUsado > 0) {
+			
+			g.drawString(String.valueOf(1000/tiempoUsado)+" fps",0,20);
+			
+		}
+		else {
+			
+			g.drawString(" -- fps",0,20);
+			
+		}
+		
 		estrategia.show();
 		
 	}
