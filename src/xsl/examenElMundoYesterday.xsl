@@ -21,6 +21,7 @@
 				 	<xsl:for-each select="menu/enlace">
 				 		
 				 		<xsl:choose>
+				 		
 				 			<!-- Cuando la posicion del elemento enlace es impar se llamara a la template "menu"
 				 			con el valor #DDE640 para el parametro color -->
 				 			<xsl:when test="position() mod 2 = 1">
@@ -93,7 +94,7 @@
 	         	<xsl:for-each select="publicidad/anuncio">
 	         		
 	         		<!-- Se ordenaran segun el valor del atributo orden -->
-	         		<xsl:sort select="@orden" order="ascending"/>
+	         		<xsl:sort select="@orden" order="descending"/>
 	         		
 	         			<div class="divPublicidad">
 	         			
@@ -125,10 +126,10 @@
 		
 			 <div class="{$clase}">
 			 
-			 	<h2><xsl:value-of select="titular"/></h2><br></br>
-			 	<h4><xsl:value-of select="subtitular"/></h4><br></br>
+			 	<h2><xsl:value-of select="titular"/></h2>
+			 	<h4><xsl:value-of select="subtitular"/></h4>
 				<img src="{@imagen}"/><br></br>
-				<span class="fechaNoticia"><xsl:value-of select="@fecha"></xsl:value-of></span>
+				<span class="fechaNoticia">Publicado el <xsl:value-of select="@fecha"></xsl:value-of></span>
 				<span class="comentariosNoticia"><xsl:value-of select="@comentarios"/> comentarios</span>
 			
 			</div>

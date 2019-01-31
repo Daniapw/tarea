@@ -16,8 +16,9 @@ public class Bola extends Actor {
 		this.vX = vX;
 		this.vY = vY;
 		
-		this.setAlto(20);
-		this.setAncho(20);
+		this.spriteActual = SpriteCache.getSpriteCache().getSprite("bola.png");
+		this.setAlto(this.spriteActual.getHeight());
+		this.setAncho(this.spriteActual.getWidth());
 	}
 	
 	/**
@@ -31,14 +32,14 @@ public class Bola extends Actor {
 	public void actua(int ancho, int alto) {
 		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
-		if (this.getPosX() + 20 > ancho) {
+		if (this.posX + 20 > ancho) {
 			
 			this.vX =  -vX;
 			
 		}
 		else {
 			
-			if (this.getPosX() < 0) {
+			if (this.posX < 0) {
 				
 				this.vX = Math.abs(vX);
 				
@@ -47,14 +48,14 @@ public class Bola extends Actor {
 		}
 		
 		//Lo mismo con la posicion Y
-		if (this.getPosY() +50 > alto) {
+		if (this.posY +50 > alto) {
 			
 			this.vY = -vY;
 			
 		}
 		else {
 			
-			if (this.getPosY() < 0) {
+			if (this.posY < 0) {
 				
 				this.vY = Math.abs(vY);
 				
@@ -63,15 +64,16 @@ public class Bola extends Actor {
 		}
 		
 		
-		this.setPosX(this.getPosX() + this.vX);
+		this.posX += vX;
 		
-		this.setPosY(this.getPosY() + this.vY);		
+		this.posY += vY;	
 	
 	}
 	
 	/**
 	 * Metodo que gestiona las colisiones
 	 */
+	
 	public void colision() {
 		
 		this.vY = -vY;

@@ -20,8 +20,9 @@ public class Nave extends Actor {
 	public Nave(int posX, int posY) {
 		super(posX, posY);
 		
-		this.setAlto(22);
-		this.setAncho(90);
+		this.spriteActual = SpriteCache.getSpriteCache().getSprite("vaus.png");
+		this.setAlto(this.spriteActual.getHeight());
+		this.setAncho(this.spriteActual.getWidth());
 	}
 	
 	/**
@@ -29,14 +30,14 @@ public class Nave extends Actor {
 	 * @param borde
 	 */
 	
-	public void actua(int borde) {
+	public void actua() {
 		
 		//Posicion en el eje X de la nave
 		int posicion = this.getPosX();
 
 		/*Si el jugador esta pulsando la flecha derecha y el borde derecho de la nave (posicion + 90) no esta en una posicion superior
 		al ancho de ancho de la ventana, la velocidad de la nave (vX) se sumara a la posicion actual*/
-		if (derecha && (posicion + 90) < borde) {
+		if (derecha && (posicion + this.vX +  this.ancho) <= Arkanoid.ANCHO) {
 			
 			posicion += vX;
 			
@@ -45,7 +46,7 @@ public class Nave extends Actor {
 		}
 		/*Si el jugador esta pulsando la flecha izda y el borde izquierdo de la nave no esta en una posicion
 		 * inferior a 0, la velocidad de la nave (vX) se restara la posicion actual */
-		if (izda && this.getPosX() > 0) {
+		if (izda && (posicion - this.vX >= 0)) {
 			
 			posicion -= vX;
 			
@@ -81,7 +82,7 @@ public class Nave extends Actor {
 		}
 		
 		//Por ultimo, se ejecutara el metodo actua pasandole el ancho de la ventana del juego
-		this.actua(Arkanoid.ANCHO);
+		this.actua();
 	}
 	
 	/**
@@ -109,7 +110,7 @@ public class Nave extends Actor {
 		}
 		
 		//Por ultimo, se ejecutara el metodo actua pasandole el ancho de la ventana del juego
-		this.actua(Arkanoid.ANCHO);
+		this.actua();
 		
 	}
 	
@@ -122,28 +123,14 @@ public class Nave extends Actor {
 		
 		int posicionRaton = e.getX();
 		
-		/*Si la posicion del raton es superior o igual al ANCHO (de la ventana) - 45 (la mitad del ancho de la nave),
-		 * la nave se quedará en ANCHO - 90. */
-		
-		if (posicionRaton >= Arkanoid.ANCHO - 45) {
+		//Si la posicion del raton es mayor o igual al ancho del sprite de la nave/2...
+		if (posicionRaton >= (this.ancho / 2)
+				&&
+			//...y la posicion del raton no es mayor que el ancho de la ventana - el ancho de la nave/2...
+			posicionRaton <= (Arkanoid.ANCHO - this.ancho / 2)) {
 			
-			this.setPosX(Arkanoid.ANCHO - 90);
-			
-		}
-
-		/*Si la posicion del raton es inferior o igual a 45 (la mitad del ancho de la nave),
-		 * la nave se quedara en la posicion 0*/
-		if (posicionRaton <= 45) {
-			
-			this.setPosX(0);
-			
-		}
-
-		//Si la nave esta entre 45 y ANCHO-45, el punto medio de la nave se pondra en la posicion del raton
-		if (posicionRaton > 45 && posicionRaton < (Arkanoid.ANCHO - 45)) {
-			
-			this.setPosX(posicionRaton - 45);
-			
+			//...el centro de la nave se colocara en la posicion del raton. De este modo no se saldra por los lados.
+			this.posX = posicionRaton - this.ancho / 2;
 		}
 
 	}

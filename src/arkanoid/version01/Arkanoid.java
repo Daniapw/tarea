@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,11 +21,12 @@ public class Arkanoid extends Canvas {
 	
 	public static final int ANCHO = 500; 
 	public static final int ALTO = 700;
+	public static final int FPS = 100;
 	public Nave nave = new Nave(210, 640);
 	public Bola bola = new Bola(250, 540, 3, 3);
 	public List<Actor> actores = new ArrayList<Actor>();
 	private BufferStrategy estrategia;
-	private long tiempoUsado;
+	int millisADetenerElJuego;
 	
 	
 	/**
@@ -118,7 +118,6 @@ public class Arkanoid extends Canvas {
 		int x = 28;
 		int y = 100;
 
-		
 		for (int i = 0; i < 60; i++) {
 			
 			switch (i) {
@@ -213,7 +212,7 @@ public class Arkanoid extends Canvas {
 			
 			r2 = actores.get(i).getMedidas();
 			
-			if (bolaRec.intersects(r2) && !actores.get(i).isBorrar()) {
+			if (bolaRec.intersects(r2) && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
 				
 				actores.get(i).colision();
 				
@@ -250,14 +249,12 @@ public class Arkanoid extends Canvas {
 	 */
 	
 	public void bucleJuego() {
-
-		tiempoUsado = 1000;
 		
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
-			long tiempoComienzo = System.currentTimeMillis();
-
 			
+			long millisAntesDeConstruirEscena = System.currentTimeMillis();
+
 			//Se ejecutara el metodo buscarColisiones()
 			buscarColisiones();
 			
@@ -268,10 +265,16 @@ public class Arkanoid extends Canvas {
 			paintMundo();
 			
 			//Se mide el tiempo que ha tardado en pintarse el frame
-			tiempoUsado = System.currentTimeMillis() - tiempoComienzo;
+			int millisUsados = (int) (System.currentTimeMillis() - millisAntesDeConstruirEscena);
 			
 			try { 
-				 Thread.sleep(10);
+				
+				  millisADetenerElJuego = 1000 / FPS - millisUsados;
+				 
+				 if (millisADetenerElJuego >= 0) {
+					 Thread.sleep(millisADetenerElJuego);
+				 }
+				 
 			} catch (InterruptedException e) {}
 			
 		}
@@ -289,15 +292,16 @@ public class Arkanoid extends Canvas {
 		
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(SpriteCache.getSpriteCache().getSprite("fondoArkanoid1.jpg"), 0, 0, this);
-		g.drawImage(SpriteCache.getSpriteCache().getSprite("vaus.png"), nave.getPosX(), nave.getPosY(), this);
-		g.drawImage(SpriteCache.getSpriteCache().getSprite("bola.png"), bola.getPosX(), bola.getPosY(), this);
+		g.drawImage(nave.getSprite(), nave.getPosX(), nave.getPosY(), this);
+		g.drawImage(bola.getSprite(), bola.getPosX(), bola.getPosY(), this);
 		paintLadrillos(g);
 		
 		//Pintar medidor de fps
 		g.setColor(Color.white);
-		if (tiempoUsado > 0) {
+	
+		if (millisADetenerElJuego > 0) {
 			
-			g.drawString(String.valueOf(1000/tiempoUsado)+" fps",0,20);
+			g.drawString(String.valueOf(1000/millisADetenerElJuego)+" fps",0,20);
 			
 		}
 		else {

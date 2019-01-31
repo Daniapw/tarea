@@ -1,10 +1,12 @@
 package arkanoid.version01;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class Actor {
 
-	private int posX, posY, ancho, alto;
+	protected int posX, posY, ancho, alto;
+	protected BufferedImage spriteActual;
 	private boolean borrar = false;
 	
 	/**
@@ -17,6 +19,8 @@ public class Actor {
 		super();
 		this.posX = posX;
 		this.posY = posY;
+		this.spriteActual = null;
+		
 		
 	}
 	
@@ -88,6 +92,15 @@ public class Actor {
 	public void setBorrar(boolean borrar) {
 		this.borrar = borrar;
 	}
+
+	public BufferedImage getSprite() {
+		return spriteActual;
+	}
+
+	public void setSprite(BufferedImage sprite) {
+		this.spriteActual = sprite;
+	}
+	
 	
 	
 }
