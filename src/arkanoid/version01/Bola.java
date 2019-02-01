@@ -29,10 +29,10 @@ public class Bola extends Actor {
 	 * @param vY
 	 */
 	
-	public void actua(int ancho, int alto) {
+	public void actua() {
 		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
-		if (this.posX + 20 > ancho) {
+		if (this.posX + this.getAncho() >= Arkanoid.ANCHO) {
 			
 			this.vX =  -vX;
 			
@@ -48,7 +48,7 @@ public class Bola extends Actor {
 		}
 		
 		//Lo mismo con la posicion Y
-		if (this.posY +50 > alto) {
+		if (this.posY + this.getAncho() >= Arkanoid.ALTO) {
 			
 			this.vY = -vY;
 			

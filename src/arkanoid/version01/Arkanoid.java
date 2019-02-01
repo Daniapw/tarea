@@ -25,6 +25,7 @@ public class Arkanoid extends Canvas {
 	public Nave nave = new Nave(210, 640);
 	public Bola bola = new Bola(250, 540, 3, 3);
 	public List<Actor> actores = new ArrayList<Actor>();
+	public Fase faseActiva = null;
 	private BufferStrategy estrategia;
 	int millisADetenerElJuego;
 	
@@ -39,7 +40,7 @@ public class Arkanoid extends Canvas {
 		JFrame ventana = new JFrame("Arkanoid");
 		
 		//Establezco las dimensiones de la ventana
-		ventana.setBounds(0, 0, ANCHO, ALTO);
+		ventana.setBounds(0, 0, ANCHO, ALTO + 28);
 		
 		//Creacion del panel principal de la ventana y le añadimos el objeto Ventana (el canvas)
 		JPanel panel = (JPanel)ventana.getContentPane();
@@ -61,13 +62,14 @@ public class Arkanoid extends Canvas {
 		ventana.setResizable(false);
 		ventana.setIgnoreRepaint(true);
 		
-		//Inicializo los ladrillos
-		initLadrillos();
+		//Cambiar fase activa
+		faseActiva = new Fase01();
 		
 		//Anado todos los actores a la lista
 		actores.add(nave);
 		actores.add(bola);
 
+		actores.addAll(faseActiva.actoresFase);
 		
 		//Estrategia de buffer
 		createBufferStrategy(2);
@@ -96,6 +98,7 @@ public class Arkanoid extends Canvas {
 		//Listener del raton
 		this.addMouseMotionListener(new MouseAdapter() {
 			
+		
 			//Cuando el raton se mueve dentro de la ventana se ejecutara el metodo controlRaton() de la nave
 			public void mouseMoved(MouseEvent e) {
 				
@@ -105,76 +108,6 @@ public class Arkanoid extends Canvas {
 			
 		});
 	
-	}
-	
-	/**
-	 * Metodo que inicializa los ladrillos
-	 */
-	
-	public void initLadrillos() {
-		
-		Ladrillo ladrillo = null;
-		String color = "#";
-		int x = 28;
-		int y = 100;
-
-		for (int i = 0; i < 60; i++) {
-			
-			switch (i) {
-				case 0:{
-					
-					color = "#77abff";
-					
-					break;
-				}
-				case 10:{
-					
-					color = "#b8f759";
-					break;
-					
-				}
-				case 20:{
-					
-					color = "#fcfc2d";
-					break;
-					
-				}
-				case 30:{
-					
-					color = "#f49529";
-					break;
-				}
-				case 40:{
-					
-					color = "#9128f4";
-					break;
-				}
-				
-				case 50:{
-					
-					color = "#ff052a";
-					break;
-				}
-			}
-			
-			ladrillo = new Ladrillo(0, 0, color);
-			
-			actores.add(ladrillo);
-			
-			actores.get(i).setPosX(x);
-			actores.get(i).setPosY(y);
-			
-			x += 44;
-			
-			if (i == 9 || i  == 19 || i  == 29 || i  == 39 || i  == 49) {
-				
-				y += 28;
-				x = 28;
-						
-			}
-
-		}
-		
 	}
 	
 	/**
@@ -229,7 +162,7 @@ public class Arkanoid extends Canvas {
 	public void actualizarMundo() {
 		
 		//La bola ejecuta su metodo actua
-		bola.actua(ANCHO, ALTO);
+		bola.actua();
 
 		//Los ladrillos cuyo boolean borrar este en true seran borrados
 		for (int i = 0; i < actores.size(); i++) {
@@ -253,8 +186,9 @@ public class Arkanoid extends Canvas {
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
 			
+			//Se mide el tiempo que ha tardado en pintarse el frame
 			long millisAntesDeConstruirEscena = System.currentTimeMillis();
-
+			
 			//Se ejecutara el metodo buscarColisiones()
 			buscarColisiones();
 			
@@ -264,7 +198,6 @@ public class Arkanoid extends Canvas {
 			//Se repintara la escena
 			paintMundo();
 			
-			//Se mide el tiempo que ha tardado en pintarse el frame
 			int millisUsados = (int) (System.currentTimeMillis() - millisAntesDeConstruirEscena);
 			
 			try { 
@@ -276,6 +209,8 @@ public class Arkanoid extends Canvas {
 				 }
 				 
 			} catch (InterruptedException e) {}
+			
+			
 			
 		}
 		
@@ -295,20 +230,6 @@ public class Arkanoid extends Canvas {
 		g.drawImage(nave.getSprite(), nave.getPosX(), nave.getPosY(), this);
 		g.drawImage(bola.getSprite(), bola.getPosX(), bola.getPosY(), this);
 		paintLadrillos(g);
-		
-		//Pintar medidor de fps
-		g.setColor(Color.white);
-	
-		if (millisADetenerElJuego > 0) {
-			
-			g.drawString(String.valueOf(1000/millisADetenerElJuego)+" fps",0,20);
-			
-		}
-		else {
-			
-			g.drawString(" -- fps",0,20);
-			
-		}
 		
 		estrategia.show();
 		

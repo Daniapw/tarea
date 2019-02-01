@@ -1,7 +1,9 @@
 package arkanoid.version01;
 
 public class Ladrillo extends Actor {
-	public String color;
+	protected String color;
+	protected static final int ESPACIO_ENTRE_LADRILLOS = 15;
+	
 	
 	/**
 	 * Constructor
@@ -36,8 +38,7 @@ public class Ladrillo extends Actor {
 	public String getColor() {
 		
 		return color;
-		
-		
+			
 	}
 
 	
