@@ -26,6 +26,7 @@ public class SpriteCache {
 	 * Singleton
 	 * @return
 	 */
+	
 	public static SpriteCache getSpriteCache() {
 		if (cache == null) {
 			
@@ -55,7 +56,6 @@ public class SpriteCache {
 			return null;
 		}
 	}
-	
 	
 	/**
 	 * Metodo que coge los sprites del HashMap y, si no estan, los anade

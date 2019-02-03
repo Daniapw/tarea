@@ -1,12 +1,13 @@
 package arkanoid.version01;
 
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Nave extends Actor {
 	
-	private int vX = 6;
+	private int vX = 5;
 	private boolean derecha, izda;
 	
 	/**
@@ -39,18 +40,15 @@ public class Nave extends Actor {
 		al ancho de ancho de la ventana, la velocidad de la nave (vX) se sumara a la posicion actual*/
 		if (derecha && (posicion + this.vX +  this.ancho) <= Arkanoid.ANCHO) {
 			
-			posicion += vX;
-			
-			this.setPosX(posicion);
+			this.posX += vX;		
 			
 		}
 		/*Si el jugador esta pulsando la flecha izda y el borde izquierdo de la nave no esta en una posicion
 		 * inferior a 0, la velocidad de la nave (vX) se restara la posicion actual */
 		if (izda && (posicion - this.vX >= 0)) {
 			
-			posicion -= vX;
+			this.posX -= vX;
 			
-			this.setPosX(posicion);
 			
 		}
 		
@@ -81,8 +79,6 @@ public class Nave extends Actor {
 		
 		}
 		
-		//Por ultimo, se ejecutara el metodo actua pasandole el ancho de la ventana del juego
-		this.actua();
 	}
 	
 	/**
@@ -109,9 +105,6 @@ public class Nave extends Actor {
 	
 		}
 		
-		//Por ultimo, se ejecutara el metodo actua pasandole el ancho de la ventana del juego
-		this.actua();
-		
 	}
 	
 	/**
@@ -135,6 +128,25 @@ public class Nave extends Actor {
 
 	}
 	
+	/**
+	 * Metodo paint
+	 */
+	
+	public void paint(Graphics g) {
+		
+		g.drawImage(this.getSprite(), this.posX, this.posY, null);
+		
+	}
+	
+	/**
+	 * Metodo que gestiona la colision
+	 */
+	
+	public void colision() {
+		
+		CacheSonido.getCacheSonido().reproducirSonido("ChoqueBola.wav");
+		
+	}
 	/**
 	 * Getters y setters
 	 * @return

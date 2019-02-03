@@ -1,7 +1,6 @@
 package arkanoid.version01;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -23,12 +22,12 @@ public class Arkanoid extends Canvas {
 	public static final int ALTO = 700;
 	public static final int FPS = 100;
 	public Nave nave = new Nave(210, 640);
-	public Bola bola = new Bola(250, 540, 3, 3);
+	public Bola bola = new Bola(250, 540, 4, 4);
 	public List<Actor> actores = new ArrayList<Actor>();
+	public List<Actor> actoresEspeciales = new ArrayList<Actor>();
 	public Fase faseActiva = null;
 	private BufferStrategy estrategia;
-	int millisADetenerElJuego;
-	
+
 	
 	/**
 	 * Constructor
@@ -49,7 +48,6 @@ public class Arkanoid extends Canvas {
 		
 		panel.setPreferredSize(new Dimension(ANCHO, ALTO));
 
-		
 		//Establezco el tama√±o del Canvas
 		this.setBounds(0,0,ANCHO ,ALTO);
 		this.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -111,28 +109,6 @@ public class Arkanoid extends Canvas {
 	}
 	
 	/**
-	 * Metodo para pintar la lista de ladrillos
-	 * @param g
-	 */
-
-	public void paintLadrillos(Graphics g) {
-		
-		
-		for (int i = 0; i < actores.size(); i++) {
-			
-			if (actores.get(i) instanceof Ladrillo) {
-				
-				g.setColor(Color.decode(actores.get(i).getColor()));
-				g.fillRoundRect(actores.get(i).getPosX(), actores.get(i).getPosY(), 42, 22, 5, 10);
-				g.setColor(Color.black);
-				g.drawRoundRect(actores.get(i).getPosX(),actores.get(i).getPosY() , 42, 22, 1, 10);
-			
-			}
-		}
-		
-	}
-	
-	/**
 	 * Metodo que busca colisiones
 	 */
 	
@@ -141,16 +117,22 @@ public class Arkanoid extends Canvas {
 		Rectangle bolaRec = bola.getMedidas();
 		Rectangle r2 = null;
 		
+		//La bola no puede colisionar con m·s de dos ladrillos en un frame (por ahora)
+		int contadorColisiones = 0;
+		
+		/*Se compara el rectangulo de la bola con los rectangulos de los demas actores, y
+		si colisionan se ejecuta el metodo colision de la bola y el del actor en cuestion*/
 		for (int i = 0; i < actores.size(); i++) {
 			
 			r2 = actores.get(i).getMedidas();
 			
-			if (bolaRec.intersects(r2) && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
+			if (bolaRec.intersects(r2) && contadorColisiones < 1 && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
 				
 				actores.get(i).colision();
 				
 				bola.colision();
 				
+				contadorColisiones++;
 			}	
 		}
 	}
@@ -161,15 +143,33 @@ public class Arkanoid extends Canvas {
 	
 	public void actualizarMundo() {
 		
-		//La bola ejecuta su metodo actua
+		//Tanto la bola como la nave ejecutan su metodo actua
 		bola.actua();
-
-		//Los ladrillos cuyo boolean borrar este en true seran borrados
+		nave.actua();
+		
+		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
+		se anadira a la lista actoresEspeciales*/
 		for (int i = 0; i < actores.size(); i++) {
 			
 			if (actores.get(i).isBorrar()) {
 				
+				actoresEspeciales.add(new Explosion(actores.get(i).posX, actores.get(i).posY - 8));
+				
 				actores.remove(i);
+				
+				
+			}
+			
+		}
+		
+		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			actoresEspeciales.get(i).actua();
+			
+			if (actoresEspeciales.get(i).isBorrar()) {
+				
+				actoresEspeciales.remove(i);
 				
 			}
 			
@@ -182,6 +182,8 @@ public class Arkanoid extends Canvas {
 	 */
 	
 	public void bucleJuego() {
+			
+		CacheSonido.getCacheSonido().reproducirSonidoBucle("Cancion1.wav");
 		
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
@@ -202,7 +204,7 @@ public class Arkanoid extends Canvas {
 			
 			try { 
 				
-				  millisADetenerElJuego = 1000 / FPS - millisUsados;
+				 int millisADetenerElJuego = 1000 / FPS - millisUsados;
 				 
 				 if (millisADetenerElJuego >= 0) {
 					 Thread.sleep(millisADetenerElJuego);
@@ -226,10 +228,23 @@ public class Arkanoid extends Canvas {
 		Toolkit.getDefaultToolkit().sync();
 		
 		Graphics g = estrategia.getDrawGraphics();
-		g.drawImage(SpriteCache.getSpriteCache().getSprite("fondoArkanoid1.jpg"), 0, 0, this);
-		g.drawImage(nave.getSprite(), nave.getPosX(), nave.getPosY(), this);
-		g.drawImage(bola.getSprite(), bola.getPosX(), bola.getPosY(), this);
-		paintLadrillos(g);
+		
+		//Pintar fondo
+		g.drawImage(SpriteCache.getSpriteCache().getSprite(faseActiva.fondo), 0, 0, this);
+		
+		//Pintar actores normales (ladrillos, nave, bola)
+		for (int i = 0; i < actores.size(); i++) {
+			
+			actores.get(i).paint(g);
+			
+		}
+
+		//Pintar actores especiales (disparos, power-ups, etc.)
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			actoresEspeciales.get(i).paint(g);
+			
+		}
 		
 		estrategia.show();
 		

@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class Fase {
 
 	protected List<Actor> actoresFase = new ArrayList<Actor>();
+	protected String fondo;
 	
 	/**
 	 * Metodo abstracto que iniciara la fase en cuestion
@@ -14,7 +15,7 @@ public abstract class Fase {
 	public abstract void initFase();
 
 	/**
-	 * Getter
+	 * Getters
 	 * @return
 	 */
 	
@@ -22,5 +23,10 @@ public abstract class Fase {
 		return actoresFase;
 	}
 	
+	public String getFondo() {
+		
+		return "fondo";
+		
+	}
 	
 }

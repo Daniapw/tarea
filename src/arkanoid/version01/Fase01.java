@@ -1,16 +1,24 @@
 package arkanoid.version01;
 
-
 public class Fase01 extends Fase {
 	
 	protected static final int MARGEN_SUPERIOR = 20;
-	
+
+	/**
+	 * Constructor
+	 */
 	
 	public Fase01() {	
 		super();
-	
+		
+		fondo = "fondoArkanoid1.jpg";
+		
 		initFase();
 	}
+	
+	/**
+	 * Metodo que inicia la fase
+	 */
 	
 	public void initFase() {
 		

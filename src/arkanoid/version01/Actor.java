@@ -1,5 +1,6 @@
 package arkanoid.version01;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -52,6 +53,13 @@ public class Actor {
 		return new Rectangle(posX, posY, ancho, alto);
 	
 	}
+	
+	/**
+	 * 
+	 * @param g
+	 */
+	
+	public void paint(Graphics g) {	}
 	
 	/**
 	 * Getters y Setters

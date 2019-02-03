@@ -1,5 +1,7 @@
 package arkanoid.version01;
 
+import java.awt.Graphics;
+
 public class Bola extends Actor {
 	private int vX, vY;
 	
@@ -68,6 +70,16 @@ public class Bola extends Actor {
 		
 		this.posY += vY;	
 	
+	}
+	
+	/**
+	 * Metodo paint
+	 */
+	
+	public void paint(Graphics g) {
+		
+		g.drawImage(this.getSprite(), this.posX, this.posY, null);
+		
 	}
 	
 	/**
