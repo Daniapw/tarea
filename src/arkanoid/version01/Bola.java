@@ -90,6 +90,8 @@ public class Bola extends Actor {
 		
 		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.lanzarBola) {
 			
+			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
+			
 			this.vX = 4;
 			this.vY = -4;
 			Arkanoid.juegoEmpezado = true;
