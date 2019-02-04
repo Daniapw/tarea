@@ -18,17 +18,29 @@ import javax.swing.JPanel;
 
 public class Arkanoid extends Canvas {
 	
+	//Propiedades del JFrame
 	public static final int ANCHO = 500; 
 	public static final int ALTO = 700;
-	public static final int FPS = 100;
+	//Tasa de frames
+	public static final int FPS = 100;	
+	//Objetos nave y bola (se crean aqui para tener un puntero)
 	public Nave nave = new Nave(210, 640);
-	public Bola bola = new Bola(250, 540, 4, 4);
+	public Bola bola = new Bola(nave.posX + (nave.ancho/2), nave.posY - Bola.DIAMETRO);
+	//Listas de actores (ladrillos, nave, bola...)
 	public List<Actor> actores = new ArrayList<Actor>();
 	public List<Actor> actoresEspeciales = new ArrayList<Actor>();
+	//Fase activa
 	public Fase faseActiva = null;
+	//Estrategia de buffer
 	private BufferStrategy estrategia;
+	//Boolean para saber si el juego ha empezado
+	protected static boolean juegoEmpezado = false;	
+	protected static boolean lanzarBola = false;
+	//Variable Arkanoid para el singleton
+	public static Arkanoid arkanoid=null;
 
-	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * Constructor
 	 */
@@ -83,6 +95,7 @@ public class Arkanoid extends Canvas {
 				
 				nave.teclaPulsada(e);
 				
+				
 			}
 			
 			//Cuando se suelte una tecla se ejecutara el metodo teclaSoltada() de la nave
@@ -93,10 +106,9 @@ public class Arkanoid extends Canvas {
 			}
 		});
 		
-		//Listener del raton
+		//MotionListener para mover la nave con el raton
 		this.addMouseMotionListener(new MouseAdapter() {
 			
-		
 			//Cuando el raton se mueve dentro de la ventana se ejecutara el metodo controlRaton() de la nave
 			public void mouseMoved(MouseEvent e) {
 				
@@ -104,8 +116,20 @@ public class Arkanoid extends Canvas {
 				
 			}	
 			
+
 		});
-	
+		
+		//MouseListener para detectar si el usuario ha hecho clic
+		this.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				nave.empezarConRaton(e);
+				
+			}
+			
+		});
 	}
 	
 	/**
@@ -117,7 +141,7 @@ public class Arkanoid extends Canvas {
 		Rectangle bolaRec = bola.getMedidas();
 		Rectangle r2 = null;
 		
-		//La bola no puede colisionar con más de dos ladrillos en un frame (por ahora)
+		//La bola no puede colisionar con mï¿½s de dos ladrillos en un frame (por ahora)
 		int contadorColisiones = 0;
 		
 		/*Se compara el rectangulo de la bola con los rectangulos de los demas actores, y
@@ -142,6 +166,14 @@ public class Arkanoid extends Canvas {
 	 */
 	
 	public void actualizarMundo() {
+		
+		//Si el juego no ha empezado la bola estara pegada a la nave
+		if (!juegoEmpezado) {
+			
+			bola.posX = nave.posX + (nave.ancho/2);
+			bola.posY = nave.posY - Bola.DIAMETRO;
+			
+		}
 		
 		//Tanto la bola como la nave ejecutan su metodo actua
 		bola.actua();
@@ -250,6 +282,22 @@ public class Arkanoid extends Canvas {
 		
 	}
 	
+ /**
+  * Singleton
+  * @return
+  */
+	public static Arkanoid getInstancia() {
+		
+		if (arkanoid == null) {
+			
+			arkanoid = new Arkanoid();
+			
+		}
+		
+		return arkanoid;
+	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Main
 	 * @param args
@@ -257,9 +305,8 @@ public class Arkanoid extends Canvas {
 	
 	public static void main(String[] args) {
 		
-		Arkanoid juego = new Arkanoid();
+		Arkanoid.getInstancia().bucleJuego();
 		
-		juego.bucleJuego();
 	}
 	
 }

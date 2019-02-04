@@ -11,7 +11,7 @@ public class Fase01 extends Fase {
 	public Fase01() {	
 		super();
 		
-		fondo = "fondoArkanoid1.jpg";
+		this.fondo = "fondoArkanoid1.jpg";
 		
 		initFase();
 	}

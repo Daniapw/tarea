@@ -76,7 +76,13 @@ public class Nave extends Actor {
 				izda = true;
 				break;
 			}
-		
+			
+			//Si el jugador pulsa la barra espaciadora la bola saldra despedida
+			case KeyEvent.VK_SPACE:{
+				
+				Arkanoid.lanzarBola = true;
+				
+			}
 		}
 		
 	}
@@ -128,6 +134,15 @@ public class Nave extends Actor {
 
 	}
 	
+	public void empezarConRaton(MouseEvent e) {
+		
+		if (e.getID() == MouseEvent.MOUSE_CLICKED) {
+			
+			Arkanoid.lanzarBola = true;
+			
+		}
+		
+	}
 	/**
 	 * Metodo paint
 	 */

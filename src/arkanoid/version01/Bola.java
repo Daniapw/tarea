@@ -3,7 +3,10 @@ package arkanoid.version01;
 import java.awt.Graphics;
 
 public class Bola extends Actor {
-	private int vX, vY;
+	private int vX = 0, vY = 0;
+	private long tiempoCreacion;
+
+	protected static final int DIAMETRO = 20;
 	
 	/**
 	 * Constructor
@@ -13,14 +16,15 @@ public class Bola extends Actor {
 	 * @param vY
 	 */
 	
-	public Bola(int posX, int posY, int vX, int vY) {
+	public Bola(int posX, int posY) {
 		super(posX, posY);
-		this.vX = vX;
-		this.vY = vY;
 		
+		this.ancho = DIAMETRO;
+		this.alto = DIAMETRO;
+		this.tiempoCreacion = System.currentTimeMillis();
 		this.spriteActual = SpriteCache.getSpriteCache().getSprite("bola.png");
-		this.setAlto(this.spriteActual.getHeight());
-		this.setAncho(this.spriteActual.getWidth());
+
+		
 	}
 	
 	/**
@@ -33,8 +37,11 @@ public class Bola extends Actor {
 	
 	public void actua() {
 		
+		//Al comienzo del juego se inicia el movimiento de la pelota
+		if (!Arkanoid.juegoEmpezado) iniciarMovimiento();
+		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
-		if (this.posX + this.getAncho() >= Arkanoid.ANCHO) {
+		if (this.posX + DIAMETRO >= Arkanoid.ANCHO) {
 			
 			this.vX =  -vX;
 			
@@ -50,7 +57,7 @@ public class Bola extends Actor {
 		}
 		
 		//Lo mismo con la posicion Y
-		if (this.posY + this.getAncho() >= Arkanoid.ALTO) {
+		if (this.posY + DIAMETRO >= Arkanoid.ALTO) {
 			
 			this.vY = -vY;
 			
@@ -70,6 +77,25 @@ public class Bola extends Actor {
 		
 		this.posY += vY;	
 	
+
+		
+	}
+	
+	/**
+	 * Metodo que inicia el movimiento de la bola tras 5 segundos
+	 */
+	public void iniciarMovimiento() {
+		
+		long tiempoActual = System.currentTimeMillis();
+		
+		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.lanzarBola) {
+			
+			this.vX = 4;
+			this.vY = -4;
+			Arkanoid.juegoEmpezado = true;
+			
+		}
+		
 	}
 	
 	/**

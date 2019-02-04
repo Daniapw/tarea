@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Ladrillo extends Actor {
 	protected String color;
-	protected static final int ESPACIO_ENTRE_LADRILLOS = 15;
+	protected static final int ESPACIO_ENTRE_LADRILLOS = 12;
 	
 	
 	/**
@@ -33,11 +33,11 @@ public class Ladrillo extends Actor {
 		
 		//Rectangulo
 		g.setColor(Color.decode(this.color));
-		g.fillRoundRect(this.posX, this.posY, this.ancho, this.alto, 5, 10);
+		g.fillRect(this.posX, this.posY, this.ancho, this.alto);
 		
 		//Borde
 		g.setColor(Color.black);
-		g.drawRoundRect(this.posX, this.posY, this.ancho, this.alto, 5, 10);
+		g.drawRect(this.posX, this.posY, this.ancho, this.alto);
 		
 	}
 	
