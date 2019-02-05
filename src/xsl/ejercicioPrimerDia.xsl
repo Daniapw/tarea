@@ -31,71 +31,71 @@
 					<tr>
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>1</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>1</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>2</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>2</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>3</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
+					
 
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>3</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>4</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>4</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>5</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>5</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>6</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+						<xsl:call-template name="diagrama">
 						
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>6</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>7</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+						<xsl:call-template name="diagrama">
 						
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x"><xsl:value-of select="x"/>7</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
 							
-								<xsl:with-param name="x"><xsl:value-of select="x"/>8</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
+
+					
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x"><xsl:value-of select="x"/>8</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
+							
+						</xsl:call-template>
 					
 					</tr>
 					
@@ -103,152 +103,152 @@
 					<tr>
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">2</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">2</xsl:with-param>
+							
+						</xsl:call-template>
+
+				
 					</tr>
 					
 					<!-- Fila 3 -->
 					<tr>
 					
+					
+						<xsl:call-template name="diagrama">
 						
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 
 
-							<xsl:call-template name="diagrama">
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">3</xsl:with-param>
 							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">3</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
 					</tr>
@@ -257,614 +257,614 @@
 					<tr>
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">4</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">4</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">4</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">4</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">4</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">4</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">4</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">1</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">4</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">4</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">4</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">4</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">4</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">1</xsl:with-param>
+							
+						</xsl:call-template>
+
+				
 					</tr>
 
 					<!-- Fila 5-->					
 					<tr>
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">5</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">5</xsl:with-param>
+							
+						</xsl:call-template>
+
+				
 					</tr>
 
 					<!-- Fila 6 -->			
 					<tr>
+				
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">6</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">6</xsl:with-param>
+							
+						</xsl:call-template>
+
+				
 					</tr>
 
 					<!-- Fila 7 -->
 					<tr>
+				
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">7</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">7</xsl:with-param>
+							
+						</xsl:call-template>
+
+				
 					</tr>
 
 					<!-- Fila 8 -->
 					<tr>
+				
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
+							
+						</xsl:call-template>
+
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">8</xsl:with-param>
 							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">8</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
 					</tr>
 			
 					<!-- Fila 9-->		
 					<tr>
+				
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
+							
+						</xsl:call-template>
+
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">9</xsl:with-param>
 							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">9</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
 					</tr>
 
 					<!-- Fila 10 -->	
 					<tr>
+				
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
-
-						
-
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">10</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">10</xsl:with-param>
+							
+						</xsl:call-template>
+
+				
 					</tr>
 
 					<!-- Fila 11 -->
 					<tr>
+				
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">1</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
+							
+						</xsl:call-template>
+
 					
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">1</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">2</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
 							
-								<xsl:with-param name="x">2</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">3</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
 							
-								<xsl:with-param name="x">3</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
 
 
-							<xsl:call-template name="diagrama">
-							
-								<xsl:with-param name="x">4</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
-
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">4</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
 							
-								<xsl:with-param name="x">5</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">5</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
 							
-								<xsl:with-param name="x">6</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">6</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
 							
-								<xsl:with-param name="x">7</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
 
+					
+
+						<xsl:call-template name="diagrama">
 						
-
-							<xsl:call-template name="diagrama">
+							<xsl:with-param name="x">7</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
 							
-								<xsl:with-param name="x">8</xsl:with-param>
-								<xsl:with-param name="y">11</xsl:with-param>
-								
-							</xsl:call-template>
+						</xsl:call-template>
+
+					
+
+						<xsl:call-template name="diagrama">
+						
+							<xsl:with-param name="x">8</xsl:with-param>
+							<xsl:with-param name="y">11</xsl:with-param>
+							
+						</xsl:call-template>
 
 					
 					</tr>
@@ -944,12 +944,41 @@
 		<xsl:param name="y"/>
 		
 		<td>
+			<!-- Bucle para ver si hay una pared, ventana o puerta -->
 			<xsl:for-each select="estructuraAula/bloque">
 			
-				<xsl:call-template name="tipoColor">
-					<xsl:with-param name="tipo"><xsl:value-of select="@tipo"/></xsl:with-param>
-				</xsl:call-template>
+				<xsl:if test="$x = @x and $y=@y">
+					
+					<xsl:call-template name="tipoColor">
+						<xsl:with-param name="tipo"><xsl:value-of select="@tipo"/></xsl:with-param>
+					</xsl:call-template>
+					
+					<xsl:value-of select="@tipo"/>
+				</xsl:if>	
+			</xsl:for-each>
+			
+			<!-- Bucle para ver si hay un alumno/a -->
+			<xsl:for-each select="alumnado/alumno">
+			
+				<xsl:choose>
 				
+					<xsl:when test="$x = @x and $y=@y and @sexo = 'M'">
+						
+						<xsl:attribute name="bgcolor">lightblue</xsl:attribute>
+						<img src="{../imagen[1]/.}"/>
+						<xsl:value-of select="."/>
+					
+					</xsl:when>
+					
+					<xsl:when test="$x = @x and $y=@y and @sexo = 'H'">
+					
+						<xsl:attribute name="bgcolor">#ff7272</xsl:attribute>
+						<img src="{../imagen[2]/.}"/>
+						<xsl:value-of select="."/>						
+					
+					</xsl:when>
+				</xsl:choose>
+			
 			</xsl:for-each>
 		</td>
 	</xsl:template>
@@ -1030,9 +1059,23 @@
 			
 			#diagrama{
 				
-
+				text-align:center;
 				margin:auto;
 				
+			}
+			
+			#diagrama table td{
+			
+				height:60px;
+				width:80px;
+			}
+			
+			#diagrama table tr{
+				height: 60px;
+			}
+			
+			#diagrama img{
+				width:60px;
 			}
 		</style>
 	

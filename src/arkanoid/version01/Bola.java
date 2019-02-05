@@ -3,7 +3,7 @@ package arkanoid.version01;
 import java.awt.Graphics;
 
 public class Bola extends Actor {
-	private int vX = 0, vY = 0;
+	private float vX = 0, vY = 0;
 	private long tiempoCreacion;
 
 	protected static final int DIAMETRO = 20;
@@ -44,14 +44,16 @@ public class Bola extends Actor {
 		if (this.posX + DIAMETRO >= Arkanoid.ANCHO) {
 			
 			this.vX =  -vX;
-			
+			this.vX *= 1.001;
+			this.vY *= 1.001;
 		}
 		else {
 			
 			if (this.posX < 0) {
 				
 				this.vX = Math.abs(vX);
-				
+				this.vX *= 1.001;
+				this.vY *= 1.001;
 			}
 			
 		}
@@ -60,14 +62,16 @@ public class Bola extends Actor {
 		if (this.posY + DIAMETRO >= Arkanoid.ALTO) {
 			
 			this.vY = -vY;
-			
+			this.vX *= 1.001;
+			this.vY *= 1.001;
 		}
 		else {
 			
 			if (this.posY < 0) {
 				
 				this.vY = Math.abs(vY);
-				
+				this.vX *= 1.001;
+				this.vY *= 1.001;
 			}
 			
 		}
@@ -77,7 +81,6 @@ public class Bola extends Actor {
 		
 		this.posY += vY;	
 	
-
 		
 	}
 	
@@ -117,7 +120,8 @@ public class Bola extends Actor {
 	public void colision() {
 		
 		this.vY = -vY;
-		
+		this.vX *= 1.001;
+		this.vY *= 1.001;
 	}
 
 
