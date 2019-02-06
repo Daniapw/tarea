@@ -62,16 +62,14 @@ public class Bola extends Actor {
 		if (this.posY + DIAMETRO >= Arkanoid.ALTO) {
 			
 			this.vY = -vY;
-			this.vX *= 1.001;
-			this.vY *= 1.001;
+
 		}
 		else {
 			
 			if (this.posY < 0) {
 				
 				this.vY = Math.abs(vY);
-				this.vX *= 1.001;
-				this.vY *= 1.001;
+
 			}
 			
 		}
@@ -96,7 +94,7 @@ public class Bola extends Actor {
 			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
 			
 			this.vX = 4;
-			this.vY = -4;
+			this.vY = 4;
 			Arkanoid.juegoEmpezado = true;
 			
 		}
@@ -120,8 +118,7 @@ public class Bola extends Actor {
 	public void colision() {
 		
 		this.vY = -vY;
-		this.vX *= 1.001;
-		this.vY *= 1.001;
+
 	}
 
 

@@ -106,7 +106,7 @@ public class Arkanoid extends Canvas {
 			}
 		});
 		
-		//MotionListener para mover la nave con el raton
+		//MouseMotionListener para mover la nave con el raton
 		this.addMouseMotionListener(new MouseAdapter() {
 			
 			//Cuando el raton se mueve dentro de la ventana se ejecutara el metodo controlRaton() de la nave
