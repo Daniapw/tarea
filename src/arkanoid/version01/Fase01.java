@@ -22,17 +22,17 @@ public class Fase01 extends Fase {
 	
 	public void initFase() {
 		
-		String colores[] = new String[] { "#77abff", "#b8f759", "#fcfc2d", "#f49529", "#bc0197", "#ff052a"};
+		String colores[] = new String[] { "cian", "verde", "magenta", "verdeOscuro", "naranja", "rojo"};
 					
 		// Inicializamos los ladrillos
-	    int numLadrillosPosibles = Arkanoid.ANCHO / (32 + Ladrillo.ESPACIO_ENTRE_LADRILLOS);
-	    int margenIzquierdo = (Arkanoid.ANCHO % (32 + Ladrillo.ESPACIO_ENTRE_LADRILLOS)) / 2;
+	    int numLadrillosPosibles = Arkanoid.ANCHO / (48 + Ladrillo.ESPACIO_ENTRE_LADRILLOS);
+	    int margenIzquierdo = (Arkanoid.ANCHO % (48 + Ladrillo.ESPACIO_ENTRE_LADRILLOS)) / 2;
 	    
 	    // Creamos las filas
 	    for (int i = 0; i < colores.length; i++) {
 	    	for (int j = 0; j < numLadrillosPosibles; j++) {
-		    	this.actoresFase.add(new Ladrillo(margenIzquierdo + j * (32 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), 
-		    			MARGEN_SUPERIOR + i * (22 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), colores[i]));
+		    	this.actoresFase.add(new Ladrillo(margenIzquierdo + j * (48 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), 
+		    			MARGEN_SUPERIOR + i * (24 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), colores[i]));
 		    }
 	    }
 	}

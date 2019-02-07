@@ -36,7 +36,7 @@ public class Arkanoid extends Canvas {
 	//Boolean para saber si el juego ha empezado
 	protected static boolean juegoEmpezado = false;	
 	protected static boolean lanzarBola = false;
-	//Variable Arkanoid para el singleton
+	//Objeto Arkanoid para el singleton
 	public static Arkanoid arkanoid=null;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -141,22 +141,19 @@ public class Arkanoid extends Canvas {
 		Rectangle bolaRec = bola.getMedidas();
 		Rectangle r2 = null;
 		
-		//La bola no puede colisionar con m�s de dos ladrillos en un frame (por ahora)
-		int contadorColisiones = 0;
-		
 		/*Se compara el rectangulo de la bola con los rectangulos de los demas actores, y
 		si colisionan se ejecuta el metodo colision de la bola y el del actor en cuestion*/
 		for (int i = 0; i < actores.size(); i++) {
 			
 			r2 = actores.get(i).getMedidas();
 			
-			if (bolaRec.intersects(r2) && contadorColisiones < 1 && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
+			if (bolaRec.intersects(r2) && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
 				
 				actores.get(i).colision();
 				
 				bola.colision();
 				
-				contadorColisiones++;
+				break;
 			}	
 		}
 	}
@@ -166,14 +163,6 @@ public class Arkanoid extends Canvas {
 	 */
 	
 	public void actualizarMundo() {
-		
-		//Si el juego no ha empezado la bola estara pegada a la nave
-		if (!juegoEmpezado) {
-			
-			bola.posX = nave.posX + (nave.ancho/2);
-			bola.posY = nave.posY - Bola.DIAMETRO;
-			
-		}
 		
 		//Tanto la bola como la nave ejecutan su metodo actua
 		bola.actua();
@@ -185,7 +174,7 @@ public class Arkanoid extends Canvas {
 			
 			if (actores.get(i).isBorrar()) {
 				
-				actoresEspeciales.add(new Explosion(actores.get(i).posX, actores.get(i).posY - 8));
+				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -4));
 				
 				actores.remove(i);
 				

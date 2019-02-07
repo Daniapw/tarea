@@ -44,16 +44,14 @@ public class Bola extends Actor {
 		if (this.posX + DIAMETRO >= Arkanoid.ANCHO) {
 			
 			this.vX =  -vX;
-			this.vX *= 1.001;
-			this.vY *= 1.001;
+			
 		}
 		else {
 			
 			if (this.posX < 0) {
 				
 				this.vX = Math.abs(vX);
-				this.vX *= 1.001;
-				this.vY *= 1.001;
+
 			}
 			
 		}
@@ -87,6 +85,9 @@ public class Bola extends Actor {
 	 */
 	public void iniciarMovimiento() {
 		
+		this.posX = Arkanoid.getInstancia().nave.posX + (Arkanoid.getInstancia().nave.ancho/2);
+		this.posY = Arkanoid.getInstancia().nave.posY - Bola.DIAMETRO;
+		
 		long tiempoActual = System.currentTimeMillis();
 		
 		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.lanzarBola) {
@@ -95,7 +96,7 @@ public class Bola extends Actor {
 			
 			this.vX = 4;
 			this.vY = 4;
-			Arkanoid.juegoEmpezado = true;
+			Arkanoid.getInstancia().juegoEmpezado = true;
 			
 		}
 		

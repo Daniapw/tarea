@@ -1,12 +1,10 @@
 package arkanoid.version01;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 public class Ladrillo extends Actor {
 	protected String color;
-	protected static final int ESPACIO_ENTRE_LADRILLOS = 12;
+	protected static final int ESPACIO_ENTRE_LADRILLOS = 1;
 	
 	
 	/**
@@ -21,8 +19,10 @@ public class Ladrillo extends Actor {
 		
 		this.color = color;
 		
-		this.setAncho(42);
-		this.setAlto(22);
+		this.spriteActual = SpriteCache.getSpriteCache().getSprite(color + ".png");
+		
+		this.alto = spriteActual.getHeight();
+		this.ancho = spriteActual.getWidth();
 	}
 
 	/**
@@ -31,13 +31,7 @@ public class Ladrillo extends Actor {
 	
 	public void paint(Graphics g) {
 		
-		//Rectangulo
-		g.setColor(Color.decode(this.color));
-		g.fillRect(this.posX, this.posY, this.ancho, this.alto);
-		
-		//Borde
-		g.setColor(Color.black);
-		g.drawRect(this.posX, this.posY, this.ancho, this.alto);
+		g.drawImage(this.spriteActual, this.posX, this.posY, null);
 		
 	}
 	

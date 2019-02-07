@@ -1013,6 +1013,12 @@
 				
 			}
 			
+			#horario table{
+			
+				border-collapse:collapse;
+			
+			}
+			
 			.dia{
 			
 				font-weight:bold;
@@ -1061,6 +1067,12 @@
 				
 				text-align:center;
 				margin:auto;
+				
+			}
+			
+			#diagrama table{
+				
+				border-collapse:collapse;
 				
 			}
 			

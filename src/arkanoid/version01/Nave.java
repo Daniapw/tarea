@@ -4,11 +4,15 @@ package arkanoid.version01;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public class Nave extends Actor {
 	
 	private int vX = 5;
 	private boolean derecha, izda;
+	private BufferedImage spritesNave[] = new BufferedImage[3];
+	protected int t = 0;
+	protected int frameActual;
 	
 	/**
 	 * Constructor
@@ -21,7 +25,12 @@ public class Nave extends Actor {
 	public Nave(int posX, int posY) {
 		super(posX, posY);
 		
-		this.spriteActual = SpriteCache.getSpriteCache().getSprite("vaus.png");
+		for (int i = 0; i < 3; i++) {
+			
+			this.spritesNave[i] = SpriteCache.getSpriteCache().getSprite("vaus" + (i + 1) + ".png");
+			
+		}
+		this.spriteActual = this.spritesNave[0];
 		this.setAlto(this.spriteActual.getHeight());
 		this.setAncho(this.spriteActual.getWidth());
 	}
@@ -52,6 +61,14 @@ public class Nave extends Actor {
 			
 		}
 		
+		//Animacion
+		t++;
+		
+		if (t % 4 == 0) {
+			
+			t = 0;
+			frameActual = (frameActual + 1) % spritesNave.length; 
+		}
 	}
 
 	/**
@@ -149,7 +166,7 @@ public class Nave extends Actor {
 	
 	public void paint(Graphics g) {
 		
-		g.drawImage(this.getSprite(), this.posX, this.posY, null);
+		g.drawImage(this.spritesNave[frameActual], this.posX, this.posY, null);
 		
 	}
 	

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ejercicioPrimerDia.xsl"?>
+<callejero barrio="Centro" ciudad="Lucena" cod_postal="14900" provincia="Córdoba" 
+    imagen="http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/callejero.png">
+    
+    <calle anexas="Plaza de España - Julio Romero de Torres">Juan Valera</calle>
+    <calle anexas="Plaza de España - Las tiendas">Alta y baja</calle>
+    <calle anexas="Plaza de España - Plaza Nueva">San Miguel</calle>
+    <monumentos>
+        <monumento imagen="http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/ayuntamiento.jpg" x="2" y="1">Ayuntamiento</monumento>
+        <monumento imagen="http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/castillo.jpg" x="4" y="5">Castillo</monumento>
+        <monumento imagen="http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/sanMateo.jpg" x="2" y="4">San Mateo</monumento>
+    </monumentos>
+    <patrocinadores>
+        <patrocinador>
+            <nombre>Joyería Medallón</nombre>
+            <direccion>Plaza Nueva, 6</direccion>
+            <imagen>http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/joyeria.jpg</imagen>
+        </patrocinador>
+        <patrocinador>
+            <nombre>Zapatería Zapatón</nombre>
+            <direccion>Plaza Alta y baja, 10</direccion>
+            <imagen>http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/zapateria.jpg</imagen>
+        </patrocinador>
+        <patrocinador>
+            <nombre>Supermercado Superbarato</nombre>
+            <direccion>Juan Valera, 13</direccion>
+            <imagen>http://www.webdidacticarafaelmunoz.appspot.com/lmsgi/image/callejero/supermercado.jpg</imagen>
+        </patrocinador>
+    </patrocinadores>
+</callejero>
