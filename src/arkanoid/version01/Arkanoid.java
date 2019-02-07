@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class Arkanoid extends Canvas {
 	
 	//Propiedades del JFrame
-	public static final int ANCHO = 500; 
+	public static final int ANCHO = 600; 
 	public static final int ALTO = 700;
 	//Tasa de frames
 	public static final int FPS = 100;	
@@ -174,7 +174,7 @@ public class Arkanoid extends Canvas {
 			
 			if (actores.get(i).isBorrar()) {
 				
-				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -4));
+				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
 				
 				actores.remove(i);
 				
