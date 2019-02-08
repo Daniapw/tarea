@@ -43,7 +43,7 @@ public class Explosion extends Actor{
 		
 		t++;
 		
-		if (t % 5 == 0) {
+		if (t % 4 == 0) {
 			
 			frameActual = (frameActual + 1) % spritesExpl.length; 
 			

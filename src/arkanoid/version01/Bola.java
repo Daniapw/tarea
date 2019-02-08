@@ -38,7 +38,7 @@ public class Bola extends Actor {
 	public void actua() {
 		
 		//Al comienzo del juego se inicia el movimiento de la pelota
-		if (!Arkanoid.juegoEmpezado) iniciarMovimiento();
+		if (!Arkanoid.getInstancia().juegoEmpezado) iniciarMovimiento();
 		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
 		if (this.posX + DIAMETRO >= Arkanoid.ANCHO) {
@@ -90,7 +90,7 @@ public class Bola extends Actor {
 		
 		long tiempoActual = System.currentTimeMillis();
 		
-		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.lanzarBola) {
+		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.getInstancia().lanzarBola) {
 			
 			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
 			

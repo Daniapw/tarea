@@ -97,7 +97,7 @@ public class Nave extends Actor {
 			//Si el jugador pulsa la barra espaciadora la bola saldra despedida
 			case KeyEvent.VK_SPACE:{
 				
-				Arkanoid.lanzarBola = true;
+				Arkanoid.getInstancia().lanzarBola = true;
 				
 			}
 		}
@@ -155,7 +155,7 @@ public class Nave extends Actor {
 		
 		if (e.getID() == MouseEvent.MOUSE_CLICKED) {
 			
-			Arkanoid.lanzarBola = true;
+			Arkanoid.getInstancia().lanzarBola = true;
 			
 		}
 		

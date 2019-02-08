@@ -34,8 +34,8 @@ public class Arkanoid extends Canvas {
 	//Estrategia de buffer
 	private BufferStrategy estrategia;
 	//Boolean para saber si el juego ha empezado
-	protected static boolean juegoEmpezado = false;	
-	protected static boolean lanzarBola = false;
+	protected boolean juegoEmpezado = false;	
+	protected boolean lanzarBola = false;
 	//Objeto Arkanoid para el singleton
 	public static Arkanoid arkanoid=null;
 
