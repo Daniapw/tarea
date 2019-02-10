@@ -3,6 +3,8 @@ package arkanoid.version01;
 import java.awt.Graphics;
 
 public class Bola extends Actor {
+	private PuntoAltaPrecision coordenadas;
+	private TrayectoriaRecta trayectoria;
 	private float vX = 0, vY = 0;
 	private long tiempoCreacion;
 
