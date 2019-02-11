@@ -2,6 +2,7 @@ package arkanoid.version01;
 
 import java.awt.Graphics;
 
+
 public class Bola extends Actor {
 	private float vX = 0, vY = 0;
 	private long tiempoCreacion;
@@ -77,6 +78,9 @@ public class Bola extends Actor {
 		
 		this.posY += vY;	
 	
+		if (this.vX < 6) this.vX *= 1.00010f;
+
+		if (this.vY < 6) this.vY *= 1.00010f;
 		
 	}
 	
@@ -86,7 +90,7 @@ public class Bola extends Actor {
 	public void iniciarMovimiento() {
 		
 		this.posX = Arkanoid.getInstancia().nave.posX + (Arkanoid.getInstancia().nave.ancho/2);
-		this.posY = Arkanoid.getInstancia().nave.posY - Bola.DIAMETRO;
+		this.posY = Arkanoid.getInstancia().nave.posY - Bola.DIAMETRO - 1;
 		
 		long tiempoActual = System.currentTimeMillis();
 		
@@ -120,22 +124,71 @@ public class Bola extends Actor {
 		
 		if (actor instanceof Ladrillo) {
 			
-			this.vX *= 1.010;
-			this.vY *= 1.010;
+			colisionConLadrillo(actor);
 			
 		}
+		else {
+			
+			if (actor instanceof Nave) {
+				
+				colisionConNave(actor);
+				
+			}
+			
+		}
+	}
+	
+	/**
+	 * Colision con nave
+	 * @param nave
+	 */
+	public void colisionConNave(Actor nave) {
 		
-		if (actor instanceof Nave) {
+		if (this.posX > nave.posX && this.posX < (nave.posX +5)) {
 			
-			this.vX *= 1.005;
-			this.vY *= 1.005;
+			this.posX = nave.posX - Bola.DIAMETRO - 1;
 			
+			this.vX = -vX;
+		}
+		
+		if (this.posX < (nave.posX + nave.ancho) && this.posX > (nave.posX + nave.ancho - 5)) {
+			
+			this.posX = (nave.posX + nave.ancho) + 1;
+			
+			this.vX = -vX;
 		}
 		
 		this.vY = -vY;
 		
 
+
 	}
 
+	/**
+	 * Colision con ladrillo
+	 * @param actor
+	 */
+	public void colisionConLadrillo(Actor actor) {
+		
+		if (this.posX + DIAMETRO/2 > actor.posX && this.posX + DIAMETRO/2 < actor.posX + 5) {
+			
+			this.posX = actor.posX - DIAMETRO - 1;
+			vX = -vX;
 
+		}
+		else {
+			
+			if (this.posX + DIAMETRO/2 < (actor.posX + actor.ancho) && this.posX + DIAMETRO/2 > (actor.posX + actor.ancho) - 5 ) {
+				
+				this.posX = actor.posX + actor.ancho + 1;
+				vX = -vX;
+
+			}
+		}
+		
+		this.vY = -vY;
+		
+	}
+	
+	
 }

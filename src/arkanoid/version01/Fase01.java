@@ -2,8 +2,8 @@ package arkanoid.version01;
 
 public class Fase01 extends Fase {
 	
-    protected int margenIzquierdo = (Arkanoid.ANCHO % (50 + Ladrillo.ESPACIO_ENTRE_LADRILLOS)) / 2;
-	protected int MARGEN_SUPERIOR = 20;
+    private int margenIzquierdo = (Arkanoid.ANCHO % (50 + Ladrillo.ESPACIO_ENTRE_LADRILLOS)) / 2;
+    private int MARGEN_SUPERIOR = 20;
 
 	/**
 	 * Constructor

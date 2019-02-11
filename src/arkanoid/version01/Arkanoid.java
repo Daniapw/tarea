@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class Arkanoid extends Canvas {
 	
 	//Propiedades del JFrame
-	public static final int ANCHO = 600; 
+	public static final int ANCHO = 620; 
 	public static final int ALTO = 700;
 	//Tasa de frames
 	public static final int FPS = 100;	
@@ -73,7 +73,7 @@ public class Arkanoid extends Canvas {
 		ventana.setIgnoreRepaint(true);
 		
 		//Cambiar fase activa
-		faseActiva = new Fase01();
+		faseActiva = new Fase02();
 		
 		//Anado todos los actores a la lista
 		actores.add(nave);
