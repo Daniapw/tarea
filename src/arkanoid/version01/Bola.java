@@ -3,8 +3,6 @@ package arkanoid.version01;
 import java.awt.Graphics;
 
 public class Bola extends Actor {
-	private PuntoAltaPrecision coordenadas;
-	private TrayectoriaRecta trayectoria;
 	private float vX = 0, vY = 0;
 	private long tiempoCreacion;
 
@@ -96,8 +94,8 @@ public class Bola extends Actor {
 			
 			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
 			
-			this.vX = 4;
-			this.vY = 4;
+			this.vX = 3;
+			this.vY = 3;
 			Arkanoid.getInstancia().juegoEmpezado = true;
 			
 		}
@@ -118,9 +116,24 @@ public class Bola extends Actor {
 	 * Metodo que gestiona las colisiones
 	 */
 	
-	public void colision() {
+	public void colision(Actor actor) {
+		
+		if (actor instanceof Ladrillo) {
+			
+			this.vX *= 1.010;
+			this.vY *= 1.010;
+			
+		}
+		
+		if (actor instanceof Nave) {
+			
+			this.vX *= 1.005;
+			this.vY *= 1.005;
+			
+		}
 		
 		this.vY = -vY;
+		
 
 	}
 

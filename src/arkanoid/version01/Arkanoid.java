@@ -151,7 +151,7 @@ public class Arkanoid extends Canvas {
 				
 				actores.get(i).colision();
 				
-				bola.colision();
+				bola.colision(actores.get(i));
 				
 				break;
 			}	
