@@ -36,7 +36,9 @@ public class Arkanoid extends Canvas {
 	//Boolean para saber si el juego ha empezado
 	protected boolean juegoEmpezado = false;	
 	protected boolean lanzarBola = false;
-	//Objeto Arkanoid para el singleton
+	//Boolean para saber si el juego ha terminado
+	protected boolean juegoTerminado = false;
+	//Puntero Arkanoid para el singleton
 	public static Arkanoid arkanoid=null;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,7 +75,7 @@ public class Arkanoid extends Canvas {
 		ventana.setIgnoreRepaint(true);
 		
 		//Cambiar fase activa
-		faseActiva = new Fase02();
+		faseActiva = new Fase01();
 		
 		//Anado todos los actores a la lista
 		actores.add(nave);
@@ -164,38 +166,64 @@ public class Arkanoid extends Canvas {
 	
 	public void actualizarMundo() {
 		
-		//Tanto la bola como la nave ejecutan su metodo actua
-		bola.actua();
-		nave.actua();
+		//Si el juego no ha terminado, la bola y la nave ejecutan su metodo actua
 		
-		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
-		se anadira a la lista actoresEspeciales*/
-		for (int i = 0; i < actores.size(); i++) {
+		if (!juegoTerminado) {
 			
-			if (actores.get(i).isBorrar()) {
+			bola.actua();
+			
+			comprobarVida();
+			
+			nave.actua();
+		
+			/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
+			se anadira a la lista actoresEspeciales*/
+			for (int i = 0; i < actores.size(); i++) {
 				
-				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
-				
-				actores.remove(i);
-				
+				if (actores.get(i).isBorrar()) {
+					
+					actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
+					
+					actores.remove(i);
+					
+				}
 				
 			}
 			
-		}
-		
-		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
-		for (int i = 0; i < actoresEspeciales.size(); i++) {
-			
-			actoresEspeciales.get(i).actua();
-			
-			if (actoresEspeciales.get(i).isBorrar()) {
+			//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
+			for (int i = 0; i < actoresEspeciales.size(); i++) {
 				
-				actoresEspeciales.remove(i);
+				actoresEspeciales.get(i).actua();
+				
+				if (actoresEspeciales.get(i).isBorrar()) {
+					
+					actoresEspeciales.remove(i);
+					
+				}
 				
 			}
-			
 		}
+	}
+	
+	/**
+	 * Metodo que resta vidas a la nave y termina el juego si no le quedan
+	 */
+	
+	public void comprobarVida() {
 		
+		if (bola.toqueAbajo) {
+			
+			CacheSonido.getCacheSonido().reproducirSonido("SonidoDanio.wav");
+			nave.intentos--;
+			
+			if (nave.intentos == 0) {
+				
+				juegoTerminado = true;
+				
+			}
+		
+		}
+
 	}
 	
 	/**
@@ -250,23 +278,31 @@ public class Arkanoid extends Canvas {
 		
 		Graphics g = estrategia.getDrawGraphics();
 		
-		//Pintar fondo
-		g.drawImage(SpriteCache.getSpriteCache().getSprite(faseActiva.fondo), 0, 0, this);
-		
-		//Pintar actores normales (ladrillos, nave, bola)
-		for (int i = 0; i < actores.size(); i++) {
+		if (!juegoTerminado) {
+			//Pintar fondo
+			g.drawImage(SpriteCache.getSpriteCache().getSprite(faseActiva.fondo), 0, 0, this);
 			
-			actores.get(i).paint(g);
+			//Pintar actores normales (ladrillos, nave, bola)
+			for (int i = 0; i < actores.size(); i++) {
+				
+				actores.get(i).paint(g);
+				
+			}
+	
+			//Pintar actores especiales (disparos, power-ups, etc.)
+			for (int i = 0; i < actoresEspeciales.size(); i++) {
+				
+				actoresEspeciales.get(i).paint(g);
+				
+			}
+		}
+		else {
+			
+			CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+			g.drawImage(SpriteCache.getSpriteCache().getSprite("GameOver.png"), 0, 0, this);
 			
 		}
-
-		//Pintar actores especiales (disparos, power-ups, etc.)
-		for (int i = 0; i < actoresEspeciales.size(); i++) {
 			
-			actoresEspeciales.get(i).paint(g);
-			
-		}
-		
 		estrategia.show();
 		
 	}

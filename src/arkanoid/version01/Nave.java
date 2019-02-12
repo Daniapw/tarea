@@ -8,11 +8,16 @@ import java.awt.image.BufferedImage;
 
 public class Nave extends Actor {
 	
+	//Velocidad de la nave
 	private int vX = 5;
+	//Booleans para saber en que direccion se esta desplazando
 	private boolean derecha, izda;
+	//Animacion de la nave
 	private BufferedImage spritesNave[] = new BufferedImage[3];
 	protected int t = 0;
 	protected int frameActual;
+	//Vidas de la nave
+	protected int intentos = 3;
 	
 	/**
 	 * Constructor
@@ -160,6 +165,7 @@ public class Nave extends Actor {
 		}
 		
 	}
+	
 	/**
 	 * Metodo paint
 	 */

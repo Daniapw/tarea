@@ -9,7 +9,7 @@ public abstract class Fase {
 	protected String fondo;
 	protected static String colores[] = new String[] { "cian", "verde", "magenta", "verdeOscuro", "naranja", "rojo", "rompible", "irrompible"};
     protected static int numLadrillosPosibles = Arkanoid.ANCHO / (50 + Ladrillo.ESPACIO_ENTRE_LADRILLOS);
-	
+
 	/**
 	 * Metodo abstracto que iniciara la fase en cuestion
 	 */

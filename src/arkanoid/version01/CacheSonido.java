@@ -78,7 +78,7 @@ public class CacheSonido {
 	 */
 	
 	public void reproducirSonido(String nombre) {
-		
+
 		getSonido(nombre).play();
 		
 	}
@@ -91,6 +91,16 @@ public class CacheSonido {
 	public void reproducirSonidoBucle(String nombre) {
 		
 		getSonido(nombre).loop();
+		
+	}
+	
+	/**
+	 * Metodo para dejar de reproducir un sonido
+	 * @param nombre
+	 */
+	public void pararSonido(String nombre) {
+
+		getSonido(nombre).stop();
 		
 	}
 }

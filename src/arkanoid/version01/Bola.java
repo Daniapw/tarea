@@ -4,10 +4,14 @@ import java.awt.Graphics;
 
 
 public class Bola extends Actor {
+	//Velocidad de la bola
 	private float vX = 0, vY = 0;
+	//Tiempo en ms en el que se ha creado la bola
 	private long tiempoCreacion;
-
+	//Diametro de la bola
 	protected static final int DIAMETRO = 20;
+	//Boolean para saber si la bola ha tocado abajo
+	protected boolean toqueAbajo = false;
 	
 	/**
 	 * Constructor
@@ -38,8 +42,11 @@ public class Bola extends Actor {
 	
 	public void actua() {
 		
+		//Reiniciar boolean toqueAbajo
+		toqueAbajo = false;
+		
 		//Al comienzo del juego se inicia el movimiento de la pelota
-		if (!Arkanoid.getInstancia().juegoEmpezado) iniciarMovimiento();
+		if (!Arkanoid.getInstancia().juegoEmpezado || !Arkanoid.getInstancia().lanzarBola) iniciarMovimiento();
 		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
 		if (this.posX + DIAMETRO >= Arkanoid.ANCHO) {
@@ -61,7 +68,9 @@ public class Bola extends Actor {
 		if (this.posY + DIAMETRO >= Arkanoid.ALTO) {
 			
 			this.vY = -vY;
-
+			
+			//La bola ha tocado abajo, por lo que se cambia el boolean y se reproduce un sonido
+			toqueAbajo = true;
 		}
 		else {
 			
@@ -144,19 +153,6 @@ public class Bola extends Actor {
 	 */
 	public void colisionConNave(Actor nave) {
 		
-		if (this.posX > nave.posX && this.posX < (nave.posX +5)) {
-			
-			this.posX = nave.posX - Bola.DIAMETRO - 1;
-			
-			this.vX = -vX;
-		}
-		
-		if (this.posX < (nave.posX + nave.ancho) && this.posX > (nave.posX + nave.ancho - 5)) {
-			
-			this.posX = (nave.posX + nave.ancho) + 1;
-			
-			this.vX = -vX;
-		}
 		
 		this.vY = -vY;
 		
@@ -169,22 +165,6 @@ public class Bola extends Actor {
 	 * @param actor
 	 */
 	public void colisionConLadrillo(Actor actor) {
-		
-		if (this.posX + DIAMETRO/2 > actor.posX && this.posX + DIAMETRO/2 < actor.posX + 5) {
-			
-			this.posX = actor.posX - DIAMETRO - 1;
-			vX = -vX;
-
-		}
-		else {
-			
-			if (this.posX + DIAMETRO/2 < (actor.posX + actor.ancho) && this.posX + DIAMETRO/2 > (actor.posX + actor.ancho) - 5 ) {
-				
-				this.posX = actor.posX + actor.ancho + 1;
-				vX = -vX;
-
-			}
-		}
 		
 		this.vY = -vY;
 		
