@@ -9,6 +9,7 @@ public class Actor {
 	protected int posX, posY, ancho, alto;
 	protected BufferedImage spriteActual;
 	private boolean borrar = false;
+	private String tipo;
 	
 	/**
 	 *  Constructor
@@ -37,11 +38,7 @@ public class Actor {
 	
 	public void colision() {}
 	
-	/**
-	 * Getter para el color
-	 */
-	
-	public String getColor() {return "";}
+
 	
 	/**
 	 * Metodo que devuelve el rectangulo que encapsula al actor
@@ -53,9 +50,9 @@ public class Actor {
 		return new Rectangle(posX, posY, ancho, alto);
 	
 	}
-	
+
 	/**
-	 * 
+	 * Metodo paint que sobreescribiran los actores
 	 * @param g
 	 */
 	

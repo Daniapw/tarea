@@ -23,12 +23,15 @@ public class Fase01 extends Fase {
 	
 	public void initFase() {
 		
-	    for (int i = 0; i < (colores.length - 2); i++) {
+	    /*for (int i = 0; i < (colores.length - 2); i++) {
 	    	for (int j = 0; j < 11; j++) {
 		    	this.actoresFase.add(new Ladrillo(margenIzquierdo + j * (50 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), 
 		    			MARGEN_SUPERIOR + i * (24 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), colores[i]));
 		    }
-	    }
+	    }*/
+		
+		this.actoresFase.add(new Ladrillo(500, 350, "rojo"));
+		this.actoresFase.add(new Ladrillo(400, 350, "irrompible"));
 	}
 		
 }

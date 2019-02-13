@@ -3,7 +3,8 @@ package arkanoid.version01;
 import java.awt.Graphics;
 
 public class Ladrillo extends Actor {
-	protected String color, tipo;
+	protected String color;
+	protected int vidas = 1;
 	protected static final int ESPACIO_ENTRE_LADRILLOS = 1;
 	
 	protected boolean golpeado = false;
@@ -19,18 +20,10 @@ public class Ladrillo extends Actor {
 		super(posX, posY);
 		
 		this.color = color;
+	
+		if (color.equals("rompible")) this.vidas = 2;
 		
-		if (!color.equals("rompible") && !color.equals("irrompible")) {
-			
-			this.tipo = "normal";
-			
-		}else {
-			
-			if (color.equals("rompible")) this.tipo = "rompible";
-			
-			if (color.equals("irrompible")) this.tipo = "irrompible";
-			
-		}
+		if (color.equals("irrompible")) this.vidas = -1;
 		
 		this.spriteActual = SpriteCache.getSpriteCache().getSprite(color + ".png");
 		
@@ -54,38 +47,30 @@ public class Ladrillo extends Actor {
 	
 	public void colision() {
 		
-		switch (this.tipo) {
+		switch (this.vidas) {
 		
-			case "normal":{
+			case 1:{
 				
 				CacheSonido.getCacheSonido().reproducirSonido("SonidoChoqueLadrillo.wav");
+				vidas--;
 				this.setBorrar(true);
 				break;
+				
 			}
 			
-			case "rompible":{
+			case 2:{
 				
-				if (!this.golpeado) {
-					
-					CacheSonido.getCacheSonido().reproducirSonido("SonidoRompible.wav");
-					
-					this.spriteActual = SpriteCache.getSpriteCache().getSprite("rompible2.png");
-					
-					this.golpeado = true;
-					
-				}
-				else {
-					
-					CacheSonido.getCacheSonido().reproducirSonido("SonidoChoqueLadrillo.wav");
-					this.setBorrar(true);
-					
-				}
+				CacheSonido.getCacheSonido().reproducirSonido("SonidoRompible.wav");
+				
+				this.spriteActual = SpriteCache.getSpriteCache().getSprite("rompible2.png");
+				
+				vidas--;
 				
 				break;
 				
 			}
 			
-			case "irrompible":{
+			case -1:{
 				
 				CacheSonido.getCacheSonido().reproducirSonido("SonidoIrrompible.wav");
 				
@@ -94,9 +79,6 @@ public class Ladrillo extends Actor {
 		
 		}
 		
-		
 	}
-
-	
 	
 }

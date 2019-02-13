@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 public class Arkanoid extends Canvas {
 	
-	//Propiedades del JFrame
+	//Dimensiones del JFrame
 	public static final int ANCHO = 620; 
 	public static final int ALTO = 700;
 	//Tasa de frames
@@ -73,6 +73,7 @@ public class Arkanoid extends Canvas {
 		ventana.setVisible(true);
 		ventana.setResizable(false);
 		ventana.setIgnoreRepaint(true);
+
 		
 		//Cambiar fase activa
 		faseActiva = new Fase01();
@@ -159,6 +160,73 @@ public class Arkanoid extends Canvas {
 			}	
 		}
 	}
+
+	/**
+	 * Comprobar si ha terminado la fase
+	 * @return
+	 */
+	public boolean faseTerminada() {
+		
+		List<Ladrillo> ladrillos = new ArrayList<Ladrillo>();
+		
+		//Creo una lista y le anado los ladrillos de la lista de actores
+		for (int i = 0; i < actores.size(); i++) {
+			
+			if (actores.get(i) instanceof Ladrillo) {
+				
+				ladrillos.add((Ladrillo) actores.get(i));
+				
+			}
+			
+		}
+		
+		//Recorro la lista y compruebo si alguno de los ladrillos tienen mas de 0 vidas (los irrompibles tienen -1)
+		for (Ladrillo ladrillo:ladrillos) {
+			
+			if (ladrillo.vidas > 0) {
+				
+				return false;
+			
+			}	
+		}
+		
+		//Si no se encuentra ningun ladrillo "vivo" el metodo devuelve true
+		return true;
+	}
+	
+	/**
+	 * Metodo que comprueba si hay que borrar ladrillos y crea las explosiones
+	 */
+	
+	public void comprobacionLadrillosYExplosiones() {
+		
+		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
+		se anadira a la lista actoresEspeciales*/
+		for (int i = 0; i < actores.size(); i++) {
+			
+			if (actores.get(i).isBorrar()) {
+				
+				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
+				
+				actores.remove(i);
+				
+			}
+			
+		}
+		
+		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			actoresEspeciales.get(i).actua();
+			
+			if (actoresEspeciales.get(i).isBorrar()) {
+				
+				actoresEspeciales.remove(i);
+				
+			}
+			
+		}
+	}
 	
 	/**
 	 * Metodo que cambia el mundo en cada fotograma
@@ -166,7 +234,7 @@ public class Arkanoid extends Canvas {
 	
 	public void actualizarMundo() {
 		
-		//Si el juego no ha terminado, la bola y la nave ejecutan su metodo actua
+		//Si el juego no ha terminado, se actualiza el mundo
 		
 		if (!juegoTerminado) {
 			
@@ -175,31 +243,12 @@ public class Arkanoid extends Canvas {
 			comprobarVida();
 			
 			nave.actua();
-		
-			/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
-			se anadira a la lista actoresEspeciales*/
-			for (int i = 0; i < actores.size(); i++) {
-				
-				if (actores.get(i).isBorrar()) {
-					
-					actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
-					
-					actores.remove(i);
-					
-				}
-				
-			}
 			
-			//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
-			for (int i = 0; i < actoresEspeciales.size(); i++) {
+			comprobacionLadrillosYExplosiones();
+			
+			if (faseTerminada()) {
 				
-				actoresEspeciales.get(i).actua();
-				
-				if (actoresEspeciales.get(i).isBorrar()) {
-					
-					actoresEspeciales.remove(i);
-					
-				}
+				System.out.println("Fase terminada");
 				
 			}
 		}
@@ -211,12 +260,32 @@ public class Arkanoid extends Canvas {
 	
 	public void comprobarVida() {
 		
+		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
 		if (bola.toqueAbajo) {
 			
-			CacheSonido.getCacheSonido().reproducirSonido("SonidoDanio.wav");
 			nave.intentos--;
 			
-			if (nave.intentos == 0) {
+			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
+			if (nave.intentos > 0) {
+				
+				CacheSonido.getCacheSonido().reproducirSonido("SonidoDanio.wav");
+				
+			}
+			/*Si no le quedan vidas el juego se detendra durante 3 segundos, se reproducira un sonido para indicar que has perdido
+			y juegoTerminado pasara a ser true*/
+			else {
+				
+				//La cancion de fondo se detiene
+				CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+				
+				long tiempoInicial = System.currentTimeMillis();
+				long tiempo = System.currentTimeMillis();
+				
+				while ((tiempo - tiempoInicial)/1000 < 2 ) {
+					
+					tiempo = System.currentTimeMillis();
+					
+				}
 				
 				juegoTerminado = true;
 				
@@ -261,8 +330,6 @@ public class Arkanoid extends Canvas {
 				 
 			} catch (InterruptedException e) {}
 			
-			
-			
 		}
 		
 	}
@@ -278,6 +345,7 @@ public class Arkanoid extends Canvas {
 		
 		Graphics g = estrategia.getDrawGraphics();
 		
+		//Si el juego no ha terminado (el jugador no ha perdido)
 		if (!juegoTerminado) {
 			//Pintar fondo
 			g.drawImage(SpriteCache.getSpriteCache().getSprite(faseActiva.fondo), 0, 0, this);
@@ -296,9 +364,10 @@ public class Arkanoid extends Canvas {
 				
 			}
 		}
+		//Si el juego ha terminado (el jugador ha perdido)
 		else {
-			
-			CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+		
+			//Se dibuja la imagen GameOver en pantalla
 			g.drawImage(SpriteCache.getSpriteCache().getSprite("GameOver.png"), 0, 0, this);
 			
 		}
@@ -323,6 +392,7 @@ public class Arkanoid extends Canvas {
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	/**
 	 * Main
 	 * @param args
