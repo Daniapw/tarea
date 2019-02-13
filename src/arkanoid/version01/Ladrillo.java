@@ -7,8 +7,6 @@ public class Ladrillo extends Actor {
 	protected int vidas = 1;
 	protected static final int ESPACIO_ENTRE_LADRILLOS = 1;
 	
-	protected boolean golpeado = false;
-	
 	/**
 	 * Constructor
 	 * @param posX

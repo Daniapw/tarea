@@ -31,7 +31,8 @@ public class Fase01 extends Fase {
 	    }*/
 		
 		this.actoresFase.add(new Ladrillo(500, 350, "rojo"));
-		this.actoresFase.add(new Ladrillo(400, 350, "irrompible"));
+		this.actoresFase.add(new Ladrillo(300, 350, "irrompible"));
+		this.actoresFase.add(new Ladrillo(150, 350, "rompible"));
 	}
 		
 }

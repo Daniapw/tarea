@@ -99,11 +99,11 @@ public class Nave extends Actor {
 				break;
 			}
 			
-			//Si el jugador pulsa la barra espaciadora la bola saldra despedida
+			//Si el jugador pulsa la barra espaciadora al comienzo del juegola bola saldra despedida y se reproducira un sonido  
 			case KeyEvent.VK_SPACE:{
-				
-				Arkanoid.getInstancia().lanzarBola = true;
-				
+
+				Arkanoid.getInstancia().bolaLanzada = true;
+						
 			}
 		}
 		
@@ -156,11 +156,16 @@ public class Nave extends Actor {
 
 	}
 	
+	/**
+	 * Metodo que controla si el usuario ha hecho clic para lanzar la bola
+	 * @param e
+	 */
+	
 	public void empezarConRaton(MouseEvent e) {
 		
 		if (e.getID() == MouseEvent.MOUSE_CLICKED) {
 			
-			Arkanoid.getInstancia().lanzarBola = true;
+			Arkanoid.getInstancia().bolaLanzada = true;
 			
 		}
 		

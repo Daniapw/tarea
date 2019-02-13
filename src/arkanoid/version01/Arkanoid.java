@@ -1,6 +1,7 @@
 package arkanoid.version01;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,8 +13,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Arkanoid extends Canvas {
@@ -30,18 +34,20 @@ public class Arkanoid extends Canvas {
 	public List<Actor> actores = new ArrayList<Actor>();
 	public List<Actor> actoresEspeciales = new ArrayList<Actor>();
 	//Fase activa
+	public List<Fase> fases = new ArrayList<Fase>();
 	public Fase faseActiva = null;
+	private int indiceFase = 0;
 	//Estrategia de buffer
 	private BufferStrategy estrategia;
 	//Boolean para saber si el juego ha empezado
 	protected boolean juegoEmpezado = false;	
-	protected boolean lanzarBola = false;
+	protected boolean bolaLanzada = false;
 	//Boolean para saber si el juego ha terminado
 	protected boolean juegoTerminado = false;
 	//Puntero Arkanoid para el singleton
 	public static Arkanoid arkanoid=null;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Constructor
@@ -76,6 +82,8 @@ public class Arkanoid extends Canvas {
 
 		
 		//Cambiar fase activa
+		fases.add(new Fase02());
+		
 		faseActiva = new Fase01();
 		
 		//Anado todos los actores a la lista
@@ -98,7 +106,6 @@ public class Arkanoid extends Canvas {
 				
 				nave.teclaPulsada(e);
 				
-				
 			}
 			
 			//Cuando se suelte una tecla se ejecutara el metodo teclaSoltada() de la nave
@@ -119,7 +126,6 @@ public class Arkanoid extends Canvas {
 				
 			}	
 			
-
 		});
 		
 		//MouseListener para detectar si el usuario ha hecho clic
@@ -128,172 +134,14 @@ public class Arkanoid extends Canvas {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			
-				nave.empezarConRaton(e);
+				if (!juegoEmpezado) nave.empezarConRaton(e);
 				
 			}
 			
 		});
 	}
-	
-	/**
-	 * Metodo que busca colisiones
-	 */
-	
-	public void buscarColisiones() {
-		
-		Rectangle bolaRec = bola.getMedidas();
-		Rectangle r2 = null;
-		
-		/*Se compara el rectangulo de la bola con los rectangulos de los demas actores, y
-		si colisionan se ejecuta el metodo colision de la bola y el del actor en cuestion*/
-		for (int i = 0; i < actores.size(); i++) {
-			
-			r2 = actores.get(i).getMedidas();
-			
-			if (bolaRec.intersects(r2) && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
-				
-				actores.get(i).colision();
-				
-				bola.colision(actores.get(i));
-				
-				break;
-			}	
-		}
-	}
 
-	/**
-	 * Comprobar si ha terminado la fase
-	 * @return
-	 */
-	public boolean faseTerminada() {
-		
-		List<Ladrillo> ladrillos = new ArrayList<Ladrillo>();
-		
-		//Creo una lista y le anado los ladrillos de la lista de actores
-		for (int i = 0; i < actores.size(); i++) {
-			
-			if (actores.get(i) instanceof Ladrillo) {
-				
-				ladrillos.add((Ladrillo) actores.get(i));
-				
-			}
-			
-		}
-		
-		//Recorro la lista y compruebo si alguno de los ladrillos tienen mas de 0 vidas (los irrompibles tienen -1)
-		for (Ladrillo ladrillo:ladrillos) {
-			
-			if (ladrillo.vidas > 0) {
-				
-				return false;
-			
-			}	
-		}
-		
-		//Si no se encuentra ningun ladrillo "vivo" el metodo devuelve true
-		return true;
-	}
-	
-	/**
-	 * Metodo que comprueba si hay que borrar ladrillos y crea las explosiones
-	 */
-	
-	public void comprobacionLadrillosYExplosiones() {
-		
-		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
-		se anadira a la lista actoresEspeciales*/
-		for (int i = 0; i < actores.size(); i++) {
-			
-			if (actores.get(i).isBorrar()) {
-				
-				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
-				
-				actores.remove(i);
-				
-			}
-			
-		}
-		
-		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
-		for (int i = 0; i < actoresEspeciales.size(); i++) {
-			
-			actoresEspeciales.get(i).actua();
-			
-			if (actoresEspeciales.get(i).isBorrar()) {
-				
-				actoresEspeciales.remove(i);
-				
-			}
-			
-		}
-	}
-	
-	/**
-	 * Metodo que cambia el mundo en cada fotograma
-	 */
-	
-	public void actualizarMundo() {
-		
-		//Si el juego no ha terminado, se actualiza el mundo
-		
-		if (!juegoTerminado) {
-			
-			bola.actua();
-			
-			comprobarVida();
-			
-			nave.actua();
-			
-			comprobacionLadrillosYExplosiones();
-			
-			if (faseTerminada()) {
-				
-				System.out.println("Fase terminada");
-				
-			}
-		}
-	}
-	
-	/**
-	 * Metodo que resta vidas a la nave y termina el juego si no le quedan
-	 */
-	
-	public void comprobarVida() {
-		
-		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
-		if (bola.toqueAbajo) {
-			
-			nave.intentos--;
-			
-			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
-			if (nave.intentos > 0) {
-				
-				CacheSonido.getCacheSonido().reproducirSonido("SonidoDanio.wav");
-				
-			}
-			/*Si no le quedan vidas el juego se detendra durante 3 segundos, se reproducira un sonido para indicar que has perdido
-			y juegoTerminado pasara a ser true*/
-			else {
-				
-				//La cancion de fondo se detiene
-				CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
-				
-				long tiempoInicial = System.currentTimeMillis();
-				long tiempo = System.currentTimeMillis();
-				
-				while ((tiempo - tiempoInicial)/1000 < 2 ) {
-					
-					tiempo = System.currentTimeMillis();
-					
-				}
-				
-				juegoTerminado = true;
-				
-			}
-		
-		}
-
-	}
+////////////////////////////////////////////////////// METODOS PRINCIPALES /////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * Bucle principal del juego (el que pinta los fotogramas)
@@ -302,7 +150,7 @@ public class Arkanoid extends Canvas {
 	public void bucleJuego() {
 			
 		CacheSonido.getCacheSonido().reproducirSonidoBucle("Cancion1.wav");
-		
+
 		//Mientras la ventana del juego sea visible:
 		while(this.isVisible()) {
 			
@@ -363,10 +211,13 @@ public class Arkanoid extends Canvas {
 				actoresEspeciales.get(i).paint(g);
 				
 			}
+			
+			//Pintar vidas del jugador
+			pintarVidaRestante(g);
 		}
 		//Si el juego ha terminado (el jugador ha perdido)
 		else {
-		
+			
 			//Se dibuja la imagen GameOver en pantalla
 			g.drawImage(SpriteCache.getSpriteCache().getSprite("GameOver.png"), 0, 0, this);
 			
@@ -375,11 +226,269 @@ public class Arkanoid extends Canvas {
 		estrategia.show();
 		
 	}
+
+	/**
+	 * Metodo que cambia el mundo en cada fotograma
+	 */
 	
- /**
-  * Singleton
-  * @return
-  */
+	public void actualizarMundo() {
+		
+		//Si el juego no ha terminado, se actualiza el mundo
+		
+		if (!juegoTerminado) {
+			
+			bola.actua();
+			
+			comprobarVida();
+			
+			nave.actua();
+			
+			comprobacionLadrillosYExplosiones();
+			
+			//Si la fase ha terminado, se avanza a la siguiente
+			if (faseTerminada()) {
+				
+				CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+
+				CacheSonido.getCacheSonido().reproducirSonido("SonidoVictoria.wav");
+				
+				detenerJuegoTemporalmente(3.5);
+				
+				siguienteFase();
+				
+				CacheSonido.getCacheSonido().reproducirSonido("Cancion1.wav");
+			}
+		}
+	}
+
+///////////////////////////////////////////////////// METODOS SECUNDARIOS /////////////////////////////////////////////////////////////////////
+	
+
+	/**
+	 * Metodo que busca colisiones
+	 */
+	
+	public void buscarColisiones() {
+		
+		Rectangle bolaRec = bola.getMedidas();
+		Rectangle r2 = null;
+		
+		/*Se compara el rectangulo de la bola con los rectangulos de los demas actores, y
+		si colisionan se ejecuta el metodo colision de la bola y el del actor en cuestion*/
+		for (int i = 0; i < actores.size(); i++) {
+			
+			r2 = actores.get(i).getMedidas();
+			
+			if (bolaRec.intersects(r2) && (actores.get(i) instanceof Ladrillo || actores.get(i) instanceof Nave)) {
+				
+				actores.get(i).colision();
+				
+				bola.colision(actores.get(i));
+				
+				break;
+			}	
+		}
+	}
+
+	/**
+	 * Comprobar si ha terminado la fase
+	 * @return
+	 */
+	
+	public boolean faseTerminada() {
+		
+		List<Ladrillo> ladrillos = new ArrayList<Ladrillo>();
+		
+		//Creo una lista y le anado los ladrillos de la lista de actores
+		for (int i = 0; i < actores.size(); i++) {
+			
+			if (actores.get(i) instanceof Ladrillo) {
+				
+				ladrillos.add((Ladrillo) actores.get(i));
+				
+			}
+			
+		}
+		
+		//Recorro la lista y compruebo si alguno de los ladrillos tienen mas de 0 vidas (los irrompibles tienen -1)
+		for (Ladrillo ladrillo:ladrillos) {
+			
+			if (ladrillo.vidas > 0) {
+				
+				return false;
+			
+			}	
+		}
+		
+		//Si no se encuentra ningun ladrillo "vivo" el metodo devuelve true
+		return true;
+	}
+	
+	/**
+	 * Metodo para avanzar a la siguiente fase
+	 */
+	
+	public void siguienteFase() {
+	
+		if (indiceFase == fases.size()) {
+			
+			JOptionPane.showMessageDialog(null, "Enhorabuena, te has pasado el juego!");
+			
+			System.exit(0);
+			
+		}
+		else {
+			//La faseActiva cambia a la siguiente
+			faseActiva = fases.get(indiceFase);
+			
+			//Se vacia las listas de actores y se anaden los de la nueva fase
+			actores.clear();
+			actoresEspeciales.clear();
+			actores.add(nave);
+			actores.add(bola);
+			actores.addAll(faseActiva.actoresFase);
+			
+			//Se resetean la bola y la nave y se aumenta en 1 el indiceFase
+			resetBolaYNave();
+			indiceFase++;
+		}
+	}
+	
+	/**
+	 * Metodo para resetear la bola y la nave
+	 */
+	
+	public void resetBolaYNave() {
+		
+		bolaLanzada = false;
+		bola.setTiempoCreacion(System.currentTimeMillis());
+		nave.posX = 210;
+		nave.posY = 640;
+		nave.intentos = 3;
+		
+	}
+	
+	/**
+	 * Metodo que comprueba si hay que borrar ladrillos y crea las explosiones
+	 */
+	
+	public void comprobacionLadrillosYExplosiones() {
+		
+		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
+		se anadira a la lista actoresEspeciales*/
+		for (int i = 0; i < actores.size(); i++) {
+			
+			if (actores.get(i).isBorrar()) {
+				
+				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
+				
+				actores.remove(i);
+				
+			}
+			
+		}
+		
+		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			actoresEspeciales.get(i).actua();
+			
+			if (actoresEspeciales.get(i).isBorrar()) {
+				
+				actoresEspeciales.remove(i);
+				
+			}
+			
+		}
+	}
+
+	
+	/**
+	 * Metodo que resta vidas a la nave y termina el juego si no le quedan
+	 */
+	
+	public void comprobarVida() {
+		
+		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
+		if (bola.toqueAbajo) {
+			
+			nave.intentos--;
+			
+			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
+			if (nave.intentos > 0) {
+				
+				CacheSonido.getCacheSonido().reproducirSonido("SonidoDanio.wav");
+				
+			}
+			/*Si no le quedan vidas el juego se detendra durante 3 segundos, se reproducira un sonido para indicar que has perdido
+			y juegoTerminado pasara a ser true*/
+			else {
+				
+				//La cancion de fondo se detiene
+				CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+				
+				//Sonido Game Over
+				CacheSonido.getCacheSonido().reproducirSonido("SonidoGameOver.wav");
+				
+				//El juego se detiene durante 3 segundos
+				detenerJuegoTemporalmente(3);
+				
+				//Cancion Game Over
+				CacheSonido.getCacheSonido().reproducirSonidoBucle("CancionGameOver.wav");
+				
+				juegoTerminado = true;
+				
+			}
+		
+		}
+
+	}
+	
+	/**
+	 * Metodo que pinta la vida del jugador
+	 * @param g
+	 */
+	
+	public void pintarVidaRestante(Graphics g) {
+		
+		g.drawImage(SpriteCache.getSpriteCache().getSprite("BarraVida.png"),520, 670, null);
+		
+		int x=530;
+		
+		for (int i = 0; i < nave.intentos; i++) {
+			
+			g.drawImage(SpriteCache.getSpriteCache().getSprite("Vida.png"),x, 678, null);
+			
+			x += 25;
+			
+		}
+
+		
+	}
+///////////////////////////////////////////////////////// OTROS METODOS ///////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * Metodo para detener el juego temporalmente
+	 * @param tiempo
+	 */
+	public void detenerJuegoTemporalmente(double tiempo) {
+
+		long tiempoInicial = System.currentTimeMillis();
+		long tiempoActual = System.currentTimeMillis();
+		
+		while ((tiempoActual - tiempoInicial)/1000 < tiempo ) {
+			
+			tiempoActual = System.currentTimeMillis();
+			
+		}
+		
+		
+	}
+	
+	 /**
+	  * Singleton
+	  * @return
+	  */
 	public static Arkanoid getInstancia() {
 		
 		if (arkanoid == null) {
@@ -391,7 +500,7 @@ public class Arkanoid extends Canvas {
 		return arkanoid;
 	}
 	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////// MAIN ////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * Main

@@ -46,7 +46,7 @@ public class Bola extends Actor {
 		toqueAbajo = false;
 		
 		//Al comienzo del juego se inicia el movimiento de la pelota
-		if (!Arkanoid.getInstancia().juegoEmpezado || !Arkanoid.getInstancia().lanzarBola) iniciarMovimiento();
+		if (!Arkanoid.getInstancia().juegoEmpezado || !Arkanoid.getInstancia().bolaLanzada) iniciarMovimiento();
 		
 		//Si la posicion X de la bola es superior al ancho de la pantalla cambiar� de direcci�n, es decir, se invertir� el signo de vX
 		if (this.posX + DIAMETRO >= Arkanoid.ANCHO) {
@@ -94,7 +94,7 @@ public class Bola extends Actor {
 	}
 	
 	/**
-	 * Metodo que inicia el movimiento de la bola tras 5 segundos
+	 * Metodo que inicia el movimiento de la bola tras 5 segundos o cuando el usuario la lanza
 	 */
 	public void iniciarMovimiento() {
 		
@@ -103,14 +103,13 @@ public class Bola extends Actor {
 		
 		long tiempoActual = System.currentTimeMillis();
 		
-		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.getInstancia().lanzarBola) {
+		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.getInstancia().bolaLanzada) {
 			
 			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
-			
 			this.vX = 3;
 			this.vY = 3;
 			Arkanoid.getInstancia().juegoEmpezado = true;
-			
+			Arkanoid.getInstancia().bolaLanzada = true;
 		}
 		
 	}
@@ -155,8 +154,6 @@ public class Bola extends Actor {
 		
 		
 		this.vY = -vY;
-		
-
 
 	}
 
@@ -169,6 +166,19 @@ public class Bola extends Actor {
 		this.vY = -vY;
 		
 	}
+
+	/**
+	 * Getters y setters
+	 * @return
+	 */
+	public long getTiempoCreacion() {
+		return tiempoCreacion;
+	}
+
+	public void setTiempoCreacion(long tiempoCreacion) {
+		this.tiempoCreacion = tiempoCreacion;
+	}
+	
 	
 	
 }
