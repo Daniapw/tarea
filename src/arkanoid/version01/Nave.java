@@ -101,7 +101,7 @@ public class Nave extends Actor {
 			
 			//Si el jugador pulsa la barra espaciadora al comienzo del juegola bola saldra despedida y se reproducira un sonido  
 			case KeyEvent.VK_SPACE:{
-
+				
 				Arkanoid.getInstancia().bolaLanzada = true;
 						
 			}
@@ -145,7 +145,7 @@ public class Nave extends Actor {
 		int posicionRaton = e.getX();
 		
 		//Si la posicion del raton es mayor o igual al ancho del sprite de la nave/2...
-		if (posicionRaton >= (this.ancho / 2)
+		if (posicionRaton >= (this.ancho / 2) && !e.isShiftDown()
 				&&
 			//...y la posicion del raton no es mayor que el ancho de la ventana - el ancho de la nave/2...
 			posicionRaton <= (Arkanoid.ANCHO - this.ancho / 2)) {
@@ -165,8 +165,17 @@ public class Nave extends Actor {
 		
 		if (e.getID() == MouseEvent.MOUSE_CLICKED) {
 			
-			Arkanoid.getInstancia().bolaLanzada = true;
+			// En caso de que hagan clic manteniendo pulsado las may�sculas y el control iniciaremos un movimiento con
+			// una trayectoria que pase desde el punto actual de la bola y por el punto se�alado con el rat�n
+			if (e.isShiftDown() && e.isControlDown()) {
+				Arkanoid.getInstancia().bola.iniciarMovimiento(e.getX(), e.getY());
+			}
+			else {
+				// Indicamos que se inicie el movimiento con una trayectoria por defecto
+				Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
+			}
 			
+			Arkanoid.getInstancia().bolaLanzada = true;
 		}
 		
 	}

@@ -1,14 +1,14 @@
 package arkanoid.version01;
 
 /**
- * Clase que implementa una trayectoria en línea recta. En realidad, en su interior esta clase utiliza una recta en su
- * ecuación   y = mx + n   siendo "m" la pendiente de la recta y "n" la ordenada en el origen de la misma.
- * Para poder trazar una recta vamos a tener dos constructores: podremos crear una recta a través de dos puntos y también
- * a través de una pendiente y un punto que pertenezca a la recta.
- * Además, una recta puede recorrerse en dos sentidos, les he llamado "direccionCreciente" y "direccionDecreciente". Estos
+ * Clase que implementa una trayectoria en lï¿½nea recta. En realidad, en su interior esta clase utiliza una recta en su
+ * ecuaciï¿½n   y = mx + n   siendo "m" la pendiente de la recta y "n" la ordenada en el origen de la misma.
+ * Para poder trazar una recta vamos a tener dos constructores: podremos crear una recta a travï¿½s de dos puntos y tambiï¿½n
+ * a travï¿½s de una pendiente y un punto que pertenezca a la recta.
+ * Ademï¿½s, una recta puede recorrerse en dos sentidos, les he llamado "direccionCreciente" y "direccionDecreciente". Estos
  * dos sentidos se controlan con una variable booleana.
  * Para recorrer la recta utilizaremos el concepto de distancia. Partiendo de la base de que el punto actual en el que la
- * bola se encuentra pertenece a la trayectoria, para determinar el siguiente punto al que la bola debe llegar lo haré 
+ * bola se encuentra pertenece a la trayectoria, para determinar el siguiente punto al que la bola debe llegar lo harï¿½ 
  * indicando la distancia del punto actual sobre la misma trayectoria.
  * @author R
  *
@@ -17,10 +17,10 @@ public class TrayectoriaRecta {
 	
 	private float m; // Pendiente
 	private float o; // ordenada en el origen
-	private boolean direccionCreciente = false; // Dirección en la que se recorre la recta
+	private boolean direccionCreciente = false; // Direcciï¿½n en la que se recorre la recta
 	
 	/**
-	 * Constuctor de una trayectoria a partir de dos puntos de alta precisión y una dirección en la que se recorre
+	 * Constuctor de una trayectoria a partir de dos puntos de alta precisiï¿½n y una direcciï¿½n en la que se recorre
 	 * @param p1
 	 * @param p2
 	 * @param direccionCreciente
@@ -44,7 +44,7 @@ public class TrayectoriaRecta {
 	}
 	
 	/**
-	 * Método principal de la clase. Sobre la trayectoria actual calculará un punto "destino" que se encuentre
+	 * Mï¿½todo principal de la clase. Sobre la trayectoria actual calcularï¿½ un punto "destino" que se encuentre
 	 * a una distancia concreta del punto "origen" y que se encuentre sobre la recta
 	 * @param origen
 	 * @param distancia
@@ -53,12 +53,12 @@ public class TrayectoriaRecta {
 	public PuntoAltaPrecision getPuntoADistanciaDePunto (PuntoAltaPrecision origen, float distancia) {
 		PuntoAltaPrecision destino = new PuntoAltaPrecision(0, 0);
 		
-		// Calculo de la coordenada x del punto de destino. Se hace resolviendo una ecuación de segundo grado
-		float a = 1 + m * m; // Coeficiente "a" de la ecuación de segundo grado
-		float b = (0-2) * (1+m*m)*origen.x; // Coeficiente "b" de la ecuación de segundo grado
-		float c = a*origen.x*origen.x-distancia*distancia; // Coeficiente "c" de la ecuación de segundo grado
+		// Calculo de la coordenada x del punto de destino. Se hace resolviendo una ecuaciï¿½n de segundo grado
+		float a = 1 + m * m; // Coeficiente "a" de la ecuaciï¿½n de segundo grado
+		float b = (0-2) * (1+m*m)*origen.x; // Coeficiente "b" de la ecuaciï¿½n de segundo grado
+		float c = a*origen.x*origen.x-distancia*distancia; // Coeficiente "c" de la ecuaciï¿½n de segundo grado
 		
-		// La ecuación de segundo grado tiene dos soluciones pero nosotros estamos recorriendo la trayectoria
+		// La ecuaciï¿½n de segundo grado tiene dos soluciones pero nosotros estamos recorriendo la trayectoria
 		// en uno de los sentidos.
 		// Calculo la coordenada x del punto de destino
 		if (this.direccionCreciente) {
@@ -76,7 +76,7 @@ public class TrayectoriaRecta {
 	}
 	
 	/**
-	 * Método auxiliar, que calcula la distancia entre dos puntos dados. Utiliza la fórmula de la distancia
+	 * Mï¿½todo auxiliar, que calcula la distancia entre dos puntos dados. Utiliza la fï¿½rmula de la distancia
 	 * entre dos puntos
 	 * @param p1
 	 * @param p2
@@ -99,13 +99,13 @@ public class TrayectoriaRecta {
 	}
 	
 	/**
-	 * Método muy parecido al anterior, en el que el reflejo se produce de derecha a izquierda, también
+	 * Mï¿½todo muy parecido al anterior, en el que el reflejo se produce de derecha a izquierda, tambiï¿½n
 	 * respecto a un punto determinado
 	 * @param p
 	 */
 	public void reflejarHorizontalmenteRespectoAPunto (PuntoAltaPrecision p) {
 		// Cambio de signo la pendiente, calculo el nuevo punto de corte del eje de abcisas y cambio
-		// la dirección en la que nos movemos sobre la trayectoria
+		// la direcciï¿½n en la que nos movemos sobre la trayectoria
 		this.m = -this.m;
 		this.o = p.y - this.m * p.x;
 		this.direccionCreciente = !this.direccionCreciente;
@@ -113,34 +113,84 @@ public class TrayectoriaRecta {
 	
 	
 	/**
-	 * Método para modificar la pendiente por una nueva pendiente, además también es necesario calcular
-	 * el nuevo punto de corte del eje de abcisas. Cuando se cambia la trayectoria siempre es necesario
-	 * hacerlo con un punto de pivote.
-	 * @param nuevaPendiente
-	 * @param puntoDePivote
+	 * Mï¿½todo para reflejar la trayectoria hacï¿½a abajo respecto a un punto de pivote
+	 * @param p
 	 */
-	public void modificarPendiente (float nuevaPendiente, PuntoAltaPrecision puntoDePivote) {
-		modificarPendiente(nuevaPendiente, puntoDePivote, this.direccionCreciente);
+	public void reflejarHaciaAbajo (PuntoAltaPrecision p) {
+		this.setPendiente(-this.m, p);
+		this.direccionCreciente = (this.m < 0)? false : true;
 	}
 	
 	/**
-	 * Método para modificar la pendiente por una nueva pendiente, además también es necesario calcular
+	 * Mï¿½todo para reflejar la trayectoria hacï¿½a arriba respecto a un punto de pivote
+	 * @param p
+	 */
+	public void reflejarHaciaArriba (PuntoAltaPrecision p) {
+		this.setPendiente(-this.m, p);
+		this.direccionCreciente = (this.m < 0)? true : false;
+	}
+	
+	/**
+	 * Mï¿½todo para reflejar la trayectoria hacï¿½a la derecha respecto a un punto de pivote
+	 * @param p
+	 */
+	public void reflejarHaciaDerecha (PuntoAltaPrecision p) {
+		this.setPendiente(-this.m, p);
+		this.direccionCreciente = true;
+	}
+	
+	/**
+	 * Mï¿½todo para reflejar la trayectoria hacï¿½a la izquierda respecto a un punto de pivote
+	 * @param p
+	 */
+	public void reflejarHaciaIzquierda (PuntoAltaPrecision p) {
+		this.setPendiente(-this.m, p);
+		this.direccionCreciente = false;
+	}
+	
+	
+	/**
+	 * Mï¿½todo para modificar la pendiente por una nueva pendiente, ademï¿½s tambiï¿½n es necesario calcular
 	 * el nuevo punto de corte del eje de abcisas. Cuando se cambia la trayectoria siempre es necesario
 	 * hacerlo con un punto de pivote.
 	 * @param nuevaPendiente
 	 * @param puntoDePivote
 	 */
-	public void modificarPendiente (float nuevaPendiente, PuntoAltaPrecision puntoDePivote, boolean direccionCreciente) {
+	public void setPendiente (float nuevaPendiente, PuntoAltaPrecision puntoDePivote) {
+		setPendiente(nuevaPendiente, puntoDePivote, this.direccionCreciente);
+	}
+	
+	/**
+	 * Mï¿½todo para modificar la pendiente por una nueva pendiente, ademï¿½s tambiï¿½n es necesario calcular
+	 * el nuevo punto de corte del eje de abcisas. Cuando se cambia la trayectoria siempre es necesario
+	 * hacerlo con un punto de pivote.
+	 * @param nuevaPendiente
+	 * @param puntoDePivote
+	 */
+	public void setPendiente (float nuevaPendiente, PuntoAltaPrecision puntoDePivote, boolean direccionCreciente) {
 		this.m = nuevaPendiente;
 		this.o = puntoDePivote.y - this.m * puntoDePivote.x;
 		this.direccionCreciente = direccionCreciente;
 	}
 	
 	/**
-	 * Típico toString
+	 * Tï¿½pico toString
 	 */
 	@Override	
 	public String toString () {
-		return "y = " + this.m + "x + " + this.o;
+		return "y = " + this.m + "x + " + this.o + " - direcciï¿½n creciente: " + this.direccionCreciente;
+	}
+	
+	
+	
+	
+	
+	// Getters y setters
+	public float getPendiente() {
+		return m;
+	}
+
+	public void setPendiente(float pendiente) {
+		this.m = m;
 	}
 }

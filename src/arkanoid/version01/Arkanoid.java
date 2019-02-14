@@ -1,7 +1,6 @@
 package arkanoid.version01;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,8 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -134,7 +131,7 @@ public class Arkanoid extends Canvas {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			
-				if (!juegoEmpezado) nave.empezarConRaton(e);
+				nave.empezarConRaton(e);
 				
 			}
 			
@@ -360,8 +357,13 @@ public class Arkanoid extends Canvas {
 	
 	public void resetBolaYNave() {
 		
+		//Resetear bola
 		bolaLanzada = false;
 		bola.setTiempoCreacion(System.currentTimeMillis());
+		bola.setPosX(Arkanoid.getInstancia().nave.posX + (nave.ancho/2));
+		bola.setPosY(nave.posY - Bola.DIAMETRO - 1);
+
+		//Resetear nave
 		nave.posX = 210;
 		nave.posY = 640;
 		nave.intentos = 3;
@@ -439,7 +441,7 @@ public class Arkanoid extends Canvas {
 				juegoTerminado = true;
 				
 			}
-		
+			
 		}
 
 	}
