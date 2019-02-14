@@ -3,7 +3,7 @@ package arkanoid.version01;
 public class Fase02 extends Fase {
 	
 	private int margenIzquierdo = 2;
-	private int MARGEN_SUPERIOR = 40;
+	private int MARGEN_SUPERIOR = 60;
 	
 	private int ladrillos[][] = new int[][] {
 		//"1-cian", "2-verde", "3-magenta", "4-verdeOscuro", "5-naranja", "6-rojo", "7-rompible", "8-irrompible"
