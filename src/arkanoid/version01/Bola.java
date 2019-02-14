@@ -56,7 +56,7 @@ public class Bola extends Actor {
 		//Reiniciar boolean toqueAbajo
 		toqueAbajo = false;
 		
-		if (this.trayectoria == null && (!Arkanoid.getInstancia().bolaLanzada || !Arkanoid.getInstancia().juegoEmpezado)) {
+		if (this.trayectoria == null || (!Arkanoid.getInstancia().bolaLanzada || !Arkanoid.getInstancia().juegoEmpezado)) {
 				this.iniciarMovimiento(-1, -1);
 		
 		}
@@ -102,10 +102,12 @@ public class Bola extends Actor {
 		
 		this.posX = Arkanoid.getInstancia().nave.posX + (Arkanoid.getInstancia().nave.ancho/2);
 		this.posY = Arkanoid.getInstancia().nave.posY - Bola.DIAMETRO - 1;
+		this.coordenadas.x = Arkanoid.getInstancia().nave.posX + Arkanoid.getInstancia().nave.ancho / 2;
+		this.coordenadas.y = Arkanoid.getInstancia().nave.posY - this.alto - 1;
 		
 		long tiempoActual = System.currentTimeMillis();
 		
-		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.getInstancia().bolaLanzada) {
+		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.getInstancia().juegoEmpezado) {
 			
 			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
 			

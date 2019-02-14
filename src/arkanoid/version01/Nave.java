@@ -167,12 +167,15 @@ public class Nave extends Actor {
 			
 			// En caso de que hagan clic manteniendo pulsado las may�sculas y el control iniciaremos un movimiento con
 			// una trayectoria que pase desde el punto actual de la bola y por el punto se�alado con el rat�n
-			if (e.isShiftDown() && e.isControlDown()) {
+			if ((e.isShiftDown() || e.isControlDown()) && !Arkanoid.getInstancia().bolaLanzada) {
 				Arkanoid.getInstancia().bola.iniciarMovimiento(e.getX(), e.getY());
 			}
 			else {
-				// Indicamos que se inicie el movimiento con una trayectoria por defecto
-				Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
+				
+				if (!e.isShiftDown() && !e.isControlDown()) {
+					// Indicamos que se inicie el movimiento con una trayectoria por defecto
+					Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
+				}
 			}
 			
 			Arkanoid.getInstancia().bolaLanzada = true;
