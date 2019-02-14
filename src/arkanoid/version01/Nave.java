@@ -35,6 +35,7 @@ public class Nave extends Actor {
 			this.spritesNave[i] = SpriteCache.getSpriteCache().getSprite("vaus" + (i + 1) + ".png");
 			
 		}
+		
 		this.spriteActual = this.spritesNave[0];
 		this.setAlto(this.spriteActual.getHeight());
 		this.setAncho(this.spriteActual.getWidth());
@@ -75,7 +76,7 @@ public class Nave extends Actor {
 			frameActual = (frameActual + 1) % spritesNave.length; 
 		}
 	}
-
+	
 	/**
 	 * Metodo que verificara que tecla se esta pulsando
 	 * @param e
@@ -102,8 +103,23 @@ public class Nave extends Actor {
 			//Si el jugador pulsa la barra espaciadora al comienzo del juegola bola saldra despedida y se reproducira un sonido  
 			case KeyEvent.VK_SPACE:{
 				
-				Arkanoid.getInstancia().bolaLanzada = true;
-						
+				if (!Arkanoid.getInstancia().bolaLanzada) {
+					
+					Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
+					
+				}
+				break;
+			}
+
+			//Por si la bola se atasca
+			case KeyEvent.VK_R:{
+				
+				if (e.isShiftDown() && Arkanoid.getInstancia().bolaLanzada) {
+					
+					Arkanoid.getInstancia().resetBolaYNave();
+					
+				}
+				break;
 			}
 		}
 		
@@ -170,15 +186,15 @@ public class Nave extends Actor {
 			if ((e.isShiftDown() || e.isControlDown()) && !Arkanoid.getInstancia().bolaLanzada) {
 				Arkanoid.getInstancia().bola.iniciarMovimiento(e.getX(), e.getY());
 			}
-			else {
+			
 				
-				if (!e.isShiftDown() && !e.isControlDown()) {
-					// Indicamos que se inicie el movimiento con una trayectoria por defecto
-					Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
-				}
+			if (!e.isShiftDown() && !e.isControlDown() && !Arkanoid.getInstancia().bolaLanzada) {
+				// Indicamos que se inicie el movimiento con una trayectoria por defecto
+				Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
 			}
 			
-			Arkanoid.getInstancia().bolaLanzada = true;
+			
+			
 		}
 		
 	}
@@ -202,6 +218,8 @@ public class Nave extends Actor {
 		CacheSonido.getCacheSonido().reproducirSonido("ChoqueBola.wav");
 		
 	}
+	
+	
 	/**
 	 * Getters y setters
 	 * @return
@@ -215,7 +233,4 @@ public class Nave extends Actor {
 		this.vX = vX;
 	}
 
-	
-	
-	
 }

@@ -253,16 +253,15 @@ public class Arkanoid extends Canvas {
 				
 				siguienteFase();
 				
-				CacheSonido.getCacheSonido().reproducirSonido("Cancion1.wav");
+				CacheSonido.getCacheSonido().reproducirSonidoBucle("Cancion1.wav");
 			}
 		}
 	}
 
 ///////////////////////////////////////////////////// METODOS SECUNDARIOS /////////////////////////////////////////////////////////////////////
-	
 
 	/**
-	 * Metodo que busca colisiones
+	 * Metodo que comprueba si hay colisiones con la bola
 	 */
 	
 	public void buscarColisiones() {
@@ -286,9 +285,43 @@ public class Arkanoid extends Canvas {
 			}	
 		}
 	}
-
+	
 	/**
-	 * Comprobar si ha terminado la fase
+	 * Metodo que comprueba si hay que borrar ladrillos y crea las explosiones
+	 */
+	
+	public void comprobacionLadrillosYExplosiones() {
+		
+		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
+		se anadira a la lista actoresEspeciales*/
+		for (int i = 0; i < actores.size(); i++) {
+			
+			if (actores.get(i).isBorrar()) {
+				
+				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
+				
+				actores.remove(i);
+				
+			}
+			
+		}
+		
+		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			actoresEspeciales.get(i).actua();
+			
+			if (actoresEspeciales.get(i).isBorrar()) {
+				
+				actoresEspeciales.remove(i);
+				
+			}
+			
+		}
+	}
+	
+	/**
+	 * Metodo que comprueba si ha terminado la fase
 	 * @return
 	 */
 	
@@ -360,50 +393,14 @@ public class Arkanoid extends Canvas {
 		//Resetear bola
 		bolaLanzada = false;
 		bola.setTiempoCreacion(System.currentTimeMillis());
-		bola.setPosX(Arkanoid.getInstancia().nave.posX + (nave.ancho/2));
-		bola.setPosY(nave.posY - Bola.DIAMETRO - 1);
-
+		bola.mantenerPegadaANave();
+		bola.trayectoria = null;
+		bola.setVelocidad(3f);
+		
 		//Resetear nave
-		nave.posX = 210;
-		nave.posY = 640;
 		nave.intentos = 3;
 		
 	}
-	
-	/**
-	 * Metodo que comprueba si hay que borrar ladrillos y crea las explosiones
-	 */
-	
-	public void comprobacionLadrillosYExplosiones() {
-		
-		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
-		se anadira a la lista actoresEspeciales*/
-		for (int i = 0; i < actores.size(); i++) {
-			
-			if (actores.get(i).isBorrar()) {
-				
-				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
-				
-				actores.remove(i);
-				
-			}
-			
-		}
-		
-		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
-		for (int i = 0; i < actoresEspeciales.size(); i++) {
-			
-			actoresEspeciales.get(i).actua();
-			
-			if (actoresEspeciales.get(i).isBorrar()) {
-				
-				actoresEspeciales.remove(i);
-				
-			}
-			
-		}
-	}
-
 	
 	/**
 	 * Metodo que resta vidas a la nave y termina el juego si no le quedan
@@ -467,6 +464,7 @@ public class Arkanoid extends Canvas {
 
 		
 	}
+	
 ///////////////////////////////////////////////////////// OTROS METODOS ///////////////////////////////////////////////////////////////////////////////////
 	
 	/**

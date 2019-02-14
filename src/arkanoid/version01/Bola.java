@@ -11,16 +11,16 @@ public class Bola extends Actor {
 	protected static final int DIAMETRO = 20;
 	//Boolean para saber si la bola ha tocado abajo
 	protected boolean toqueAbajo = false;
-	// La bola se mover� en una determinada recta (trayectoria) con una determinada velocidad
+	// La bola se movera en una determinada recta (trayectoria) con una determinada velocidad
 	public TrayectoriaRecta trayectoria = null;
 	// Para el control preciso del aumento de la velocidad de la bola constante utilizo unas coordenadas flotantes
 	// aunque eso no quita que sigan existiendo las coordenades x e y del supertipo Actor. De hecho, cada vez que
-	// actualizamos las coordenadas flotantes tambi�n actualizar� las coordenadas enteras.
+	// actualizamos las coordenadas flotantes tambien actualizara las coordenadas enteras.
 	private PuntoAltaPrecision coordenadas = null;
 	private float velocidadPorFrame = 3f; // Velocidad inicial de la bola, expresada en pixels por frame
-	// La velocidad de la Bola aumentar� conforme vaya aumentando el n�mero de frames generados con el siguiente factor
+	// La velocidad de la Bola aumentara conforme vaya aumentando el numero de frames generados con el siguiente factor
 	private float factorIncrementoVelocidadBola = 1.00035f;
-	// M�xima velocidad posible a alcanzar
+	// Maxima velocidad posible a alcanzar
 	private static final float MAXIMA_VELOCIDAD = 7;
 	
 	/**
@@ -56,11 +56,19 @@ public class Bola extends Actor {
 		//Reiniciar boolean toqueAbajo
 		toqueAbajo = false;
 		
-		if (this.trayectoria == null || (!Arkanoid.getInstancia().bolaLanzada || !Arkanoid.getInstancia().juegoEmpezado)) {
+		//Variable que almacena el tiempo actual en ms 
+		long tiempoActual = System.currentTimeMillis();
+		
+		//Si la bola no se ha lanzado, se mantiene pegada a la nave
+		if (!Arkanoid.getInstancia().bolaLanzada) mantenerPegadaANave();
+		
+		//Si la bola no tiene trayectoria y no han pasado 5 segundos se inicia el movimiento con la trayectoria por defecto
+		if (this.trayectoria == null && (tiempoActual - tiempoCreacion)/1000 >= 5 ) {
 				this.iniciarMovimiento(-1, -1);
 		
 		}
 		
+		//Si la bola tiene una trayectoria se mueve
 		if (this.trayectoria != null) {
 			// Si la bola toca el borde por arriba o por abajo, su trayectoria se reflejar� verticalmente
 			if (this.posY < 0) {
@@ -96,49 +104,54 @@ public class Bola extends Actor {
 	}
 	
 	/**
-	 * Metodo que inicia el movimiento de la bola tras 5 segundos o cuando el usuario la lanza
+	 * Metodo para mantener la bola pegada a la nave al principio de cada fase
 	 */
-	public void iniciarMovimiento(int xDestino, int yDestino) {
+	
+	public void mantenerPegadaANave() {
 		
 		this.posX = Arkanoid.getInstancia().nave.posX + (Arkanoid.getInstancia().nave.ancho/2);
 		this.posY = Arkanoid.getInstancia().nave.posY - Bola.DIAMETRO - 1;
 		this.coordenadas.x = Arkanoid.getInstancia().nave.posX + Arkanoid.getInstancia().nave.ancho / 2;
-		this.coordenadas.y = Arkanoid.getInstancia().nave.posY - this.alto - 1;
+		this.coordenadas.y = Arkanoid.getInstancia().nave.posY - this.alto;
 		
-		long tiempoActual = System.currentTimeMillis();
+	}
+	
+	/**
+	 * Metodo que inicia el movimiento de la bola tras 5 segundos o cuando el usuario la lanza
+	 */
+	
+	public void iniciarMovimiento(int xDestino, int yDestino) {
+
+		CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
 		
-		if ((tiempoActual - tiempoCreacion)/1000 >= 5 || Arkanoid.getInstancia().juegoEmpezado) {
-			
-			CacheSonido.getCacheSonido().reproducirSonido("SonidoDespegueBola.wav");
-			
-			if (trayectoria == null) {
-				// Si los valores del punto de destino son "-1" indica ue debemos hacer una trayectoria por defecto
-				if (xDestino == -1 && yDestino == -1) {
-					this.trayectoria = new TrayectoriaRecta(-3f, this.coordenadas, true);
-				}
-				// En caso contrario debemos trazar la trayectoria desde el punto actual de la bola hasta el punto
-				// que nos indican
-				else {
-					// Establecemos una m�nima distancia en el eje X entre la situaci�n de la bola y el punto que nos
-					// indican. De esa manera evitamos que la pelota se pueda poner completamente vertical
-					int minimaDistanciamientoEntreX = 20;
-					if (Math.abs(xDestino - this.posX) < minimaDistanciamientoEntreX) {
-						// Trayectoria a derecha
-						if (xDestino < this.posX) {
-							xDestino = this.posX - minimaDistanciamientoEntreX;
-						}
-						else {
-							// Trayectoria a izquierda
-							xDestino = this.posX + minimaDistanciamientoEntreX;
-						}
-					}
-					// Determinamos la direcci�n a seguir en la trayectoria en funci�n del signo de la pendiente que 
-					// esperamos
-					boolean direccionCreciente = (xDestino > this.posX)? true : false;
-					// Creamos la trayectoria.
-					this.trayectoria = new TrayectoriaRecta(new PuntoAltaPrecision(this.posX, this.posY), new PuntoAltaPrecision(xDestino, yDestino), direccionCreciente);
-				}
+		if (trayectoria == null) {
+			// Si los valores del punto de destino son "-1" indica ue debemos hacer una trayectoria por defecto
+			if (xDestino == -1 && yDestino == -1) {
+				this.trayectoria = new TrayectoriaRecta(-3f, this.coordenadas, true);
 			}
+			// En caso contrario debemos trazar la trayectoria desde el punto actual de la bola hasta el punto
+			// que nos indican
+			else {
+				// Establecemos una m�nima distancia en el eje X entre la situaci�n de la bola y el punto que nos
+				// indican. De esa manera evitamos que la pelota se pueda poner completamente vertical
+				int minimaDistanciamientoEntreX = 20;
+				if (Math.abs(xDestino - this.posX) < minimaDistanciamientoEntreX) {
+					// Trayectoria a derecha
+					if (xDestino < this.posX) {
+						xDestino = this.posX - minimaDistanciamientoEntreX;
+					}
+					else {
+						// Trayectoria a izquierda
+						xDestino = this.posX + minimaDistanciamientoEntreX;
+					}
+				}
+				// Determinamos la direcci�n a seguir en la trayectoria en funci�n del signo de la pendiente que 
+				// esperamos
+				boolean direccionCreciente = (xDestino > this.posX)? true : false;
+				// Creamos la trayectoria.
+				this.trayectoria = new TrayectoriaRecta(new PuntoAltaPrecision(this.posX, this.posY), new PuntoAltaPrecision(xDestino, yDestino), direccionCreciente);
+			}
+			
 			
 			Arkanoid.getInstancia().juegoEmpezado = true;
 			Arkanoid.getInstancia().bolaLanzada = true;
@@ -303,6 +316,7 @@ public class Bola extends Actor {
 	 * Getters y setters
 	 * @return
 	 */
+	
 	public long getTiempoCreacion() {
 		return tiempoCreacion;
 	}
@@ -310,5 +324,13 @@ public class Bola extends Actor {
 	public void setTiempoCreacion(long tiempoCreacion) {
 		this.tiempoCreacion = tiempoCreacion;
 	}
+	
+	public float getVelocidad() {
+		return velocidadPorFrame;
+	}
 
+	public void setVelocidad(float velocidad) {
+		this.velocidadPorFrame = velocidad;
+	}	
+	
 }
