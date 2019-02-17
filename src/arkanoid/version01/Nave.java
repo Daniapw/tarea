@@ -14,6 +14,12 @@ public class Nave extends Actor {
 	private boolean derecha, izda;
 	//Animacion de la nave
 	private BufferedImage spritesNave[] = new BufferedImage[3];
+	//Variables para saber cuando la nave tiene un efecto activo y la duracion del mismo
+	protected boolean efectoActivo = false;
+	protected boolean disparosActivos = false;
+	protected int duracionEfecto = 0;
+	protected long timerTiempoActivacion = 0;
+	//Variables para la animacion de la nave
 	protected int t = 0;
 	protected int frameActual;
 	//Vidas de la nave
@@ -47,6 +53,12 @@ public class Nave extends Actor {
 	 */
 	
 	public void actua() {
+		
+		if (efectoActivo) {
+			
+			timerEfecto();
+			
+		}
 		
 		//Posicion en el eje X de la nave
 		int posicion = this.getPosX();
@@ -120,6 +132,18 @@ public class Nave extends Actor {
 					
 				}
 				break;
+			}
+			
+			case KeyEvent.VK_UP:{
+				
+				if (disparosActivos) {
+					
+					CacheSonido.getCacheSonido().reproducirSonido("SonidoDisparo.wav");
+					Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, this.posY));
+					Arkanoid.getInstancia().disparos.add(new Disparo((this.posX + this.ancho - 13 ), this.posY));
+					
+				}
+				
 			}
 		}
 		
@@ -200,13 +224,59 @@ public class Nave extends Actor {
 	}
 	
 	/**
+	 * Metodo para controlar el tiempo restante de un efecto
+	 */
+	
+	public void timerEfecto() {
+		
+		long tiempoActual = System.currentTimeMillis();
+		
+		if ((tiempoActual - timerTiempoActivacion)/1000 > duracionEfecto){
+			
+			efectoActivo = false;
+			disparosActivos = false;
+			duracionEfecto = 0;
+			
+			//Cambiar el ancho y el alto a los valores por defecto de la nave
+			this.ancho = this.spritesNave[0].getWidth();
+			this.alto = this.spritesNave[0].getHeight();
+		}
+		
+	}
+	
+	/**
+	 * Metodo que llamaran las capsulas para activar un efecto en la nave
+	 */
+	
+	public void activarEfecto(BufferedImage sprite, long tiempoActivacion, int duracion) {
+		
+		this.spriteActual = sprite;
+		this.ancho = this.spriteActual.getWidth();
+		this.alto = this.spriteActual.getHeight();
+		this.timerTiempoActivacion = tiempoActivacion;
+		this.duracionEfecto = duracion;
+		this.efectoActivo = true;
+		this.disparosActivos = false;
+	}
+	
+	/**
 	 * Metodo paint
 	 */
 	
 	public void paint(Graphics g) {
 		
-		g.drawImage(this.spritesNave[frameActual], this.posX, this.posY, null);
+		//Si no hay un efecto activo se pintara la nave normal
+		if (!efectoActivo) {
+			
+			g.drawImage(this.spritesNave[frameActual], this.posX, this.posY, null);
+			
+		}	
+		//Si lo hay se pintara el spriteActual, que cambia segun el efecto activo
+		else {
 		
+			g.drawImage(this.spriteActual, this.posX, this.posY, null);
+			
+		}
 	}
 	
 	/**

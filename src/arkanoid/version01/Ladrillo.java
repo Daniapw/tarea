@@ -45,13 +45,26 @@ public class Ladrillo extends Actor {
 	
 	public void colision() {
 		
+		double numAleatorio = Math.random();
+		
 		switch (this.vidas) {
 		
 			case 1:{
 				
 				CacheSonido.getCacheSonido().reproducirSonido("SonidoChoqueLadrillo.wav");
 				vidas--;
+				
+				Arkanoid.getInstancia().actoresEspeciales.add(new Explosion(this.posX + 5, this.posY -2));
+				
 				this.setBorrar(true);
+				
+					if (numAleatorio > 0 && numAleatorio < 0.25) {
+						
+						Arkanoid.getInstancia().actoresEspeciales.add(new CapsulaDisparos(this.posX, this.posY));
+						
+					}
+					
+					if (numAleatorio > 0.25 && numAleatorio < 0.5) Arkanoid.getInstancia().actoresEspeciales.add(new CapsulaAgrandar(this.posX, this.posY));
 				break;
 				
 			}

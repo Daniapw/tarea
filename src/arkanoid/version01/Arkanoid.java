@@ -20,19 +20,20 @@ import javax.swing.JPanel;
 public class Arkanoid extends Canvas {
 	
 	//Dimensiones del JFrame
-	public static final int ANCHO = 620; 
-	public static final int ALTO = 700;
+	protected static final int ANCHO = 620; 
+	protected static final int ALTO = 700;
 	//Tasa de frames
-	public static final int FPS = 100;	
+	protected static final int FPS = 100;	
 	//Objetos nave y bola (se crean aqui para tener un puntero)
-	public Nave nave = new Nave(210, 640);
-	public Bola bola = new Bola(nave.posX + (nave.ancho/2), nave.posY - Bola.DIAMETRO);
+	protected Nave nave = new Nave(210, 640);
+	protected Bola bola = new Bola(nave.posX + (nave.ancho/2), nave.posY - Bola.DIAMETRO);
 	//Listas de actores (ladrillos, nave, bola...)
-	public List<Actor> actores = new ArrayList<Actor>();
-	public List<Actor> actoresEspeciales = new ArrayList<Actor>();
+	protected List<Actor> actores = new ArrayList<Actor>();
+	protected List<Actor> actoresEspeciales = new ArrayList<Actor>();
+	protected List<Disparo> disparos = new ArrayList<Disparo>();
 	//Fase activa
-	public List<Fase> fases = new ArrayList<Fase>();
-	public Fase faseActiva = null;
+	protected List<Fase> fases = new ArrayList<Fase>();
+	protected Fase faseActiva = null;
 	private int indiceFase = 0;
 	//Estrategia de buffer
 	private BufferStrategy estrategia;
@@ -209,8 +210,15 @@ public class Arkanoid extends Canvas {
 				
 			}
 			
+			for (int i = 0; i < disparos.size(); i++) {
+				
+				disparos.get(i).paint(g);
+				
+			}
+			
 			//Pintar vidas del jugador
 			pintarVidaRestante(g);
+			
 		}
 		//Si el juego ha terminado (el jugador ha perdido)
 		else {
@@ -240,7 +248,12 @@ public class Arkanoid extends Canvas {
 			
 			nave.actua();
 			
-			comprobacionLadrillosYExplosiones();
+			for (int i = 0; i < disparos.size(); i++) {
+				
+				disparos.get(i).actua();				
+			}
+			
+			comprobacionLadrillosYActoresEspeciales();
 			
 			//Si la fase ha terminado, se avanza a la siguiente
 			if (faseTerminada()) {
@@ -249,7 +262,7 @@ public class Arkanoid extends Canvas {
 
 				CacheSonido.getCacheSonido().reproducirSonido("SonidoVictoria.wav");
 				
-				detenerJuegoTemporalmente(3.5);
+				detenerJuegoTemporalmente(3);
 				
 				siguienteFase();
 				
@@ -284,21 +297,56 @@ public class Arkanoid extends Canvas {
 				break;
 			}	
 		}
+		
+		//Comprobar si alguna burbuja ha colisionado con la nave
+		Rectangle naveRect = nave.getMedidas();
+		
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			r2 = actoresEspeciales.get(i).getMedidas();
+			
+			if (naveRect.intersects(r2) && actoresEspeciales.get(i) instanceof Capsula) {
+				
+				actoresEspeciales.get(i).colision();
+				
+			}
+
+		}
+		
+		//Comprobar si un disparo ha colisionado con un ladrillo
+		Rectangle disparo = null;
+		
+		for (int i = 0; i < disparos.size(); i++) {
+			
+			disparo = disparos.get(i).getMedidas();
+			
+			for (int j = 0; j < actores.size(); j++) {
+				
+				r2 = actores.get(j).getMedidas();
+				
+				if (disparo.intersects(r2) && actores.get(j) instanceof Ladrillo) {
+					
+					disparos.get(i).colision();
+					actores.get(j).colision();
+					
+				}
+				
+			}
+			
+		}
 	}
 	
 	/**
 	 * Metodo que comprueba si hay que borrar ladrillos y crea las explosiones
 	 */
 	
-	public void comprobacionLadrillosYExplosiones() {
+	public void comprobacionLadrillosYActoresEspeciales() {
 		
 		/*Los ladrillos cuyo boolean borrar este en true seran borrados. Ademas, se creara un actor Explosion en sus coordenadas y 
 		se anadira a la lista actoresEspeciales*/
 		for (int i = 0; i < actores.size(); i++) {
 			
-			if (actores.get(i).isBorrar()) {
-				
-				actoresEspeciales.add(new Explosion(actores.get(i).posX + 5, actores.get(i).posY -2));
+			if (actores.get(i).isBorrar() && actores.get(i) instanceof Ladrillo) {
 				
 				actores.remove(i);
 				
@@ -316,6 +364,12 @@ public class Arkanoid extends Canvas {
 				actoresEspeciales.remove(i);
 				
 			}
+			
+		}
+		
+		for(int i= 0; i < disparos.size(); i++) {
+			
+			if (disparos.get(i).isBorrar()) disparos.remove(i);
 			
 		}
 	}
@@ -399,7 +453,8 @@ public class Arkanoid extends Canvas {
 		
 		//Resetear nave
 		nave.intentos = 3;
-		
+		nave.efectoActivo = false;
+		nave.disparosActivos = false;
 	}
 	
 	/**
