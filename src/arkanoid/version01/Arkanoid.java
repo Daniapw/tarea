@@ -428,6 +428,7 @@ public class Arkanoid extends Canvas {
 			//Se vacia las listas de actores y se anaden los de la nueva fase
 			actores.clear();
 			actoresEspeciales.clear();
+			disparos.clear();
 			actores.add(nave);
 			actores.add(bola);
 			actores.addAll(faseActiva.actoresFase);
