@@ -29,7 +29,7 @@ public class Fase01 extends Fase {
 		    			MARGEN_SUPERIOR + i * (24 + Ladrillo.ESPACIO_ENTRE_LADRILLOS), colores[i]));
 		    }
 	    }
-
+	    
 	}
 		
 }

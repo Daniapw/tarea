@@ -33,6 +33,11 @@ public abstract class Capsula extends Actor {
 		
 		this.posY += vY;
 		
+		if (this.posY > Arkanoid.ALTO) {
+			
+			this.setBorrar(true);
+			
+		}
 	}
 	
 	/**

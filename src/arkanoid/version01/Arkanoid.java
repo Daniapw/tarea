@@ -40,6 +40,7 @@ public class Arkanoid extends Canvas {
 	//Boolean para saber si el juego ha empezado
 	protected boolean juegoEmpezado = false;	
 	protected boolean bolaLanzada = false;
+	protected boolean explosionesTerminadas=false;
 	//Boolean para saber si el juego ha terminado
 	protected boolean juegoTerminado = false;
 	//Puntero Arkanoid para el singleton
@@ -120,7 +121,7 @@ public class Arkanoid extends Canvas {
 			//Cuando el raton se mueve dentro de la ventana se ejecutara el metodo controlRaton() de la nave
 			public void mouseMoved(MouseEvent e) {
 				
-				nave.controlRaton(e);
+				if (!juegoTerminado) nave.controlRaton(e);
 				
 			}	
 			
@@ -137,6 +138,8 @@ public class Arkanoid extends Canvas {
 			}
 			
 		});
+		
+		this.actoresEspeciales.add(new NaveEnemiga(1,200));
 	}
 
 ////////////////////////////////////////////////////// METODOS PRINCIPALES /////////////////////////////////////////////////////////////////////
@@ -255,18 +258,11 @@ public class Arkanoid extends Canvas {
 			
 			comprobacionLadrillosYActoresEspeciales();
 			
-			//Si la fase ha terminado, se avanza a la siguiente
-			if (faseTerminada()) {
-				
-				CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+			//Si la fase ha terminado y no hay explosiones en pantalla, se avanza a la siguiente fase
+			if (faseTerminada() && explosionesTerminadas) {
 
-				CacheSonido.getCacheSonido().reproducirSonido("SonidoVictoria.wav");
-				
-				detenerJuegoTemporalmente(3);
-				
 				siguienteFase();
 				
-				CacheSonido.getCacheSonido().reproducirSonidoBucle("Cancion1.wav");
 			}
 		}
 	}
@@ -296,6 +292,22 @@ public class Arkanoid extends Canvas {
 				
 				break;
 			}	
+			
+		}
+		
+		//Comprobar si la bola ha colisionado con la nave enemiga
+		for (int i = 0; i < actoresEspeciales.size(); i++) {
+			
+			r2 = actoresEspeciales.get(i).getMedidas();
+			
+			if (bolaRec.intersects(r2) && actoresEspeciales.get(i) instanceof NaveEnemiga) {
+				
+				actoresEspeciales.get(i).colision();
+				
+				bola.colision(actoresEspeciales.get(i));
+				
+				break;
+			}	
 		}
 		
 		//Comprobar si alguna burbuja ha colisionado con la nave
@@ -313,7 +325,7 @@ public class Arkanoid extends Canvas {
 
 		}
 		
-		//Comprobar si un disparo ha colisionado con un ladrillo
+		//Comprobar si un disparo ha colisionado con un ladrillo o con la nave
 		Rectangle disparo = null;
 		
 		for (int i = 0; i < disparos.size(); i++) {
@@ -324,16 +336,40 @@ public class Arkanoid extends Canvas {
 				
 				r2 = actores.get(j).getMedidas();
 				
-				if (disparo.intersects(r2) && actores.get(j) instanceof Ladrillo) {
+				if (disparo.intersects(r2) && (actores.get(j) instanceof Ladrillo || actores.get(j) instanceof Nave)) {
 					
 					disparos.get(i).colision();
-					actores.get(j).colision();
 					
+					if (actores.get(j) instanceof Nave) {
+						
+						actores.get(j).colision(disparos.get(i));
+						
+					}
+					else {
+						
+						actores.get(j).colision();
+						
+					}
 				}
+				
 				
 			}
 			
+			//Comprobar si los disparos han golpeado a la nave enemiga
+			for (int j = 0; j < actoresEspeciales.size(); j++) {
+				
+				r2 = actoresEspeciales.get(j).getMedidas();
+				
+				if (disparo.intersects(r2) && (actoresEspeciales.get(j) instanceof NaveEnemiga)) {
+					
+					disparos.get(i).colision();
+					actoresEspeciales.get(j).colision(disparos.get(i));
+					
+				}
+			}
 		}
+		
+		
 	}
 	
 	/**
@@ -354,16 +390,17 @@ public class Arkanoid extends Canvas {
 			
 		}
 		
+		explosionesTerminadas = true;
+		
 		//Se recorre la lista de actores especiales; estos actuan y, si la flag borrar esta levantada, se borran
 		for (int i = 0; i < actoresEspeciales.size(); i++) {
 			
 			actoresEspeciales.get(i).actua();
 			
-			if (actoresEspeciales.get(i).isBorrar()) {
-				
-				actoresEspeciales.remove(i);
-				
-			}
+			if (actoresEspeciales.get(i) instanceof Explosion) explosionesTerminadas = false;
+			
+			if (actoresEspeciales.get(i).isBorrar()) actoresEspeciales.remove(i);
+
 			
 		}
 		
@@ -372,6 +409,9 @@ public class Arkanoid extends Canvas {
 			if (disparos.get(i).isBorrar()) disparos.remove(i);
 			
 		}
+
+		
+		
 	}
 	
 	/**
@@ -413,7 +453,15 @@ public class Arkanoid extends Canvas {
 	 */
 	
 	public void siguienteFase() {
-	
+		
+		CacheSonido.getCacheSonido().pararSonido("Cancion1.wav");
+
+		CacheSonido.getCacheSonido().reproducirSonido("SonidoVictoria.wav");
+		
+		this.getGraphics().drawImage(SpriteCache.getSpriteCache().getSprite("StageClear.png"), 2 , 250, this);
+		
+		detenerJuegoTemporalmente(3.5);
+		
 		if (indiceFase == fases.size()) {
 			
 			JOptionPane.showMessageDialog(null, "Enhorabuena, te has pasado el juego!");
@@ -422,6 +470,7 @@ public class Arkanoid extends Canvas {
 			
 		}
 		else {
+
 			//La faseActiva cambia a la siguiente
 			faseActiva = fases.get(indiceFase);
 			
@@ -436,7 +485,12 @@ public class Arkanoid extends Canvas {
 			//Se resetean la bola y la nave y se aumenta en 1 el indiceFase
 			resetBolaYNave();
 			indiceFase++;
+			
+			CacheSonido.getCacheSonido().reproducirSonidoBucle("Cancion1.wav");
 		}
+		
+		
+		
 	}
 	
 	/**
@@ -465,10 +519,10 @@ public class Arkanoid extends Canvas {
 	public void comprobarVida() {
 		
 		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
-		if (bola.toqueAbajo) {
+		if (bola.toqueAbajo || nave.naveAlcanzada) {
 			
-			nave.intentos--;
-			
+			//nave.intentos--;
+
 			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
 			if (nave.intentos > 0) {
 				

@@ -58,13 +58,12 @@ public class Ladrillo extends Actor {
 				
 				this.setBorrar(true);
 				
-					if (numAleatorio > 0 && numAleatorio < 0.25) {
+					if (numAleatorio > 0) {
 						
 						Arkanoid.getInstancia().actoresEspeciales.add(new CapsulaDisparos(this.posX, this.posY));
 						
 					}
 					
-					if (numAleatorio > 0.25 && numAleatorio < 0.5) Arkanoid.getInstancia().actoresEspeciales.add(new CapsulaAgrandar(this.posX, this.posY));
 				break;
 				
 			}

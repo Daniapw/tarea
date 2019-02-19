@@ -24,6 +24,8 @@ public class Nave extends Actor {
 	protected int frameActual;
 	//Vidas de la nave
 	protected int intentos = 3;
+	//Boolean para saber si la nave ha sido alcanzada por un disparo
+	protected boolean naveAlcanzada = false;
 	
 	/**
 	 * Constructor
@@ -53,6 +55,8 @@ public class Nave extends Actor {
 	 */
 	
 	public void actua() {
+		
+		naveAlcanzada = false;
 		
 		if (efectoActivo) {
 			
@@ -133,17 +137,17 @@ public class Nave extends Actor {
 				}
 				break;
 			}
-			
+			//Si el jugador ha conseguido la capsula de los disparos
 			case KeyEvent.VK_UP:{
 				
-				if (disparosActivos) {
+				if (disparosActivos && !Arkanoid.getInstancia().juegoTerminado) {
 					
 					CacheSonido.getCacheSonido().reproducirSonido("SonidoDisparo.wav");
-					Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, this.posY));
-					Arkanoid.getInstancia().disparos.add(new Disparo((this.posX + this.ancho - 13 ), this.posY));
+					Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, (this.posY - 17) , "Disparo"));
+					Arkanoid.getInstancia().disparos.add(new Disparo((this.posX + this.ancho - 5 ), this.posY - 17, "Disparo"));
 					
 				}
-				
+				break;
 			}
 		}
 		
@@ -280,7 +284,7 @@ public class Nave extends Actor {
 	}
 	
 	/**
-	 * Metodo que gestiona la colision
+	 * Metodos que gestionan la colision
 	 */
 	
 	public void colision() {
@@ -289,6 +293,11 @@ public class Nave extends Actor {
 		
 	}
 	
+	public void colision(Actor actor) {
+		
+		naveAlcanzada = true;
+		
+	}
 	
 	/**
 	 * Getters y setters

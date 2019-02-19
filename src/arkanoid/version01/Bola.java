@@ -182,7 +182,7 @@ public class Bola extends Actor {
 		}
 		else {
 			
-			if (actor instanceof Nave) {
+			if (actor instanceof Nave || actor instanceof NaveEnemiga) {
 				
 				colisionConNave(actor);
 				
