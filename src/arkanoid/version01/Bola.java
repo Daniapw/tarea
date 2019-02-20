@@ -203,32 +203,92 @@ public class Bola extends Actor {
 		Rectangle rectDerNave = new Rectangle(nave.posX + nave.ancho - anchoZonaEspecial, nave.posY, anchoZonaEspecial, nave.alto);
 		Rectangle rectBola = this.getMedidas();
 		
+		
+		boolean naveEnemigaArriba = false;
+		boolean naveEnemigaAbajo = false;
+		
 		// Colisi�n con el lado derecho de la nave
 		if (rectBola.intersects(rectDerNave)) {
-			this.posY = nave.posY - nave.getAlto();
+			
+			if (nave instanceof Nave) {
+				this.posY = nave.posY - nave.getAlto();
+			}
+			else {
+					
+				if (this.posY >= nave.posY + nave.alto/2) {
+					
+					naveEnemigaAbajo = true;
+					this.posY = nave.posY + nave.alto;
+				}
+				
+				if (this.posY <= nave.posY + nave.alto/2) {
+					
+					naveEnemigaArriba=true;
+					this.posY = nave.posY;
+				}
+				
+			}
+			
 			this.coordenadas.y = this.posY;
+			
 			if (Math.abs(this.trayectoria.getPendiente()) > 1 ) { // La bola viene on una pendiente mayor a 1
-				this.trayectoria.setPendiente(-(float) (Math.random() * (0.8 - 0.3) + 0.3), this.coordenadas, true);
+				
+				if (nave instanceof Nave || nave instanceof NaveEnemiga && naveEnemigaArriba ) this.trayectoria.setPendiente(-(float) (Math.random() * (0.8 - 0.3) + 0.3), this.coordenadas, true);
+				if (nave instanceof NaveEnemiga && naveEnemigaAbajo) this.trayectoria.setPendiente(-(float) (Math.random() * (0.8 - 0.3) + 0.3), this.coordenadas, false);
 			}
 			else { // La bola viene con una pendiente suave ( > 0 y < 1 )
-				this.trayectoria.setPendiente(-(float) (Math.random() * (10 - 2) + 2), this.coordenadas, true);
+				if (nave instanceof Nave || nave instanceof NaveEnemiga && naveEnemigaArriba ) this.trayectoria.setPendiente(-(float) (Math.random() * (10 - 2) + 2), this.coordenadas, true);
+				if (nave instanceof NaveEnemiga && naveEnemigaAbajo) this.trayectoria.setPendiente(-(float) (Math.random() * (10 - 2) + 2), this.coordenadas, false);
 			}
 			return;
 		}
 		// Colisi�n con el lado izquierdo de la nave
 		if (rectBola.intersects(rectIzqNave)) {
-			this.posY = nave.posY - nave.getAlto();
+			
+			if (nave instanceof Nave) {
+				this.posY = nave.posY - nave.getAlto();
+			}
+			else {
+					
+				if (this.posY >= nave.posY + nave.alto/2) {
+					
+					naveEnemigaAbajo = true;
+					this.posY = nave.posY + nave.alto;
+				}
+				
+				if (this.posY <= nave.posY + nave.alto/2) {
+					
+					naveEnemigaArriba=true;
+					this.posY = nave.posY;
+				}
+				
+			}
+			
 			this.coordenadas.y = this.posY;
+			
 			if (Math.abs(this.trayectoria.getPendiente()) > 1 ) { // La bola viene con una pendiente mayor a 1
-				this.trayectoria.setPendiente((float) (Math.random() * (0.8 - 0.3) + 0.3), this.coordenadas, false);
+				
+				if (nave instanceof Nave || nave instanceof NaveEnemiga && naveEnemigaArriba ) this.trayectoria.setPendiente((float) (Math.random() * (0.8 - 0.3) + 0.3), this.coordenadas, false);
+				if (nave instanceof NaveEnemiga && naveEnemigaAbajo) this.trayectoria.setPendiente((float) (Math.random() * (0.8 - 0.3) + 0.3), this.coordenadas, true);
 			}
 			else { // La bola viene con una pendiente suave ( > 0 y < 1 )
-				this.trayectoria.setPendiente((float) (Math.random() * (10 - 2) + 2), this.coordenadas, false);
+				if (nave instanceof Nave || nave instanceof NaveEnemiga && naveEnemigaArriba ) this.trayectoria.setPendiente((float) (Math.random() * (10 - 2) + 2), this.coordenadas, false);
+				if (nave instanceof NaveEnemiga && naveEnemigaAbajo) this.trayectoria.setPendiente((float) (Math.random() * (10 - 2) + 2), this.coordenadas, true);
 			}
 			return;
 		}
 		else { // La bola intersecta la parte central de la nave
-			this.trayectoria.reflejarHaciaArriba(this.coordenadas);
+			
+			if (nave instanceof Nave) {
+				this.trayectoria.reflejarHaciaArriba(this.coordenadas);
+			}
+			else {
+				
+				if (this.posY >= nave.posY) this.trayectoria.reflejarHaciaAbajo(this.coordenadas);
+				
+				if (this.posY <= nave.posY) this.trayectoria.reflejarHaciaArriba(this.coordenadas);
+			}
+			
 			return;
 		}	
 

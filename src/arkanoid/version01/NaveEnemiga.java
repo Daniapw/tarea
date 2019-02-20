@@ -24,19 +24,12 @@ public class NaveEnemiga extends Actor{
 	 */
 	public void actua() {
 		
-		//Si la nave ha sido alcanzada se llamara al metodo timerDanio(), que controla el tiempo que el sprite permanecera cambiado
-		if (naveAlcanzada) {
-		
-			timerDanio();
-			
-		}
-		
 		//Se genera un numero aleatorio entre 0 y 1
 		double numAleatorio = Math.random();
 		
 		//Si la nave se sale por la derecha de la ventana cambiara de sentido
 		//tambien cambiara de sentido si el numero aleatoio generado esta entre 0 y 0.007
-		if ((this.posX + this.vX + this.ancho) > Arkanoid.ANCHO || numAleatorio < 0.007) {
+		if ((this.posX + this.vX + this.ancho) > Arkanoid.ANCHO || numAleatorio < 0.008) {
 			
 			this.vX = -vX;
 			
@@ -60,12 +53,29 @@ public class NaveEnemiga extends Actor{
 		
 		this.posX += this.vX; 
 
+		//Si la nave ha sido alcanzada se llamara al metodo timerDanio(), que controla el tiempo que el sprite permanecera cambiado
+		if (this.naveAlcanzada) {
+		
+			timerDanio();
+			
+		}
 	}
 	
 	/**
 	 * Metodo paint
 	 */
 	public void paint(Graphics g) {
+		
+		if (this.naveAlcanzada) {
+			
+			this.spriteActual = SpriteCache.getSpriteCache().getSprite("SpriteNaveEnemigaDanio.png");
+			
+		}
+		else {
+			
+			this.spriteActual = SpriteCache.getSpriteCache().getSprite("SpriteNaveEnemiga.png");
+			
+		}
 		
 		g.drawImage(spriteActual, this.posX, this.posY, null);	
 
@@ -82,10 +92,8 @@ public class NaveEnemiga extends Actor{
 			CacheSonido.getCacheSonido().reproducirSonido("DanioNaveEnemiga.wav");
 			//Se le restara una vida:
 			this.vidas--;
-			//Se cambiara el sprite actual por el de danio
-			this.spriteActual = SpriteCache.getSpriteCache().getSprite("SpriteNaveEnemigaDanio.png");
 			//El boolean naveAlcanzada pasara a true
-			naveAlcanzada = true;
+			this.naveAlcanzada = true;
 			//Y se guardara el tiempo en el que ha sido alcanzada
 			this.timerAlcance = System.currentTimeMillis();
 			
@@ -106,9 +114,7 @@ public class NaveEnemiga extends Actor{
 		
 		long tiempoActual = System.currentTimeMillis();
 		
-		if ((tiempoActual- this.timerAlcance )/1000 <0.1 ) {
-			
-			this.spriteActual = SpriteCache.getSpriteCache().getSprite("SpriteNaveEnemiga.png");
+		if ((tiempoActual- this.timerAlcance )/1000 > 0) {
 			
 			this.naveAlcanzada = false;
 			

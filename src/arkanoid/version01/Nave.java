@@ -16,7 +16,6 @@ public class Nave extends Actor {
 	private BufferedImage spritesNave[] = new BufferedImage[3];
 	//Variables para saber cuando la nave tiene un efecto activo y la duracion del mismo
 	protected boolean efectoActivo = false;
-	protected boolean disparosActivos = false;
 	protected int duracionEfecto = 0;
 	protected long timerTiempoActivacion = 0;
 	//Variables para la animacion de la nave
@@ -26,6 +25,9 @@ public class Nave extends Actor {
 	protected int intentos = 3;
 	//Boolean para saber si la nave ha sido alcanzada por un disparo
 	protected boolean naveAlcanzada = false;
+	//Variables para controlar cuando la nave puede disparar
+	protected boolean disparosActivos = false;
+	protected long timerDisparos = 0;
 	
 	/**
 	 * Constructor
@@ -142,10 +144,13 @@ public class Nave extends Actor {
 				
 				if (disparosActivos && !Arkanoid.getInstancia().juegoTerminado) {
 					
-					CacheSonido.getCacheSonido().reproducirSonido("SonidoDisparo.wav");
-					Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, (this.posY - 17) , "Disparo"));
-					Arkanoid.getInstancia().disparos.add(new Disparo((this.posX + this.ancho - 5 ), this.posY - 17, "Disparo"));
-					
+					//Los disparos tienen un cooldown de medio segundo para que no sean demasiado fuertes
+					if ((System.currentTimeMillis() - timerDisparos)/1000 > 0.5) {
+						CacheSonido.getCacheSonido().reproducirSonido("SonidoDisparo.wav");
+						Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, (this.posY - 17) , "Disparo"));
+						Arkanoid.getInstancia().disparos.add(new Disparo((this.posX + this.ancho - 5 ), this.posY - 17, "Disparo"));
+						timerDisparos = System.currentTimeMillis();
+					}
 				}
 				break;
 			}
@@ -221,6 +226,16 @@ public class Nave extends Actor {
 				Arkanoid.getInstancia().bola.iniciarMovimiento(-1, -1);
 			}
 			
+			if (disparosActivos && !Arkanoid.getInstancia().juegoTerminado) {
+				
+				//Los disparos tienen un cooldown de medio segundo para que no sean demasiado fuertes
+				if ((System.currentTimeMillis() - timerDisparos)/1000 > 0.5) {
+					CacheSonido.getCacheSonido().reproducirSonido("SonidoDisparo.wav");
+					Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, (this.posY - 17) , "Disparo"));
+					Arkanoid.getInstancia().disparos.add(new Disparo((this.posX + this.ancho - 5 ), this.posY - 17, "Disparo"));
+					timerDisparos = System.currentTimeMillis();
+				}
+			}
 			
 			
 		}

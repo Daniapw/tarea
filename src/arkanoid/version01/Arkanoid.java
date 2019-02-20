@@ -521,7 +521,7 @@ public class Arkanoid extends Canvas {
 		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
 		if (bola.toqueAbajo || nave.naveAlcanzada) {
 			
-			//nave.intentos--;
+			nave.intentos--;
 
 			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
 			if (nave.intentos > 0) {
