@@ -29,7 +29,7 @@ public class NaveEnemiga extends Actor{
 		
 		//Si la nave se sale por la derecha de la ventana cambiara de sentido
 		//tambien cambiara de sentido si el numero aleatoio generado esta entre 0 y 0.007
-		if ((this.posX + this.vX + this.ancho) > Arkanoid.ANCHO || numAleatorio < 0.008) {
+		if ((this.posX + this.vX + this.ancho) > Arkanoid.ANCHO || numAleatorio < 0.007) {
 			
 			this.vX = -vX;
 			

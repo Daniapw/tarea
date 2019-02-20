@@ -43,6 +43,7 @@ public class Arkanoid extends Canvas {
 	protected boolean explosionesTerminadas=false;
 	//Boolean para saber si el juego ha terminado
 	protected boolean juegoTerminado = false;
+	protected boolean pausarJuego=false;
 	//Puntero Arkanoid para el singleton
 	public static Arkanoid arkanoid=null;
 
@@ -244,6 +245,8 @@ public class Arkanoid extends Canvas {
 		//Si el juego no ha terminado, se actualiza el mundo
 		
 		if (!juegoTerminado) {
+			
+			if (pausarJuego) pausarJuego();
 			
 			bola.actua();
 			
@@ -481,7 +484,7 @@ public class Arkanoid extends Canvas {
 			actores.add(nave);
 			actores.add(bola);
 			actores.addAll(faseActiva.actoresFase);
-			
+			this.actoresEspeciales.add(new NaveEnemiga(1,300));
 			//Se resetean la bola y la nave y se aumenta en 1 el indiceFase
 			resetBolaYNave();
 			indiceFase++;
@@ -521,7 +524,7 @@ public class Arkanoid extends Canvas {
 		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
 		if (bola.toqueAbajo || nave.naveAlcanzada) {
 			
-			nave.intentos--;
+			//nave.intentos--;
 
 			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
 			if (nave.intentos > 0) {
@@ -592,6 +595,11 @@ public class Arkanoid extends Canvas {
 			
 		}
 		
+	}
+	
+	public void pausarJuego() {
+		
+		detenerJuegoTemporalmente(999999999);
 		
 	}
 	

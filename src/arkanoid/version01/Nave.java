@@ -154,6 +154,21 @@ public class Nave extends Actor {
 				}
 				break;
 			}
+			
+			case KeyEvent.VK_P:{
+				
+				if (!Arkanoid.getInstancia().pausarJuego) {
+					
+					Arkanoid.getInstancia().pausarJuego = true;
+					
+				}
+				else {
+					
+					Arkanoid.getInstancia().pausarJuego = false;
+					
+				}
+				break;
+			}
 		}
 		
 	}
