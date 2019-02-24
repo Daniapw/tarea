@@ -26,7 +26,7 @@ public class Disparo extends Actor {
 		}
 		else {
 			
-			this.vY = -5;
+			this.vY = -7;
 			
 		}
 	}
@@ -40,7 +40,7 @@ public class Disparo extends Actor {
 		
 		this.posY -= vY;
 		
-		if (this.posY < 0) this.setBorrar(true);
+		if (this.posY > Arkanoid.ALTO) this.setBorrar(true);
 		
 	}
 	

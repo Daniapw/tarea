@@ -43,7 +43,7 @@ public class NaveEnemiga extends Actor{
 		}
 		
 		//Si el numero es menor que 0.002 la nave disparara
-		if (numAleatorio < 0.002) {
+		if (numAleatorio > 0.5 && numAleatorio < 0.502) {
 			
 			CacheSonido.getCacheSonido().reproducirSonido("SonidoDisparo.wav");
 			Arkanoid.getInstancia().disparos.add(new Disparo(this.posX, (this.posY + this.alto), "DisparoEnemigo"));

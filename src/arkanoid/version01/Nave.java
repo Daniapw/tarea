@@ -142,7 +142,7 @@ public class Nave extends Actor {
 			//Si el jugador ha conseguido la capsula de los disparos
 			case KeyEvent.VK_UP:{
 				
-				if (disparosActivos && !Arkanoid.getInstancia().juegoTerminado) {
+				if (disparosActivos) {
 					
 					//Los disparos tienen un cooldown de medio segundo para que no sean demasiado fuertes
 					if ((System.currentTimeMillis() - timerDisparos)/1000 > 0.5) {
@@ -155,15 +155,18 @@ public class Nave extends Actor {
 				break;
 			}
 			
+			//Si el usuario pulsa la tecla P se pausara el juego 
 			case KeyEvent.VK_P:{
-				
+			
 				if (!Arkanoid.getInstancia().pausarJuego) {
 					
+					CacheSonido.getCacheSonido().reproducirSonido("Pausa.wav");
 					Arkanoid.getInstancia().pausarJuego = true;
 					
 				}
 				else {
 					
+					CacheSonido.getCacheSonido().reproducirSonido("PausaOff.wav");
 					Arkanoid.getInstancia().pausarJuego = false;
 					
 				}

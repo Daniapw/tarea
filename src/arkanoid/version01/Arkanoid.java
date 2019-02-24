@@ -104,14 +104,14 @@ public class Arkanoid extends Canvas {
 			//Cuando se pulse una tecla se ejecutara el metodo teclaPulsada() de la nave
 			public void keyPressed(KeyEvent e) {
 				
-				nave.teclaPulsada(e);
+				if (!juegoTerminado) nave.teclaPulsada(e);
 				
 			}
 			
 			//Cuando se suelte una tecla se ejecutara el metodo teclaSoltada() de la nave
 			public void keyReleased(KeyEvent e) {
 				
-				nave.teclaSoltada(e);
+				if (!juegoTerminado) nave.teclaSoltada(e);
 				
 			}
 		});
@@ -122,7 +122,7 @@ public class Arkanoid extends Canvas {
 			//Cuando el raton se mueve dentro de la ventana se ejecutara el metodo controlRaton() de la nave
 			public void mouseMoved(MouseEvent e) {
 				
-				if (!juegoTerminado) nave.controlRaton(e);
+				if (!juegoTerminado && !pausarJuego) nave.controlRaton(e);
 				
 			}	
 			
@@ -159,11 +159,14 @@ public class Arkanoid extends Canvas {
 			//Se mide el tiempo que ha tardado en pintarse el frame
 			long millisAntesDeConstruirEscena = System.currentTimeMillis();
 			
-			//Se ejecutara el metodo buscarColisiones()
-			buscarColisiones();
-			
-			//Se ejecutara el metodo actualizarMundo()
-			actualizarMundo();			
+			if (!pausarJuego) {
+				
+				//Se ejecutara el metodo buscarColisiones()
+				buscarColisiones();
+				
+				//Se ejecutara el metodo actualizarMundo()
+				actualizarMundo();			
+			}
 			
 			//Se repintara la escena
 			paintMundo();
@@ -223,6 +226,9 @@ public class Arkanoid extends Canvas {
 			//Pintar vidas del jugador
 			pintarVidaRestante(g);
 			
+			//Si el juego esta pausado se pinta la imagen de pausa
+			if (pausarJuego) g.drawImage(SpriteCache.getSpriteCache().getSprite("pausa.png"), 160, 330, null);
+			
 		}
 		//Si el juego ha terminado (el jugador ha perdido)
 		else {
@@ -245,8 +251,6 @@ public class Arkanoid extends Canvas {
 		//Si el juego no ha terminado, se actualiza el mundo
 		
 		if (!juegoTerminado) {
-			
-			if (pausarJuego) pausarJuego();
 			
 			bola.actua();
 			
@@ -524,7 +528,7 @@ public class Arkanoid extends Canvas {
 		//Si la bola ha tocado la parte inferior de la pantalla se le resta un intento a la nave
 		if (bola.toqueAbajo || nave.naveAlcanzada) {
 			
-			//nave.intentos--;
+			nave.intentos--;
 
 			//Si todavia le quedan intentos a la nave se reproduce el sonido que indica que le han hecho dano
 			if (nave.intentos > 0) {
@@ -594,12 +598,6 @@ public class Arkanoid extends Canvas {
 			tiempoActual = System.currentTimeMillis();
 			
 		}
-		
-	}
-	
-	public void pausarJuego() {
-		
-		detenerJuegoTemporalmente(999999999);
 		
 	}
 	
