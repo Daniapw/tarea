@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class NaveEnemiga extends Actor{
 	
 	protected int vX = 4;
-	protected int vidas = 5;
+	protected int vidas = 10;
 	protected long timerAlcance = 0;
 	protected boolean naveAlcanzada = false;
 	

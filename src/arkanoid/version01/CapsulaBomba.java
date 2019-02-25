@@ -15,7 +15,7 @@ public class CapsulaBomba extends Capsula {
 		this.spriteActual = SpriteCache.getSpriteCache().getSprite("bomba.png");
 		this.ancho = this.spriteActual.getWidth();
 		this.alto = this.spriteActual.getHeight();
-		
+		this.vY = 4;
 	}
 	
 	/**
@@ -28,7 +28,6 @@ public class CapsulaBomba extends Capsula {
 		Arkanoid.getInstancia().actoresEspeciales.add(new Explosion(this.posX, this.posY));
 		CacheSonido.getCacheSonido().reproducirSonido("ExplosionBomba.wav");
 		Arkanoid.getInstancia().nave.naveAlcanzada = true;
-		Arkanoid.getInstancia().nave.intentos--;
 		
 	}	
 	

@@ -17,7 +17,7 @@ public class Bola extends Actor {
 	// aunque eso no quita que sigan existiendo las coordenades x e y del supertipo Actor. De hecho, cada vez que
 	// actualizamos las coordenadas flotantes tambien actualizara las coordenadas enteras.
 	private PuntoAltaPrecision coordenadas = null;
-	private float velocidadPorFrame = 3f; // Velocidad inicial de la bola, expresada en pixels por frame
+	private float velocidadPorFrame = 5f; // Velocidad inicial de la bola, expresada en pixels por frame
 	// La velocidad de la Bola aumentara conforme vaya aumentando el numero de frames generados con el siguiente factor
 	private float factorIncrementoVelocidadBola = 1.00035f;
 	// Maxima velocidad posible a alcanzar
