@@ -21,8 +21,9 @@ public class Ejercicio1 {
 		c = array[2];
 		
 		soluciones[0] = (float) ((-b + Math.sqrt(Math.pow(b, 2) - 4*a*c))/(2*a));
+		soluciones[0] = (float) ((-b - Math.sqrt(Math.pow(b, 2) - 4*a*c))/(2*a));
 		
-		System.out.println(soluciones[0]);
+		for (float num:soluciones) System.out.println(num);
 	}
 
 }
