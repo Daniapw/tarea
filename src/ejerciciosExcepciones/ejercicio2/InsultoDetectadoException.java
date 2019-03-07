@@ -1,5 +1,8 @@
 package ejerciciosExcepciones.ejercicio2;
 
-public class InsultoDetectadoException extends Exception{
+import java.util.ArrayList;
+import java.util.List;
 
+public class InsultoDetectadoException extends Exception{
+	
 }

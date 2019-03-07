@@ -11,7 +11,7 @@ public class Main {
 			
 			if (pedirFrase().contains("bombilla")) {
 				
-				System.out.println("La frase contiene bombilla!");
+				System.out.println("La frase contiene la palabra bombilla!");
 				
 			}
 			
@@ -51,7 +51,7 @@ public class Main {
 			
 		}
 		
-		if (frase.contains("(tonto|tonta|idiota)")) {
+		if (frase.contains("[/tonto/|/tonta/|/idiota/]")) {
 			
 			throw new InsultoDetectadoException();
 			
