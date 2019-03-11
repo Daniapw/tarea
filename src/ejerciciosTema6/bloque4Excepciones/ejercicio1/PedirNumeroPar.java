@@ -1,4 +1,4 @@
-package ejerciciosExcepciones;
+package ejerciciosTema6.bloque4Excepciones.ejercicio1;
 
 import java.util.Scanner;
 

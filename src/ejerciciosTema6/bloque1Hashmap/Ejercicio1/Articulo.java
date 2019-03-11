@@ -1,4 +1,4 @@
-package ejerciciosTema6.bloqueHashmap.Ejercicio1;
+package ejerciciosTema6.bloque1Hashmap.Ejercicio1;
 
 public class Articulo {
 

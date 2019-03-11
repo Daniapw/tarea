@@ -1,4 +1,4 @@
-package ejerciciosExcepciones.ejercicio2;
+package ejerciciosTema6.bloque4Excepciones.ejercicio2;
 
 import java.util.ArrayList;
 import java.util.List;

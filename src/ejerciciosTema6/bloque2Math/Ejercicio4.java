@@ -1,4 +1,4 @@
-package ejerciciosTema6.bloque1;
+package ejerciciosTema6.bloque2Math;
 
 public class Ejercicio4 {
 

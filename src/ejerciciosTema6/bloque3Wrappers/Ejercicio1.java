@@ -1,4 +1,4 @@
-package ejerciciosTema6.bloque2;
+package ejerciciosTema6.bloque3Wrappers;
 
 public class Ejercicio1 {
 
