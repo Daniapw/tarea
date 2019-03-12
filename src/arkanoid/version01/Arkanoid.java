@@ -143,6 +143,9 @@ public class Arkanoid extends Canvas {
 		});
 		
 		this.actoresEspeciales.add(new NaveEnemiga(1,200));
+		
+		//Aniadir ListenerLadrillos
+		this.listenersLadrillosDestruidos.add(new ListenerLadrillos());
 	}
 	
 	/**
@@ -168,8 +171,13 @@ public class Arkanoid extends Canvas {
 	/**
 	 * Metodo para notificar listeners
 	 */
-	public void fireLadrilloDestruidoListener() {
+	public void fireLadrilloDestruidoListener(Actor ladrillo) {
 		
+		for (int i = 0; i < listenersLadrillosDestruidos.size(); i++) {
+			
+			listenersLadrillosDestruidos.get(i).ladrilloDestruido(new LadrilloDestruidoEvent(ladrillo));
+			
+		}
 		
 	}
 ////////////////////////////////////////////////////// METODOS PRINCIPALES /////////////////////////////////////////////////////////////////////
@@ -420,6 +428,7 @@ public class Arkanoid extends Canvas {
 			
 			if (actores.get(i).isBorrar() && actores.get(i) instanceof Ladrillo) {
 				
+				fireLadrilloDestruidoListener(actores.get(i));
 				actores.remove(i);
 				
 			}

@@ -54,7 +54,7 @@ public class Ladrillo extends Actor {
 				CacheSonido.getCacheSonido().reproducirSonido("SonidoChoqueLadrillo.wav");
 				vidas--;
 				
-				Arkanoid.getInstancia().actoresEspeciales.add(new Explosion(this.posX + 5, this.posY -2));
+				
 				
 				this.setBorrar(true);
 				
