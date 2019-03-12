@@ -47,6 +47,8 @@ public class Arkanoid extends Canvas {
 	//Puntero Arkanoid para el singleton
 	public static Arkanoid arkanoid=null;
 
+	//Lista listeners eventos
+	protected static List<LadrilloDestruidoListener> listenersLadrillosDestruidos = new ArrayList<LadrilloDestruidoListener>();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
@@ -142,7 +144,34 @@ public class Arkanoid extends Canvas {
 		
 		this.actoresEspeciales.add(new NaveEnemiga(1,200));
 	}
-
+	
+	/**
+	 * Metodo para anadir listeners 
+	 * @param listener
+	 */
+	public void addLadrilloDestruidoListener(LadrilloDestruidoListener listener) {
+		
+		listenersLadrillosDestruidos.add(listener);
+		
+	}
+	
+	/**
+	 * Metodo para quitar listeners
+	 * @param listener
+	 */
+	public void removeLadrilloDestruidoListener(LadrilloDestruidoListener listener) {
+		
+		listenersLadrillosDestruidos.remove(listener);
+		
+	}
+	
+	/**
+	 * Metodo para notificar listeners
+	 */
+	public void fireLadrilloDestruidoListener() {
+		
+		
+	}
 ////////////////////////////////////////////////////// METODOS PRINCIPALES /////////////////////////////////////////////////////////////////////
 	
 	/**

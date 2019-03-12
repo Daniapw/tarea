@@ -1,5 +1,6 @@
 package Arrays;
 import javax.swing.JOptionPane;
+
 public class ejercicio1arrays {
 
 	public static void main(String[] args) {
@@ -7,10 +8,9 @@ public class ejercicio1arrays {
 		int numeros[] = new int [150];
 		int limiteinf, limitesup;
 		
-		limiteinf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el límite inferior"));
-		limitesup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el límite superior"));
+		limiteinf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el lï¿½mite inferior"));
+		limitesup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el lï¿½mite superior"));
 		
-
 		
 		for (int i = 0; i < numeros.length; i++) {
 			
@@ -19,7 +19,7 @@ public class ejercicio1arrays {
 			
 		for (int i = 0; i < numeros.length; i++) {
 			
-			System.out.println("Número " + i + ": " + numeros[i]);
+			System.out.println("Nï¿½mero " + i + ": " + numeros[i]);
 		}
 
 		
