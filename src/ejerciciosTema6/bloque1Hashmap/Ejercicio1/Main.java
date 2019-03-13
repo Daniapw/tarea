@@ -2,6 +2,7 @@ package ejerciciosTema6.bloque1Hashmap.Ejercicio1;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
@@ -40,10 +41,18 @@ public class Main {
 			case 1:{
 				
 				String codBarras = JOptionPane.showInputDialog("Introduce el codigo de barras del articulo:");
-				String numeroEstante = JOptionPane.showInputDialog("Introduce el estante al que pertenece el articulo:");
-				String desc = JOptionPane.showInputDialog("Introduce la descripcion del articulo:");
 				
-				anadirArt(codBarras,numeroEstante, desc);
+				if (!hm.containsKey(codBarras)) {
+					String numeroEstante = JOptionPane.showInputDialog("Introduce el estante al que pertenece el articulo:");
+					String desc = JOptionPane.showInputDialog("Introduce la descripcion del articulo:");
+					
+					anadirArt(codBarras,numeroEstante, desc);
+				}
+				else {
+					
+					JOptionPane.showMessageDialog(null, "El articulo ya esta en el inventario");
+					
+				}
 				
 				break;
 			}
@@ -54,7 +63,14 @@ public class Main {
 				if (!almacenVacio) {
 					String key = JOptionPane.showInputDialog(imprimirArts()+"\nIntroduce el codigo de barras del articulo a borrar");
 					
-					borrarArt(key);
+					//Si el articulo no esta en el inventario se mostrara un mensaje 
+					if (!hm.containsKey(key)) {
+						JOptionPane.showMessageDialog(null, "El articulo no esta en el inventario");
+					}
+					else {
+						borrarArt(key);	
+					}
+					
 				}
 				else {
 					
@@ -69,11 +85,20 @@ public class Main {
 			case 3:{
 				
 				if (!almacenVacio) {
+					
 					String key = JOptionPane.showInputDialog(imprimirArts()+"\nIntroduce el codigo de barras del articulo que quieres modificar:");
 					
-					String estante= JOptionPane.showInputDialog("Introduce el numero del nuevo estante:");
-
-					modificarEstante(key, estante);
+					//Si el articulo no esta en el inventario se mostrara un mensaje 
+					if (!hm.containsKey(key)) {
+						JOptionPane.showMessageDialog(null, "El articulo no esta en el inventario");
+					}
+					else {
+						
+						String estante= JOptionPane.showInputDialog("Introduce el numero del nuevo estante:");
+	
+						modificarEstante(key, estante);
+					}
+					
 				}
 				else {
 					
@@ -121,9 +146,8 @@ public class Main {
 	 * @param desc
 	 */
 	public static void anadirArt(String codBarras, String numeroEstante, String desc) {
-		
+	
 		hm.put(codBarras, new Articulo(codBarras, numeroEstante, desc));
-		
 		JOptionPane.showMessageDialog(null, "Articulo introducido con exito");
 	}
 
@@ -160,20 +184,20 @@ public class Main {
 		return articulo.numeroEstante;
 		
 	}
+	
 	/**
 	 * Metodo para imprimir los articulos
 	 * @return
 	 */
-	public static String imprimirArts() {
-		String str = "";
+	public static StringBuffer imprimirArts() {
+		StringBuffer str = new StringBuffer();
 		
 		if (!hm.isEmpty()) {
 			Collection<Articulo> objetos= hm.values(); 
-			
-			
+
 			for (Articulo articulo: objetos) {
 				
-				str=str.concat(articulo.toString());
+				str.append(articulo.toString());
 				
 			}
 			
@@ -181,7 +205,7 @@ public class Main {
 		}
 		else {
 			
-			str = "No hay ningun objeto en el almacen";
+			str.append("No hay ningun objeto en el almacen");
 			
 		}
 		
