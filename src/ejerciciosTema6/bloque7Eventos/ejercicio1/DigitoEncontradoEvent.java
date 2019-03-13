@@ -9,13 +9,18 @@ import java.util.List;
  *
  */
 public class DigitoEncontradoEvent {
-	List<Integer> digitos = new ArrayList<Integer>();
+	
+	private List<Integer> digitos = new ArrayList<Integer>();
 	
 	public DigitoEncontradoEvent(List<Integer> lista) {
 		
 		super();
 		this.digitos=lista;
 		
+	}
+
+	public List<Integer> getDigitos() {
+		return digitos;
 	}
 	
 	

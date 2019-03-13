@@ -26,7 +26,7 @@ public class EjemploPropiedades {
 			propiedades = new Properties();
 			
 			try {
-				propiedades.load(propiedades.getClass().getResourceAsStream("src/ejemploPropiedades/propiedades.properties"));
+				propiedades.load(EjemploPropiedades.class.getClassLoader().getResourceAsStream("propiedades.properties"));
 			} catch (FileNotFoundException e) {
 
 				System.out.println("No se ha encontrado el archivo");	

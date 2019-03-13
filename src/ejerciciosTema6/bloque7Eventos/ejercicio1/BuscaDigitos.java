@@ -6,7 +6,7 @@ public class BuscaDigitos implements DigitoEncontradoListener {
 	public void digitoEncontrado(DigitoEncontradoEvent evento) {
 		System.out.println("\nSe han encontrado 3 o mas digitos:");
 		
-		for (Integer digito:evento.digitos) {
+		for (Integer digito:evento.getDigitos()) {
 			
 			System.out.print(digito + " ");
 			

@@ -8,10 +8,11 @@ import javax.swing.JOptionPane;
 public class Main {
 	
 	/**
-	 * Esta es la lista de los listeners, se ha de poner en la clase que va a "escuchar" para ver si se
+	 * Esta es la lista de listeners, se ha de poner en la clase que va a "escuchar" para ver si se
 	 * produce un evento
+	 * Se suele poner en privado
 	 */
-	protected static List<DigitoEncontradoListener> digitoEncontradoListeners = new ArrayList<DigitoEncontradoListener>();
+	private static List<DigitoEncontradoListener> digitoEncontradoListeners = new ArrayList<DigitoEncontradoListener>();
 	
 	/**
 	 * Estos son los metodos para anadir un listener y para quitarlo
@@ -31,9 +32,10 @@ public class Main {
 	
 	/**
 	 * Este es el metodo fire. Es el encargado de pasarle el evento a los listeners
+	 * Se pone siempre en privado
 	 * @param listaNumeros
 	 */
-	public static void fireDigitoEncontradoListener(List<Integer> listaNumeros) {
+	private static void fireDigitoEncontradoListener(List<Integer> listaNumeros) {
 		
 		for (int i = 0; i < digitoEncontradoListeners.size(); i++) {
 			
@@ -82,7 +84,8 @@ public class Main {
 				
 			}
 			
-			//Si la lista tiene un tamanio de 3 o mas digitos se llama al metodo fireDigitoEncontradoListener(), pasandole la lista
+			//Si la lista tiene un tamanio de 3 o mas digitos se llama 
+			//al metodo fireDigitoEncontradoListener(), pasandole la lista
 			if (listaNumeros.size() >= 3) fireDigitoEncontradoListener(listaNumeros);
 			
 			//Por ultimo se limpia la lista para la siguiente iteracion
