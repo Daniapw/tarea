@@ -1,7 +1,9 @@
 package ejemploPropiedades;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -26,7 +28,10 @@ public class EjemploPropiedades {
 			propiedades = new Properties();
 			
 			try {
-				propiedades.load(EjemploPropiedades.class.getClassLoader().getResourceAsStream("propiedades.properties"));
+				File file = new File("src/ejemploPropiedades/propiedades.properties");
+				System.out.println("Fichero encontrado: " + file.exists());
+				propiedades.load(new FileReader(file));
+				
 			} catch (FileNotFoundException e) {
 
 				System.out.println("No se ha encontrado el archivo");	
