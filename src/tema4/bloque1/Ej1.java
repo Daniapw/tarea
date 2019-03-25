@@ -2,7 +2,7 @@ package tema4.bloque1;
 
 import javax.swing.JOptionPane;
 
-public class Utils {
+public class Ej1 {
 		
 	public static void main(String[] args) {
 		
@@ -29,11 +29,11 @@ public class Utils {
 		
 		int numero;
 		
-		int limiteinf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el límite inferior:"));
-		int limitesup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el límite superior:"));
+		int limiteinf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el lï¿½mite inferior:"));
+		int limitesup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el lï¿½mite superior:"));
 		
 		do {
-			numero = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número entre " + limiteinf + " y " + limitesup ));
+			numero = Integer.parseInt(JOptionPane.showInputDialog("Introduce un nï¿½mero entre " + limiteinf + " y " + limitesup ));
 		
 		}while(numero > limitesup || numero < limiteinf);
 		
@@ -45,8 +45,8 @@ public class Utils {
 	
 	public static void metodo1 () {
 		
-		int numero1 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número"));
-		int numero2 = Integer.parseInt(JOptionPane.showInputDialog("Introduce otro número"));
+		int numero1 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un nï¿½mero"));
+		int numero2 = Integer.parseInt(JOptionPane.showInputDialog("Introduce otro nï¿½mero"));
 		metodo2(numero1, numero2);
 		
 	}
@@ -58,7 +58,7 @@ public class Utils {
 		}
 		else {
 			if (numero1 == numero2 || numero2 == numero1) {
-				System.out.println("Es el mismo número.");
+				System.out.println("Es el mismo nï¿½mero.");
 			}
 			else {
 				System.out.println(numero2 + " es mayor que " + numero1);
